@@ -14,7 +14,7 @@ layout: default
 <p>We have upgraded the operating system (OS) at Glooscap from Red Hat Enterprise Linux 4 (RHEL 4) to RHEL 6. However, the head node is still running RHEL4, but will be replaced soon.
 </p>
 <h2><span class="mw-headline" id="Storage_reorganization">Storage reorganization</span></h2>
-<p>As of Feb 20, 2012, the <code>/globalscratch</code> filesystem has been merged into the <code>/home</code> filesystem, so most users on Glooscap will now have a single <a href="/Storage_System#Quotas" title="Storage System">quota</a> rather than two, and <code>/home/$USER/scratch</code> is no longer a symbolic link to <code>/globalscratch/$USER</code>. If you have scripts which make explicit reference to <code>/globalscratch/$USER</code> as part of a path, please change them to refer to <code>~/scratch</code> instead.
+<p>As of Feb 20, 2012, the <code>/globalscratch</code> filesystem has been merged into the <code>/home</code> filesystem, so most users on Glooscap will now have a single <a href="{{ 'Storage_System#Quotas' | relative_url }}" title="Storage System">quota</a> rather than two, and <code>/home/$USER/scratch</code> is no longer a symbolic link to <code>/globalscratch/$USER</code>. If you have scripts which make explicit reference to <code>/globalscratch/$USER</code> as part of a path, please change them to refer to <code>~/scratch</code> instead.
 </p>
 <h2><span class="mw-headline" id="General_Information">General Information</span></h2>
 <table cellpadding="5" width="608" style="border: 1px solid #a3b1bf">
@@ -65,7 +65,7 @@ Eight-core AMD Opteron 6134 (2.3GHz), two per host
 <td>EL6
 </td></tr>
 </tbody></table>
-<p><a href="page_not_existing.html" style='color:red' class="new" title="Compute Resources (page does not exist)">Overview</a> | <a href="/Mahone" title="Mahone">Mahone</a> | <a href="/Placentia" title="Placentia">Placentia</a> | <a href="/Fundy" title="Fundy">Fundy</a> | <a class="mw-selflink selflink">Glooscap</a>
+<p><a href="page_not_existing.html" style='color:red' class="new" title="Compute Resources (page does not exist)">Overview</a> | <a href="{{ 'Mahone' | relative_url }}" title="Mahone">Mahone</a> | <a href="{{ 'Placentia' | relative_url }}" title="Placentia">Placentia</a> | <a href="{{ 'Fundy' | relative_url }}" title="Fundy">Fundy</a> | <a class="mw-selflink selflink">Glooscap</a>
 </p>
 
 

@@ -59,7 +59,7 @@ to request permission to access Gaussian on Compute Canada clusters.
 </p><p><br />
 </p>
 <h2><span class="mw-headline" id="Available_Hardware">Available Hardware</span></h2>
-<p>Gaussian is licensed for use on the <a href="Placentia.html" title="Placentia">Placentia</a> cluster. Placentia will be withdrawn from service after 2019 March 31, see <a href="/New_Systems_Migration" title="New Systems Migration">New Systems Migration</a> for more information.
+<p>Gaussian is licensed for use on the <a href="Placentia.html" title="Placentia">Placentia</a> cluster. Placentia will be withdrawn from service after 2019 March 31, see <a href="{{ 'New_Systems_Migration' | relative_url }}" title="New Systems Migration">New Systems Migration</a> for more information.
 </p><p>Gaussian is also available on the new Compute Canada <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Graham">Graham</a> cluster. Please see <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Gaussian">Gaussian</a> on the Compute Canada <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Compute_Canada_Documentation">technical documentation site</a> for more guidance. You will be asked there to re-register your agreement with the Gaussian license terms, even if you are already registered for Placentia.
 </p>
 <h2><span class="mw-headline" id="Setting_Up_Your_Environment">Setting Up Your Environment</span></h2>
@@ -110,14 +110,14 @@ to request permission to access Gaussian on Compute Canada clusters.
 <pre>$ ls Gau*
 Gau-24596.inp  Gau-24598.chk  Gau-24598.d2e  Gau-24598.int  Gau-24598.rwf  Gau-24598.scr
 </pre>
-<p>If a Gaussian job finishes normally these files are automatically deleted at the end of the run.  However, if Gaussian doesn't have enough <a href="/Disk_quota" class="mw-redirect" title="Disk quota">disk quota</a> for these files the job will crash, probably (but not always) near the beginning. Furthermore, a typical Gaussian job does an enormous number of small input/output transactions to those files, which can have a negative effect on filesystem performance. Therefore the location of these intermediate files is very important.
+<p>If a Gaussian job finishes normally these files are automatically deleted at the end of the run.  However, if Gaussian doesn't have enough <a href="{{ 'Disk_quota' | relative_url }}" class="mw-redirect" title="Disk quota">disk quota</a> for these files the job will crash, probably (but not always) near the beginning. Furthermore, a typical Gaussian job does an enormous number of small input/output transactions to those files, which can have a negative effect on filesystem performance. Therefore the location of these intermediate files is very important.
 </p><p>In the interactive and script examples shown above, intermediate files are written to the current working directory, i.e. the directory where the job was submitted. By setting an environment variable <code>GAUSS_SCRDIR</code>, you can direct Gaussian to put these intermediate files in other places.  There are effectively three options at ACENET:
 </p>
 <ul><li>/home filesystem</li>
 <li>Local scratch</li>
 <li>NQS</li></ul>
 <dl><dt>/home filesystem</dt>
-<dd>This default location has a small <a href="/Disk_quota" class="mw-redirect" title="Disk quota">quota</a>.  This limits the size of jobs you can run, but also limits the amount of disk Gaussian can consume by accident.  It is the default for the beginning user, and requires no knowledge of environment variables or changes to the example job script shown above. This is suitable <b>if you only expect to run one or two Gaussian jobs at a time,</b> and if the size of their intermediate files does not exceed your quota.</dd></dl>
+<dd>This default location has a small <a href="{{ 'Disk_quota' | relative_url }}" class="mw-redirect" title="Disk quota">quota</a>.  This limits the size of jobs you can run, but also limits the amount of disk Gaussian can consume by accident.  It is the default for the beginning user, and requires no knowledge of environment variables or changes to the example job script shown above. This is suitable <b>if you only expect to run one or two Gaussian jobs at a time,</b> and if the size of their intermediate files does not exceed your quota.</dd></dl>
 <dl><dt>Local scratch</dt>
 <dd>Using node-local disk for scratch files reduces load on the network filesystem and relieves space pressure on <code>/home</code>.  For these reasons it <b>is the recommended best practice.</b> Request the <code>localscratch</code> resource from Grid Engine and set <code>GAUSS_SCRDIR</code> to <code>$TMPDIR</code>.  Here is a fragment of a job script as an example (<code>bash</code> syntax shown):</dd></dl>
 <pre> #$ -pe gaussian 4
@@ -126,9 +126,9 @@ Gau-24596.inp  Gau-24598.chk  Gau-24598.d2e  Gau-24598.int  Gau-24598.rwf  Gau-2
  export GAUSS_SCRDIR=$TMPDIR
 </pre>
 <dl><dd>231 GB is the largest volume of scratch disk you can access with this method at Placentia. Other nodes are available with 122G and 94G of local scratch. The machines with 231G also have a second local disk, but this cannot be accessed through $TMPDIR. Write to support@ace-net.ca for help if you want to try using this second local disk.</dd>
-<dd>See the next section for more about MAXDISK, and the page on <a href="/Local_Scratch" title="Local Scratch">Local Scratch</a>.</dd></dl>
+<dd>See the next section for more about MAXDISK, and the page on <a href="{{ 'Local_Scratch' | relative_url }}" title="Local Scratch">Local Scratch</a>.</dd></dl>
 <dl><dt>NQS</dt>
-<dd>If your jobs generate intermediate files that may <a href="/Storage_System" title="Storage System">exceed your quota</a> in <code>/home</code> or the capacity of local scratch, you can use "no-quota scratch", <code>/nqs/$USER</code>.  It is simpler to manage than local scratch, but you <b>must</b> read about it and accept its terms of usage on the <a href="/Storage_System#No-quota_Scratch" title="Storage System">Storage System</a> page before using it.  Once you have done that and followed the instructions there, you set <code>GAUSS_SCRDIR</code> in your script:</dd></dl>
+<dd>If your jobs generate intermediate files that may <a href="{{ 'Storage_System' | relative_url }}" title="Storage System">exceed your quota</a> in <code>/home</code> or the capacity of local scratch, you can use "no-quota scratch", <code>/nqs/$USER</code>.  It is simpler to manage than local scratch, but you <b>must</b> read about it and accept its terms of usage on the <a href="{{ 'Storage_System#No-quota_Scratch' | relative_url }}" title="Storage System">Storage System</a> page before using it.  Once you have done that and followed the instructions there, you set <code>GAUSS_SCRDIR</code> in your script:</dd></dl>
 <pre>export GAUSS_SCRDIR=/nqs/$USER     # bash syntax
 setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 </pre>
@@ -166,7 +166,7 @@ setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 <dd>There is some evidence that 1Gb may be too small an increment for G09 jobs.  If you get either
 <ul><li>a message in the G09 output <code>galloc:  could not allocate memory</code>, or</li>
 <li>no message at all, but the job dies mysteriously early in the run,</li></ul></dd>
-<dd>then try boosting <code>h_vmem</code> higher still and re-submitting. And please consider <a href="/Ask_Support" title="Ask Support"> reporting your experiences</a> to us.</dd></dl>
+<dd>then try boosting <code>h_vmem</code> higher still and re-submitting. And please consider <a href="{{ 'Ask_Support' | relative_url }}" title="Ask Support"> reporting your experiences</a> to us.</dd></dl>
 <h4><span class="mw-headline" id="Parallel_Jobs">Parallel Jobs</span></h4>
 <p>The submission of parallel jobs to SGE is similar to the submission of serial jobs, with three exceptions:
 </p>
@@ -212,11 +212,11 @@ setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
  g09 &lt; test.com &gt; test.out
 </pre>
 <h4><span class="mw-headline" id="Automatic_script">Automatic script</span></h4>
-<p><a href="/User:Fkannema" title="User:Fkannema">Felix Kanneman</a> has supplied a job script which analyzes a Gaussian input file and automatically submits the job with the appropriate memory request.  ACENET technical staff have not had the opportunity to test it extensively, but you are invited to try it at your own risk. The script and documentation can be found on <a href="/User:Fkannema" title="User:Fkannema">Felix's page</a>.
+<p><a href="{{ 'User:Fkannema' | relative_url }}" title="User:Fkannema">Felix Kanneman</a> has supplied a job script which analyzes a Gaussian input file and automatically submits the job with the appropriate memory request.  ACENET technical staff have not had the opportunity to test it extensively, but you are invited to try it at your own risk. The script and documentation can be found on <a href="{{ 'User:Fkannema' | relative_url }}" title="User:Fkannema">Felix's page</a>.
 </p><p>This was testing with g03, but should still work with g09. Still use precaution when using this utility.
 </p>
 <h2><span class="mw-headline" id="Gaussian_Error_Messages">Gaussian Error Messages</span></h2>
-<p>Please visit the <a href="/Gaussian_Error_Messages" title="Gaussian Error Messages">Gaussian Error Messages</a> page for a list of common errors and how to diagnose and solve them.
+<p>Please visit the <a href="{{ 'Gaussian_Error_Messages' | relative_url }}" title="Gaussian Error Messages">Gaussian Error Messages</a> page for a list of common errors and how to diagnose and solve them.
 </p>
 <h2><span class="mw-headline" id="Visualizing_structures_and_results">Visualizing structures and results</span></h2>
 <p>Using <a href="page_not_existing.html" style='color:red' class="new" title="Open Babel (page does not exist)">Open Babel</a> and <a href="page_not_existing.html" style='color:red' class="new" title="VMD (page does not exist)">VMD</a>, it is possible to visualize results from Gaussian.  The visualization of Gaussian results can also be completed using <a rel="nofollow" class="external text" href="http://jmol.sourceforge.net/">JMOL</a> and <a rel="nofollow" class="external text" href="http://www.cscs.ch/molekel/">Molekel</a> which are both freely available and can read in Gaussian output files directly without the need for conversion.

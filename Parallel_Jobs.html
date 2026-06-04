@@ -37,20 +37,20 @@ layout: default
 </th></tr>
 <tr bgcolor="#f5faff">
 <td><code>openmp</code></td>
-<td>For jobs assigned to a single host (including shared memory <a href="/OpenMP" title="OpenMP">OpenMP</a> and <a href="/MPI" class="mw-redirect" title="MPI">MPI</a> jobs)
+<td>For jobs assigned to a single host (including shared memory <a href="{{ 'OpenMP' | relative_url }}" title="OpenMP">OpenMP</a> and <a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a> jobs)
 </td></tr>
 <tr bgcolor="#f5faff">
 <td><code>ompi*</code></td>
-<td>For distributed jobs, e.g. <a href="/MPI" class="mw-redirect" title="MPI">MPI</a>
+<td>For distributed jobs, e.g. <a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a>
 </td></tr>
 <tr bgcolor="#f5faff">
 <td><code>4per*, 16per*</code></td>
 <td>For distributed jobs that require a fixed number of cores per host
 </td></tr></tbody></table>
-<p>Other parallel environments may be available.  These can be listed with <code>qconf -spl</code>, but we do not recommend you use these unless they are specifically mentioned on another wiki page (e.g. <a href="/Gaussian" title="Gaussian">Gaussian</a>) or you have consulted with a <a rel="nofollow" class="external text" href="http://www.ace-net.ca/about-us/team/">Computational Research Consultant</a>.
+<p>Other parallel environments may be available.  These can be listed with <code>qconf -spl</code>, but we do not recommend you use these unless they are specifically mentioned on another wiki page (e.g. <a href="{{ 'Gaussian' | relative_url }}" title="Gaussian">Gaussian</a>) or you have consulted with a <a rel="nofollow" class="external text" href="http://www.ace-net.ca/about-us/team/">Computational Research Consultant</a>.
 </p>
 <h2><span class="mw-headline" id="OpenMP_or_threaded_jobs">OpenMP or threaded jobs</span></h2>
-<p>Since <a href="/OpenMP" title="OpenMP">OpenMP</a> is for shared memory programming, OpenMP programs must execute on only one node -- they cannot span nodes like MPI programs do. Consequently, they need a distinct parallel environment under the Grid Engine, <code>-pe openmp <i>np</i></code>. The maximum number of slots you can request with this parallel environment on our clusters is 16.
+<p>Since <a href="{{ 'OpenMP' | relative_url }}" title="OpenMP">OpenMP</a> is for shared memory programming, OpenMP programs must execute on only one node -- they cannot span nodes like MPI programs do. Consequently, they need a distinct parallel environment under the Grid Engine, <code>-pe openmp <i>np</i></code>. The maximum number of slots you can request with this parallel environment on our clusters is 16.
 </p>
 <pre>#$ -cwd
 #$ -l h_rt=01:00:00
@@ -71,7 +71,7 @@ export OMP_NUM_THREADS=$NSLOTS
 <dl><dt>Note</dt>
 <dd>You can also run an MPI program with the <code>openmp</code> parallel environment if you want all processes to reside on the same host.</dd></dl>
 <h2><span class="mw-headline" id="MPI_jobs">MPI jobs</span></h2>
-<p>Here is an example script that runs a 16-process <a href="/MPI" class="mw-redirect" title="MPI">MPI</a> application <code>mpi_app</code> from the current directory:
+<p>Here is an example script that runs a 16-process <a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a> application <code>mpi_app</code> from the current directory:
 </p>
 <pre>#$ -cwd
 #$ -l h_rt=01:00:00
@@ -79,7 +79,7 @@ export OMP_NUM_THREADS=$NSLOTS
 
 mpirun mpi_app
 </pre>
-<p>There is no need to specify the list of hosts and/or the number of processes for the <code>mpirun</code> command because <a href="/Open_MPI" title="Open MPI">Open MPI</a> will obtain this information directly from Grid Engine.
+<p>There is no need to specify the list of hosts and/or the number of processes for the <code>mpirun</code> command because <a href="{{ 'Open_MPI' | relative_url }}" title="Open MPI">Open MPI</a> will obtain this information directly from Grid Engine.
 </p><p>You can use the <code>openmp</code> environment if you want all the MPI processes to run on a single host.
 </p><p>If you submit an MPI job that requests a lot of slots, (e.g. <i>more</i> than 16), you are encouraged to turn on the Reservation option:
 </p>
@@ -91,16 +91,16 @@ mpirun mpi_app
 <dd>In some cases (whether due to cluster design changes or reconfigurations, or hardware limitations for some sites) MPI job cannot span all nodes, so there may be a parallel environment for each block of nodes. When we assign names to those parallel environments, they always start with <code>ompi</code>. That is why it is important that you used a wildcard <code>*</code> like so <code>ompi*</code> in order to allow your job to run on any part of the cluster. On the command line, care has to be taken to "escape" the wildcard or use quotes like so:</dd></dl>
 <pre>$ qsub -pe 'ompi*' 16 jobscript
 </pre>
-<dl><dd>Please note that at <a href="/Placentia" title="Placentia">Placentia</a>, using <code>ompi*</code> may result in placing your job on the <a href="/Green_ACENET" title="Green ACENET">Green ACENET</a> resources that are not equipped with InfiniBand. In order to avoid this, do not use the trailing wildcard character, e.g. <code>-pe ompi 16</code>.</dd></dl>
+<dl><dd>Please note that at <a href="{{ 'Placentia' | relative_url }}" title="Placentia">Placentia</a>, using <code>ompi*</code> may result in placing your job on the <a href="{{ 'Green_ACENET' | relative_url }}" title="Green ACENET">Green ACENET</a> resources that are not equipped with InfiniBand. In order to avoid this, do not use the trailing wildcard character, e.g. <code>-pe ompi 16</code>.</dd></dl>
 <h3><span class="mw-headline" id="Large_jobs_and_memory_fragmentation">Large jobs and memory fragmentation</span></h3>
-<p>Large MPI jobs, typically those with 64 slots or more, may be prone to apparently random failures due to memory fragmentation.  Read more about it on the <a href="/Memory_Management#MPI_job_fragmentation" title="Memory Management">Memory Management</a> page.
+<p>Large MPI jobs, typically those with 64 slots or more, may be prone to apparently random failures due to memory fragmentation.  Read more about it on the <a href="{{ 'Memory_Management#MPI_job_fragmentation' | relative_url }}" title="Memory Management">Memory Management</a> page.
 </p>
 <h3><span id="4per*_and_16per*_parallel_environments"></span><span class="mw-headline" id="4per.2A_and_16per.2A_parallel_environments">4per* and 16per* parallel environments</span></h3>
 <pre>$ qsub -pe 4per\* 32 jobscript
 $ qsub -pe 16per\* 32 jobscript
 </pre>
 <p>These parallel environments will guarantee that your job receives exactly 4 or 16 slots per host, respectively.  You must request an integral multiple of 4 or 16 slots.
-</p><p>Using one of these parallel environments constrains the scheduler more strongly than using <code>ompi*</code> and so will typically result in a longer wait for the job to schedule.  They are therefore recommended only if you have a good reason to use them.  One such reason might be if you are running very large MPI jobs and per-connection <a href="/Memory_Management#MPI_job_fragmentation" title="Memory Management"> memory overhead</a> is a problem.
+</p><p>Using one of these parallel environments constrains the scheduler more strongly than using <code>ompi*</code> and so will typically result in a longer wait for the job to schedule.  They are therefore recommended only if you have a good reason to use them.  One such reason might be if you are running very large MPI jobs and per-connection <a href="{{ 'Memory_Management#MPI_job_fragmentation' | relative_url }}" title="Memory Management"> memory overhead</a> is a problem.
 </p><p>There is no general way to request the exclusive use of entire hosts from Grid Engine; <code>-pe 16per*</code> and <code>-pe openmp</code> are the best you can do:
 </p>
 <ul><li>At sites built entirely from 4-core machines (Mahone), <code>4per*</code> will also give you exclusive use of complete hosts.</li>

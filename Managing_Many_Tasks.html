@@ -38,7 +38,7 @@ my_app $SGE_TASK_ID some_arg another_arg 0
 </pre>
 <p>Click <a rel="nofollow" class="external text" href="http://wiki.gridengine.info/wiki/index.php/Simple-Job-Array-Howto">here</a> for more on array jobs, with examples. Still more examples can be found in <a href="img/6/6e/ManyJobs_May14.pdf" class="internal" title="ManyJobs May14.pdf"> this presentation</a>.
 </p><p>Using an array job instead of a large number of separate serial jobs has advantages for other users and the system as a whole. A waiting array job only produces one line of output in <code>qstat</code> or <code>showq</code>, making these tools easier to use. The scheduler does not have to analyze job requirements for all the array tasks separately, so it runs more efficiently too.
-</p><p>The Grid Engine environment variable <code>$TMPDIR</code> will point to a <a href="/Local_Scratch#Grid_Engine_and_Local_Scratch" title="Local Scratch"> local directory</a> with a unique name for each task.
+</p><p>The Grid Engine environment variable <code>$TMPDIR</code> will point to a <a href="{{ 'Local_Scratch#Grid_Engine_and_Local_Scratch' | relative_url }}" title="Local Scratch"> local directory</a> with a unique name for each task.
 </p>
 <h2><span class="mw-headline" id="Packing_serial_jobs">Packing serial jobs</span></h2>
 <p>A number of serial jobs <b>with the same expected run-time</b> can be packed together into one submission script to run concurrently on the same host. Here is a sample script that packs 3 serial jobs, and starts them with a 10-sec interval from each other:
@@ -55,7 +55,7 @@ sleep 10
 wait
 </pre>
 <p>Note that every execution line is ended with the ampersand (to run the binaries in background), allowing the shell to proceed on parsing the script until it reaches the 'wait' command, which prevents the shell from quitting until all currently active child processes are complete. This results in a concurrent execution of the five launched binaries.
-</p><p>We also recommend copying your input files to a <a href="/Local_Scratch" title="Local Scratch"> local directory</a>, before launching your executables. Copying your data once before running multiple binaries is especially important if you are using the same input files for each run. This greatly reduces the stress on the network and the storage system, and prevents your jobs from wasting wall-clock time being in the I/O waiting state. Here is a sample script that you could modify to your needs:
+</p><p>We also recommend copying your input files to a <a href="{{ 'Local_Scratch' | relative_url }}" title="Local Scratch"> local directory</a>, before launching your executables. Copying your data once before running multiple binaries is especially important if you are using the same input files for each run. This greatly reduces the stress on the network and the storage system, and prevents your jobs from wasting wall-clock time being in the I/O waiting state. Here is a sample script that you could modify to your needs:
 </p>
 <pre>#$ -cwd
 #$ -l h_rt=01:00:00
@@ -92,7 +92,7 @@ $ qsub -hold_jid job1,job2 job3   <i># or qsub -hold_jid 6789,6790 job3</i>
 </p><p>One can use <code>qstat -j</code> to get detailed information on the job's predecessors required to complete (look for <code>jid_predecessor_list</code>).
 </p>
 <dl><dt>IMPORTANT</dt>
-<dd>If a referenced job fails while running (e.g. by exceeding its <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> <code>h_rt</code> limit</a>), it does not prevent the dependent jobs from executing. The eligibility criterion for the dependent jobs is the mere fact of <b>completion</b> of the referenced jobs — successful or not. However, if the referenced job failed because it could not get <b>started</b>, then Grid Engine will recognize this, and the job will be marked with the 'E' symbol indicating the <a href="/FAQ#Eqw:_Job_waiting_in_error_state" title="FAQ"> error state</a>. A job in the error state has <code>exit_code</code> 100, and according to the documentation (<code>man qsub</code>), <i>"If any of the referenced jobs exits with exit code 100, the submitted job will remain ineligible for execution"</i>.</dd></dl>
+<dd>If a referenced job fails while running (e.g. by exceeding its <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> <code>h_rt</code> limit</a>), it does not prevent the dependent jobs from executing. The eligibility criterion for the dependent jobs is the mere fact of <b>completion</b> of the referenced jobs — successful or not. However, if the referenced job failed because it could not get <b>started</b>, then Grid Engine will recognize this, and the job will be marked with the 'E' symbol indicating the <a href="{{ 'FAQ#Eqw:_Job_waiting_in_error_state' | relative_url }}" title="FAQ"> error state</a>. A job in the error state has <code>exit_code</code> 100, and according to the documentation (<code>man qsub</code>), <i>"If any of the referenced jobs exits with exit code 100, the submitted job will remain ineligible for execution"</i>.</dd></dl>
 
 
 
