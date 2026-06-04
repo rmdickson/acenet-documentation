@@ -36,7 +36,7 @@ Your job-array 54321.1-10:1 ("runme") has been submitted
 <pre>my_app &lt;input.$SGE_TASK_ID
 my_app $SGE_TASK_ID some_arg another_arg 0
 </pre>
-<p>Click <a rel="nofollow" class="external text" href="http://wiki.gridengine.info/wiki/index.php/Simple-Job-Array-Howto">here</a> for more on array jobs, with examples. Still more examples can be found in <a href="/w/images/6/6e/ManyJobs_May14.pdf" class="internal" title="ManyJobs May14.pdf"> this presentation</a>.
+<p>Click <a rel="nofollow" class="external text" href="http://wiki.gridengine.info/wiki/index.php/Simple-Job-Array-Howto">here</a> for more on array jobs, with examples. Still more examples can be found in <a href="img/6/6e/ManyJobs_May14.pdf" class="internal" title="ManyJobs May14.pdf"> this presentation</a>.
 </p><p>Using an array job instead of a large number of separate serial jobs has advantages for other users and the system as a whole. A waiting array job only produces one line of output in <code>qstat</code> or <code>showq</code>, making these tools easier to use. The scheduler does not have to analyze job requirements for all the array tasks separately, so it runs more efficiently too.
 </p><p>The Grid Engine environment variable <code>$TMPDIR</code> will point to a <a href="Local_Scratch.html#Grid_Engine_and_Local_Scratch" title="Local Scratch"> local directory</a> with a unique name for each task.
 </p>
