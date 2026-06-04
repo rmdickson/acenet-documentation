@@ -3,7 +3,7 @@ title: MATLAB Runtime
 layout: default
 ---
 <h1>MATLAB Runtime</h1><div class="mw-parser-output"><p><br />
-"The <a rel="nofollow" class="external text" href="https://www.mathworks.com/products/compiler/mcr.html">MATLAB Runtime</a> is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed. When used together, MATLAB, <a rel="nofollow" class="external text" href="https://www.mathworks.com/products/compiler.html">MATLAB Compiler</a>, and the MATLAB Runtime enable you to create and distribute numerical applications or software components quickly and securely."
+"The <a rel="noopener noreferrer nofollow" class="external text" href="https://www.mathworks.com/products/compiler/mcr.html" target="_blank">MATLAB Runtime</a> is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed. When used together, MATLAB, <a rel="noopener noreferrer nofollow" class="external text" href="https://www.mathworks.com/products/compiler.html" target="_blank">MATLAB Compiler</a>, and the MATLAB Runtime enable you to create and distribute numerical applications or software components quickly and securely."
 </p>
 <h2><span class="mw-headline" id="Requirements">Requirements</span></h2>
 <p>You must have access to a <b>valid MATLAB Compiler license</b> on a computer running <b>Linux</b> to compile MATLAB code. You can execute the compiled code on an ACENET cluster using the MATLAB Runtime environment without the need for a MATLAB license on that cluster.  You must use the <a href="{{ 'User_Guide#Command_Line_Interface' | relative_url }}" title="User Guide">command line</a> and the <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Grid Engine</a> job scheduler to submit your work to the cluster.
@@ -26,9 +26,9 @@ module load matlab-runtime/r2017a
 <p>and submit it with <code>qsub jobscript</code>. You may need to adjust the time (h_rt) and memory (h_vmem) requests; see <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a> for more details. Early experience suggests 4G of memory may be a bare minimum. If your initial test run fails for no apparent reason, try increasing <code>h_vmem</code>.
 </p>
 <h2><span class="mw-headline" id="Further_reading">Further reading</span></h2>
-<ul><li>There are some restrictions on what can be compiled with MATLAB. See <a rel="nofollow" class="external free" href="https://www.mathworks.com/products/compiler/supported/compiler_support.html">https://www.mathworks.com/products/compiler/supported/compiler_support.html</a></li>
-<li><a rel="nofollow" class="external free" href="https://www.westgrid.ca/support/software/matlab">https://www.westgrid.ca/support/software/matlab</a></li>
-<li><a rel="nofollow" class="external free" href="https://wiki.calculquebec.ca/w/Matlab#tab=tab1">https://wiki.calculquebec.ca/w/Matlab#tab=tab1</a></li></ul>
+<ul><li>There are some restrictions on what can be compiled with MATLAB. See <a rel="noopener noreferrer nofollow" class="external free" href="https://www.mathworks.com/products/compiler/supported/compiler_support.html" target="_blank">https://www.mathworks.com/products/compiler/supported/compiler_support.html</a></li>
+<li><a rel="noopener noreferrer nofollow" class="external free" href="https://www.westgrid.ca/support/software/matlab" target="_blank">https://www.westgrid.ca/support/software/matlab</a></li>
+<li><a rel="noopener noreferrer nofollow" class="external free" href="https://wiki.calculquebec.ca/w/Matlab#tab=tab1" target="_blank">https://wiki.calculquebec.ca/w/Matlab#tab=tab1</a></li></ul>
 
 
 

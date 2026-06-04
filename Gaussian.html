@@ -5,13 +5,13 @@ layout: default
 <h1>Gaussian</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
 <tbody><tr>
 <td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
-<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.alliancecan.ca" target="_blank">https://docs.alliancecan.ca</a>.
 </p>
 </td></tr></tbody></table>
 <div style="background-color:#FFFFCC; border: 1px solid red; padding: 5px;">
 <p><img alt="Achtung.png" src="img/35px-Achtung.png" width="35" height="31" srcset="img/53px-Achtung.png 1.5x, img/70px-Achtung.png 2x" />
 <b>GAUSSIAN is no longer available on any remaining ACENET resources.</b>
-</p><p>For information on using Gaussian on Compute Canada systems, visit <a rel="nofollow" class="external free" href="https://docs.computecanada.ca/wiki/Gaussian">https://docs.computecanada.ca/wiki/Gaussian</a>.
+</p><p>For information on using Gaussian on Compute Canada systems, visit <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.computecanada.ca/wiki/Gaussian" target="_blank">https://docs.computecanada.ca/wiki/Gaussian</a>.
 </p>
 </div>
 <p><br />
@@ -50,17 +50,17 @@ layout: default
 </div>
 
 <h2><span class="mw-headline" id="Description">Description</span></h2>
-<p>Gaussian is an electronic structure program that is commonly used by chemists, chemical engineers, biochemists, physicists and others for research in established and emerging areas of molecular science. More information about Gaussian can be found on the <a rel="nofollow" class="external text" href="http://www.gaussian.com">Gaussian homepage</a>.
+<p>Gaussian is an electronic structure program that is commonly used by chemists, chemical engineers, biochemists, physicists and others for research in established and emerging areas of molecular science. More information about Gaussian can be found on the <a rel="noopener noreferrer nofollow" class="external text" href="http://www.gaussian.com" target="_blank">Gaussian homepage</a>.
 </p>
 <h2><span id="Getting_Access_/_License_Agreement"></span><span class="mw-headline" id="Getting_Access_.2F_License_Agreement">Getting Access / License Agreement</span></h2>
-<p>Please follow the instructions at <a rel="nofollow" class="external free" href="https://docs.computecanada.ca/wiki/Gaussian#License_limitations">https://docs.computecanada.ca/wiki/Gaussian#License_limitations</a> 
+<p>Please follow the instructions at <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.computecanada.ca/wiki/Gaussian#License_limitations" target="_blank">https://docs.computecanada.ca/wiki/Gaussian#License_limitations</a>
 to request permission to access Gaussian on Compute Canada clusters.
 </p><p>Gaussian is no longer available at any ACENET resources.
 </p><p><br />
 </p>
 <h2><span class="mw-headline" id="Available_Hardware">Available Hardware</span></h2>
 <p>Gaussian is licensed for use on the <a href="Placentia.html" title="Placentia">Placentia</a> cluster. Placentia will be withdrawn from service after 2019 March 31, see <a href="{{ 'New_Systems_Migration' | relative_url }}" title="New Systems Migration">New Systems Migration</a> for more information.
-</p><p>Gaussian is also available on the new Compute Canada <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Graham">Graham</a> cluster. Please see <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Gaussian">Gaussian</a> on the Compute Canada <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Compute_Canada_Documentation">technical documentation site</a> for more guidance. You will be asked there to re-register your agreement with the Gaussian license terms, even if you are already registered for Placentia.
+</p><p>Gaussian is also available on the new Compute Canada <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Graham" target="_blank">Graham</a> cluster. Please see <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Gaussian" target="_blank">Gaussian</a> on the Compute Canada <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.computecanada.ca/wiki/Compute_Canada_Documentation" target="_blank">technical documentation site</a> for more guidance. You will be asked there to re-register your agreement with the Gaussian license terms, even if you are already registered for Placentia.
 </p>
 <h2><span class="mw-headline" id="Setting_Up_Your_Environment">Setting Up Your Environment</span></h2>
 <p>Before running Gaussian you need to choose which version of Gaussian you want to run, and have certain environment variables set properly.  You can use <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)">environment modules</a> for this purpose.
@@ -135,11 +135,11 @@ setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 <p><b>NOTE WELL:</b> If too many jobs run at the same time using /home or NQS for <code>GAUSS_SCRDIR</code> it can badly affect the responsiveness of the entire cluster, via the Lustre file system. We do not yet know what an appropriate maximum number is. We ask that you limit the number of Gaussian jobs writing to NQS to under 10 per user, or 20 per research group.
 </p>
 <h4><span class="mw-headline" id="MAXDISK">MAXDISK</span></h4>
-<p>A <a rel="nofollow" class="external text" href="http://www.gaussian.com/g_tech/g_ur/k_maxdisk.htm">MAXDISK</a> of 200GB is set in the global Default.Route file to reduce the risk of accidentally running out of disk space.  If your job requires more than 200GB of scratch disk then you can either specify MAXDISK explicitly in the route section of the Gaussian input file, or create your own Default.Route file in the job's working directory.  
+<p>A <a rel="noopener noreferrer nofollow" class="external text" href="http://www.gaussian.com/g_tech/g_ur/k_maxdisk.htm" target="_blank">MAXDISK</a> of 200GB is set in the global Default.Route file to reduce the risk of accidentally running out of disk space.  If your job requires more than 200GB of scratch disk then you can either specify MAXDISK explicitly in the route section of the Gaussian input file, or create your own Default.Route file in the job's working directory.
 </p><p>Note that MAXDISK only <i>reduces the risk</i> of running out of disk: 
 </p>
 <ol><li>Two or more jobs running simultaneously can each write up to MAXDISK, and their sum may exceed the quota or fill up the disk.</li>
-<li>MAXDISK has different effects for different methods as described on the <a rel="nofollow" class="external text" href="http://www.gaussian.com/g_tech/g_ur/k_maxdisk.htm">Gaussian web-site</a>.</li></ol>
+<li>MAXDISK has different effects for different methods as described on the <a rel="noopener noreferrer nofollow" class="external text" href="http://www.gaussian.com/g_tech/g_ur/k_maxdisk.htm" target="_blank">Gaussian web-site</a>.</li></ol>
 <h4><span class="mw-headline" id="Memory">Memory</span></h4>
 <p>The default memory reserved for your job by SGE is 2GB.  Gaussian handles memory in such a way that this provides about 1GB of extra capacity with Gaussian.  This is often insufficient, so you may need to know how to modify this setting.
 </p><p>The&#160;%MEM setting in the Gaussian input file is used to specify additional memory.  The value for&#160;%MEM should be at least 1GB less than the value specified in the SGE job submission script.   Conversely, the value specified for h_vmem in your job script should be at least 1GB greater than the amount specified in the&#160;%MEM directive in your Gaussian input file.  The exact increment needed seems to depend on the job type and input details; 1GB is a conservative value determined empirically.
@@ -201,7 +201,7 @@ setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 </p><p>The specialized Gaussian hosts (gaussian.q) are all 4-core machines, so in normal operation you will not request more than 4 parallel processes.
 </p>
 <h4><span class="mw-headline" id="Gaussian_with_NBO5">Gaussian with NBO5</span></h4>
-<p>We recently aquired a license for <a rel="nofollow" class="external text" href="http://www.chem.wisc.edu/~nbo5/">NBO5</a> and have made available a copy of Gaussian with <code>l607.exe</code> rebuilt. To access this version in <code>bash</code>:
+<p>We recently aquired a license for <a rel="noopener noreferrer nofollow" class="external text" href="http://www.chem.wisc.edu/~nbo5/" target="_blank">NBO5</a> and have made available a copy of Gaussian with <code>l607.exe</code> rebuilt. To access this version in <code>bash</code>:
 </p>
 <pre> #$ -cwd
  #$ -j y
@@ -219,7 +219,7 @@ setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 <p>Please visit the <a href="{{ 'Gaussian_Error_Messages' | relative_url }}" title="Gaussian Error Messages">Gaussian Error Messages</a> page for a list of common errors and how to diagnose and solve them.
 </p>
 <h2><span class="mw-headline" id="Visualizing_structures_and_results">Visualizing structures and results</span></h2>
-<p>Using <a href="page_not_existing.html" style='color:red' class="new" title="Open Babel (page does not exist)">Open Babel</a> and <a href="page_not_existing.html" style='color:red' class="new" title="VMD (page does not exist)">VMD</a>, it is possible to visualize results from Gaussian.  The visualization of Gaussian results can also be completed using <a rel="nofollow" class="external text" href="http://jmol.sourceforge.net/">JMOL</a> and <a rel="nofollow" class="external text" href="http://www.cscs.ch/molekel/">Molekel</a> which are both freely available and can read in Gaussian output files directly without the need for conversion.
+<p>Using <a href="page_not_existing.html" style='color:red' class="new" title="Open Babel (page does not exist)">Open Babel</a> and <a href="page_not_existing.html" style='color:red' class="new" title="VMD (page does not exist)">VMD</a>, it is possible to visualize results from Gaussian.  The visualization of Gaussian results can also be completed using <a rel="noopener noreferrer nofollow" class="external text" href="http://jmol.sourceforge.net/" target="_blank">JMOL</a> and <a rel="noopener noreferrer nofollow" class="external text" href="http://www.cscs.ch/molekel/" target="_blank">Molekel</a> which are both freely available and can read in Gaussian output files directly without the need for conversion.
 </p>
 <h2><span class="mw-headline" id="Accessing_Gaussian-03">Accessing Gaussian-03</span></h2>
 <p>Even though ACENET now supports Gaussian-09 as the default, Gaussian-03 is still available in <code>/usr/local/gaussian/g03</code>. So those who need to finish work started with this version can.  You can access it by loading the appropriate module:
@@ -250,7 +250,7 @@ setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 <ul><li>migrate to Gaussian-09, or</li>
 <li>use <code>module load gaussian/g03.d02</code>, or</li>
 <li>use local scratch.</li></ul>
-<p>A posting on the <a rel="nofollow" class="external text" href="http://www.ccl.net/chemistry/">Computational Chemistry mailing list</a> suggests another <a rel="nofollow" class="external text" href="http://www.ccl.net/cgi-bin/ccl/message-new?2009+10+29+005">workaround involving only the checkpoint file</a>.
+<p>A posting on the <a rel="noopener noreferrer nofollow" class="external text" href="http://www.ccl.net/chemistry/" target="_blank">Computational Chemistry mailing list</a> suggests another <a rel="noopener noreferrer nofollow" class="external text" href="http://www.ccl.net/cgi-bin/ccl/message-new?2009+10+29+005" target="_blank">workaround involving only the checkpoint file</a>.
 </p>
 
 

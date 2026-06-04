@@ -5,7 +5,7 @@ layout: default
 <h1>NQS</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
 <tbody><tr>
 <td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
-<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.alliancecan.ca" target="_blank">https://docs.alliancecan.ca</a>.
 </p>
 </td></tr></tbody></table>
 <p><br />
@@ -13,8 +13,8 @@ layout: default
 <dl><dd><i>Main page: <a href="User_Guide.html" title="User Guide">User Guide</a></i></dd></dl>
 <p>File storage at ACENET is implemented with one of two file system technologies:
 </p>
-<ul><li><a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29">Lustre</a>, a parallel file system widely used in high-performance computing, at <a href="Mahone.html" title="Mahone">Mahone</a>, <a href="Fundy.html" title="Fundy">Fundy</a>, and <a href="Placentia.html" title="Placentia">Placentia</a>.</li>
-<li>Oracle's <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/QFS">SAM-QFS</a> at <a href="Glooscap.html" title="Glooscap">Glooscap</a>.</li></ul>
+<ul><li><a rel="noopener noreferrer nofollow" class="external text" href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29" target="_blank">Lustre</a>, a parallel file system widely used in high-performance computing, at <a href="Mahone.html" title="Mahone">Mahone</a>, <a href="Fundy.html" title="Fundy">Fundy</a>, and <a href="Placentia.html" title="Placentia">Placentia</a>.</li>
+<li>Oracle's <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/QFS" target="_blank">SAM-QFS</a> at <a href="Glooscap.html" title="Glooscap">Glooscap</a>.</li></ul>
 <div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Changes"><span class="tocnumber">1</span> <span class="toctext">Changes</span></a></li>
@@ -50,9 +50,9 @@ layout: default
 <li>The tape layer of the old storage systems has not been replaced, for reasons of cost. While file restoration after deletion or other forms of accidental loss was never officially supported, such recovery is now practically impossible in every case.</li>
 <li>Red Hat Enterprise Linux 6 (RHEL6) is the default operating system on all four clusters now. This simplifies job submission for those users who have been obliged to use <code>os=RHEL6</code> for the last year or so, and certain applications that were previously only available on RHEL6 can now run on any node, e.g. MATLAB.</li></ul>
 <h2><span class="mw-headline" id="Policies">Policies</span></h2>
-<dl><dd><i>Policy document: <a rel="nofollow" class="external text" href="img/c/c2/ACENET_Data_Policies.pdf">ACENET Data Policies</a></i></dd></dl>
+<dl><dd><i>Policy document: <a rel="noopener noreferrer nofollow" class="external text" href="img/c/c2/ACENET_Data_Policies.pdf">ACENET Data Policies</a></i></dd></dl>
 <h3><span class="mw-headline" id="Backup">Backup</span></h3>
-<p><b>ACENET does not provide backup services.</b>  Our filesystems are built with <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/RAID">RAID</a> redundancy to protect your data from the loss due to hardware failures, but we do not protect you from accidentally deleting or changing your own files.  Users are therefore strongly encouraged to make off-site (or multi-site) copies of their critical data. Source code and other such key files should be managed with a <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Version_control">version control</a> tool such as <a href="Git.html" title="Git">Git</a>, Subversion, Mercurial, or <a href="CVS.html" title="CVS">CVS</a>.
+<p><b>ACENET does not provide backup services.</b>  Our filesystems are built with <a rel="noopener noreferrer nofollow" class="external text" href="https://en.wikipedia.org/wiki/RAID" target="_blank">RAID</a> redundancy to protect your data from the loss due to hardware failures, but we do not protect you from accidentally deleting or changing your own files.  Users are therefore strongly encouraged to make off-site (or multi-site) copies of their critical data. Source code and other such key files should be managed with a <a rel="noopener noreferrer nofollow" class="external text" href="https://en.wikipedia.org/wiki/Version_control" target="_blank">version control</a> tool such as <a href="Git.html" title="Git">Git</a>, Subversion, Mercurial, or <a href="CVS.html" title="CVS">CVS</a>.
 </p><p>You should also be aware of your home institution's data storage policies and follow them. Some institutions offer network backup facilities which you might be able to take advantage of.  MUN users can take advantage of MUN's <a href="RDB.html" class="mw-redirect" title="RDB">RDB</a> system for backing up data from <a href="{{ 'Placentia' | relative_url }}" title="Placentia">Placentia</a>.
 </p>
 <h3><span class="mw-headline" id="Archiving">Archiving</span></h3>
@@ -105,7 +105,7 @@ layout: default
 <td>node-local
 </td></tr></tbody></table>
 <h2><span class="mw-headline" id="Permanent_Storage">Permanent Storage</span></h2>
-<p>Main storage (home directory) is your personal and permanent space for research-critical data and code. This is where you should put your data prior to and after computations, and where you should keep source code and executables. It is located in <code>/home/&lt;username&gt;</code>, where your username will replace <code>&lt;username&gt;</code>. When you log in, this is your current working directory. You may create whatever subdirectories you like here. The Main storage is a networked storage shared among all compute nodes via Lustre or <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Network_File_System_%28protocol%29">NFS (Network File System)</a> at <a href="{{ 'Glooscap' | relative_url }}" title="Glooscap">Glooscap</a>.
+<p>Main storage (home directory) is your personal and permanent space for research-critical data and code. This is where you should put your data prior to and after computations, and where you should keep source code and executables. It is located in <code>/home/&lt;username&gt;</code>, where your username will replace <code>&lt;username&gt;</code>. When you log in, this is your current working directory. You may create whatever subdirectories you like here. The Main storage is a networked storage shared among all compute nodes via Lustre or <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/Network_File_System_%28protocol%29" target="_blank">NFS (Network File System)</a> at <a href="{{ 'Glooscap' | relative_url }}" title="Glooscap">Glooscap</a>.
 </p>
 <h3><span class="mw-headline" id="Quotas">Quotas</span></h3>
 <p>Storage quotas are implemented at all clusters. The default quota values (soft limits) are given in the table below. The hard limit quotas are 5-10% higher (except Glooscap). The grace period of exceeding the soft limit is one week.

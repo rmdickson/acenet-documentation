@@ -5,7 +5,7 @@ layout: default
 <h1>Managing Many Serial Tasks</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
 <tbody><tr>
 <td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
-<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.alliancecan.ca" target="_blank">https://docs.alliancecan.ca</a>.
 </p>
 </td></tr></tbody></table>
 <dl><dd><i>Main page: <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a></i></dd></dl>
@@ -36,7 +36,7 @@ Your job-array 54321.1-10:1 ("runme") has been submitted
 <pre>my_app &lt;input.$SGE_TASK_ID
 my_app $SGE_TASK_ID some_arg another_arg 0
 </pre>
-<p>Click <a rel="nofollow" class="external text" href="http://wiki.gridengine.info/wiki/index.php/Simple-Job-Array-Howto">here</a> for more on array jobs, with examples. Still more examples can be found in <a href="img/6/6e/ManyJobs_May14.pdf" class="internal" title="ManyJobs May14.pdf"> this presentation</a>.
+<p>Click <a rel="noopener noreferrer nofollow" class="external text" href="http://wiki.gridengine.info/wiki/index.php/Simple-Job-Array-Howto" target="_blank">here</a> for more on array jobs, with examples. Still more examples can be found in <a href="img/6/6e/ManyJobs_May14.pdf" class="internal" title="ManyJobs May14.pdf"> this presentation</a>.
 </p><p>Using an array job instead of a large number of separate serial jobs has advantages for other users and the system as a whole. A waiting array job only produces one line of output in <code>qstat</code> or <code>showq</code>, making these tools easier to use. The scheduler does not have to analyze job requirements for all the array tasks separately, so it runs more efficiently too.
 </p><p>The Grid Engine environment variable <code>$TMPDIR</code> will point to a <a href="Local_Scratch.html#Grid_Engine_and_Local_Scratch" title="Local Scratch"> local directory</a> with a unique name for each task.
 </p>

@@ -2,7 +2,7 @@
 title: OpenMP
 layout: default
 ---
-<h1>OpenMP</h1><div class="mw-parser-output"><p><a rel="nofollow" class="external text" href="http://openmp.org/wp/">OpenMP</a> (Open Multi-Processing) is a standard for building parallel applications on shared-memory computers (multiprocessors). It consists primarily of a set of compiler directives, with some library routines besides.
+<h1>OpenMP</h1><div class="mw-parser-output"><p><a rel="noopener noreferrer nofollow" class="external text" href="http://openmp.org/wp/" target="_blank">OpenMP</a> (Open Multi-Processing) is a standard for building parallel applications on shared-memory computers (multiprocessors). It consists primarily of a set of compiler directives, with some library routines besides.
 </p><p>The maximum number of threads available for OpenMP jobs on our clusters is either 4 or 16 depending on the execution host upon which the job is running. The number of threads is communicated to an OpenMP program at execution time with the environment variable <code>OMP_NUM_THREADS</code> via the Grid Engine <code>$NSLOTS</code> variable. Here is the line you need to add to your submissing script for an OpenMP program if your execution shell is <code>bash</code>
 </p>
 <pre> export OMP_NUM_THREADS=$NSLOTS
@@ -31,7 +31,7 @@ layout: default
 <td><a href="{{ 'Intel_compilers' | relative_url }}" title="Intel compilers"> Intel</a></td>
 <td><code>-openmp</code>
 </td></tr></tbody></table>
-<p>The good introduction to OpenMP can be found <a rel="nofollow" class="external text" href="http://computing.llnl.gov/tutorials/openMP">here</a>.
+<p>The good introduction to OpenMP can be found <a rel="noopener noreferrer nofollow" class="external text" href="http://computing.llnl.gov/tutorials/openMP" target="_blank">here</a>.
 </p>
 <h2><span class="mw-headline" id="Thread_stack_size">Thread stack size</span></h2>
 <dl><dd><i>See: <a href="{{ 'Memory_Management#OpenMP' | relative_url }}" title="Memory Management"> Memory Management</a></i></dd></dl>

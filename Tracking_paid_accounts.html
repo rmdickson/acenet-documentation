@@ -3,7 +3,7 @@ title: Tracking paid accounts
 layout: default
 ---
 <h1>Tracking paid accounts</h1><div class="mw-parser-output"><p>If your firm or organization has a paid contract with ACENET for compute time on <a href="{{ 'Siku' | relative_url }}" title="Siku">Siku</a>, then this page explains how your computing is measured
-and tracked.  Submitting and troubleshooting jobs is discussed <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs">elsewhere</a>.
+and tracked.  Submitting and troubleshooting jobs is discussed <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs" target="_blank">elsewhere</a>.
 </p>
 <div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
 <ul>
@@ -119,7 +119,7 @@ Billing (CPU-equiv) hours per user:
          10016.3  TOTAL
 </pre>
 <p>Breakdowns by individual jobs can be obtained from <tt>sacct</tt> with suitable options. 
-See the <a rel="nofollow" class="external text" href="https://slurm.schedmd.com/sacct.html">sacct man page</a> or <a href="{{ 'Ask_Support' | relative_url }}" title="Ask Support">contact support</a> for help.
+See the <a rel="noopener noreferrer nofollow" class="external text" href="https://slurm.schedmd.com/sacct.html" target="_blank">sacct man page</a> or <a href="{{ 'Ask_Support' | relative_url }}" title="Ask Support">contact support</a> for help.
 </p><p>A report containing similar information will be sent at the beginning of each month to the senior contact 
 in the organization (i.e., the principal investigator or contract signer).
 </p>
@@ -150,7 +150,7 @@ so the job cost 1.43 billing hours.
 and then from 31.81818 to 8.181818 on 2026-04-23.)
 </p>
 <h2><span id="Why_the_funny_word,_QoS?"></span><span class="mw-headline" id="Why_the_funny_word.2C_QoS.3F">Why the funny word, QoS?</span></h2>
-<p>You may well ask, "Why have QoSs at all, why not just use accounts?"  That has to do with Slurm internals.  We would like you to be able to think in terms of a "bank account" of computing time, but to implement that we had to use Slurm's QoS mechanism.  If we were then to call a QoS a "bank account", when the term "account" in Slurm means something slightly different but closely related, that would cause great confusion if and when you ever have to consult the generic Slurm documentation at <a rel="nofollow" class="external free" href="https://slurm.schedmd.com">https://slurm.schedmd.com</a>.
+<p>You may well ask, "Why have QoSs at all, why not just use accounts?"  That has to do with Slurm internals.  We would like you to be able to think in terms of a "bank account" of computing time, but to implement that we had to use Slurm's QoS mechanism.  If we were then to call a QoS a "bank account", when the term "account" in Slurm means something slightly different but closely related, that would cause great confusion if and when you ever have to consult the generic Slurm documentation at <a rel="noopener noreferrer nofollow" class="external free" href="https://slurm.schedmd.com" target="_blank">https://slurm.schedmd.com</a>.
 </p>
 <h2><span id="What_if_I_have_more_than_one_account_or_QoS?"></span><span class="mw-headline" id="What_if_I_have_more_than_one_account_or_QoS.3F">What if I have more than one account or QoS?</span></h2>
 <p>A user typically only has access to one account and one QoS, and your jobs are automatically associated with that account and QoS.  You could have more than one account if, for example, your firm made two separate contracts with ACENET for separate projects, and you are working on both, or if you were a freelancer and working for two different firms with ACENET contracts. In that case it will be up to you to assign each job you submit to the correct QoS using the --qos= option to sbatch, salloc, or srun.

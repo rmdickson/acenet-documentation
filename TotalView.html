@@ -33,17 +33,17 @@ layout: default
 <dd><code>totalview</code></dd></dl>
 <dl><dt>Usage</dt>
 <dd></dd>
-<dd>Users are advised to have a <code>.tvdrc</code> file in their home directory, which contains <a rel="nofollow" class="external text" href="http://www.open-mpi.org/faq/?category=running#run-with-tv">recommended settings</a> for debugging Open MPI applications. This will configure TotalView to skip <code>mpirun</code> and jump right into your MPI application, otherwise it will stop deep in the machine code of <code>mpirun</code> itself, which is not what most users want. The file <code>.tvdrc</code> gets generated automatically when you load the <code>totalview</code> modulefile:</dd></dl>
+<dd>Users are advised to have a <code>.tvdrc</code> file in their home directory, which contains <a rel="noopener noreferrer nofollow" class="external text" href="http://www.open-mpi.org/faq/?category=running#run-with-tv" target="_blank">recommended settings</a> for debugging Open MPI applications. This will configure TotalView to skip <code>mpirun</code> and jump right into your MPI application, otherwise it will stop deep in the machine code of <code>mpirun</code> itself, which is not what most users want. The file <code>.tvdrc</code> gets generated automatically when you load the <code>totalview</code> modulefile:</dd></dl>
 <pre> $ module load totalview
 </pre>
 <dl><dd>If you already have <code>.tvdrc</code> in your home directory, it will not be overwritten. If you want to ensure to that you got the right file, you may need to remove the existing one and then reload the modulefile.</dd></dl>
 <dl><dt>Documentation</dt>
-<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com">TotalView Technologies homepage</a></dd>
-<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support/support.html">TotalView Support, Documentation, Video Tutorials, Tips &amp; Tricks</a></dd>
-<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support/videos.html?id=187&amp;return=1#d187">Getting Started with TotalView</a> (Video)</dd>
-<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support/documentation/totalview.html">Printable PDF Documentation</a></dd>
-<dd><a rel="nofollow" class="external text" href="http://computing.llnl.gov/tutorials/totalview">TotalView Tutorial</a> from Lawrence Livermore National Laboratory</dd>
-<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support-other/release_notes.html">TotalView Release Notes</a></dd></dl>
+<dd><a rel="noopener noreferrer nofollow" class="external text" href="http://www.totalviewtech.com" target="_blank">TotalView Technologies homepage</a></dd>
+<dd><a rel="noopener noreferrer nofollow" class="external text" href="http://www.totalviewtech.com/support/support.html" target="_blank">TotalView Support, Documentation, Video Tutorials, Tips &amp; Tricks</a></dd>
+<dd><a rel="noopener noreferrer nofollow" class="external text" href="http://www.totalviewtech.com/support/videos.html?id=187&amp;return=1#d187" target="_blank">Getting Started with TotalView</a> (Video)</dd>
+<dd><a rel="noopener noreferrer nofollow" class="external text" href="http://www.totalviewtech.com/support/documentation/totalview.html" target="_blank">Printable PDF Documentation</a></dd>
+<dd><a rel="noopener noreferrer nofollow" class="external text" href="http://computing.llnl.gov/tutorials/totalview" target="_blank">TotalView Tutorial</a> from Lawrence Livermore National Laboratory</dd>
+<dd><a rel="noopener noreferrer nofollow" class="external text" href="http://www.totalviewtech.com/support-other/release_notes.html" target="_blank">TotalView Release Notes</a></dd></dl>
 <h2><span class="mw-headline" id="Compiling_the_code">Compiling the code</span></h2>
 <p>In order to provide necessary symbolic debug information for a debugger, you need to recompile your code. Usually, this requires the <code>-g</code> flag to your compiler.
 </p>
@@ -56,7 +56,7 @@ layout: default
 <h2><span class="mw-headline" id="Basics">Basics</span></h2>
 <ul><li>Graphical Interface: <code>totalview</code></li>
 <li>Command Line Interface: <code>totalviewcli</code></li></ul>
-<p>If you want to use the GUI-based TotalView parallel debugger then you need to make sure that you are connecting to the head node of the cluster with the X11 forwarding enabled in your SSH client. That will allow you to get windows of a remotely started application shown on your own desktop. Unix users need to run the X11 server on their desktops (if you are running any window manager then you already have the X11 server installed) and connect to the head node with the <code>-X</code> option for the SSH client (<code>ssh -X servername.ace-net.ca</code>). Those using <a rel="nofollow" class="external text" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> on Windows need to install <a rel="nofollow" class="external text" href="http://sourceforge.net/projects/xming">XMing</a> and enable X11 forwarding in PuTTY.
+<p>If you want to use the GUI-based TotalView parallel debugger then you need to make sure that you are connecting to the head node of the cluster with the X11 forwarding enabled in your SSH client. That will allow you to get windows of a remotely started application shown on your own desktop. Unix users need to run the X11 server on their desktops (if you are running any window manager then you already have the X11 server installed) and connect to the head node with the <code>-X</code> option for the SSH client (<code>ssh -X servername.ace-net.ca</code>). Those using <a rel="noopener noreferrer nofollow" class="external text" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html" target="_blank">PuTTY</a> on Windows need to install <a rel="noopener noreferrer nofollow" class="external text" href="http://sourceforge.net/projects/xming" target="_blank">XMing</a> and enable X11 forwarding in PuTTY.
 </p>
 <h2><span class="mw-headline" id="Debugging_Open_MPI_programs">Debugging Open MPI programs</span></h2>
 <p>You can use the Totalview debugger either on the head node, or through the grid engine queues. To debug a job you just need to include <code>--debug</code> in the command line. Open MPI will automatically invoke TotalView to run your MPI process if you have <code>totalview</code> <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> module</a> loaded in your <a href="{{ 'User_Guide#Unix_Shell' | relative_url }}" title="User Guide"> shell profile</a>.

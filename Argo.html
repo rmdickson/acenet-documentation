@@ -7,7 +7,7 @@ Argo is a computer cluster located at Memorial University of Newfoundland,
 installed in late 2023, and
 managed by ACENET on behalf of researchers who have purchased the equipment.
 The environment is very similar the environment on to the 
-<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Technical_documentation">Alliance general-purpose systems</a>,
+<a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Technical_documentation" target="_blank">Alliance general-purpose systems</a>,
 with the exceptions described below.  
 </p>
 <div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
@@ -45,8 +45,8 @@ Copy the PI with whom you are associated, and mention in the email your Digital 
 </p>
 <pre>ssh username@argo.ace-net.ca
 </pre>
-<p>Argo uses the Alliance's <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Multifactor_authentication">multi-factor authentication</a>
-and <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/SSH_Keys#Using_CCDB">SSH-key authentication</a> mechanisms.
+<p>Argo uses the Alliance's <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Multifactor_authentication" target="_blank">multi-factor authentication</a>
+and <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/SSH_Keys#Using_CCDB" target="_blank">SSH-key authentication</a> mechanisms.
 We <i>strongly recommend</i> that you register an SSH key and use that in place of password authentication.
 </p>
 <h2><span class="mw-headline" id="Addresses">Addresses</span></h2>
@@ -57,7 +57,7 @@ We <i>strongly recommend</i> that you register an SSH key and use that in place 
 <td><b><code>argo.ace-net.ca</code></b>
 </td></tr>
 <tr>
-<td><a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Globus">Globus</a> collection:</td>
+<td><a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Globus" target="_blank">Globus</a> collection:</td>
 <td><b><code>alliancecan#argo</code></b><br />
 </td></tr>
 <tr>
@@ -78,11 +78,11 @@ We <i>strongly recommend</i> that you register an SSH key and use that in place 
 </p>
 <ul><li>If you want to use Globus to move data to or from <code>/oceanstor</code>, create a symbolic link to <code>/oceanstor</code> in your home, project, or scratch directory.</li></ul>
 <h2><span class="mw-headline" id="Software">Software</span></h2>
-<p>Argo uses the same <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_modules">modules</a> system as Alliance clusters,
-providing access to the same list of <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Available_software">available software</a>.
+<p>Argo uses the same <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_modules" target="_blank">modules</a> system as Alliance clusters,
+providing access to the same list of <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Available_software" target="_blank">available software</a>.
 </p>
 <h3><span class="mw-headline" id="Containers">Containers</span></h3>
-<p><a rel="nofollow" class="external text" href="https://apptainer.org/docs/admin/main/user_namespace.html">User namespaces</a> are disabled on login nodes for security reasons, which means that Apptainer will (probably) not work.  We recommend that you test containers on compute nodes using <code>srun</code> or <code>salloc</code>; Apptainer should work there.  For more on <code>srun</code> or <code>salloc</code> see <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs#Interactive_jobs">Interactive jobs</a>.
+<p><a rel="noopener noreferrer nofollow" class="external text" href="https://apptainer.org/docs/admin/main/user_namespace.html" target="_blank">User namespaces</a> are disabled on login nodes for security reasons, which means that Apptainer will (probably) not work.  We recommend that you test containers on compute nodes using <code>srun</code> or <code>salloc</code>; Apptainer should work there.  For more on <code>srun</code> or <code>salloc</code> see <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs#Interactive_jobs" target="_blank">Interactive jobs</a>.
 </p>
 <h2><span class="mw-headline" id="Job_scheduling">Job scheduling</span></h2>
 <p>The basic guidance on job scheduling is to ask for the run time, memory, CPUs, and GPUs you need 
@@ -100,7 +100,7 @@ and up to <b>3 hours run-time</b> if it is a GPU node.
 your job should automatically be assigned a list of suitable partitions at submission time.  
 Likewise you should never have to use <code>--account</code> 
 since all users on Argo belong to one and only one Slurm account.
-</p><p><a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_GPUs_with_Slurm">GPUs</a> may be requested using either the <code>--gres=gpu</code> syntax or the newer <code>--gpus=</code> syntax, e.g. one of:
+</p><p><a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_GPUs_with_Slurm" target="_blank">GPUs</a> may be requested using either the <code>--gres=gpu</code> syntax or the newer <code>--gpus=</code> syntax, e.g. one of:
 </p>
 <pre>#SBATCH --gres=gpu:a100:1
 #SBATCH --gpus=a100:1
@@ -129,7 +129,7 @@ This has the important consequence that <b>/home and /project are not automatica
 <td>22</td>
 <td>64</td>
 <td>506000M or 494G</td>
-<td>2 x Intel <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Xeon Platinum 8358</a> @ 2.6GHz</td>
+<td>2 x Intel <a rel="noopener noreferrer nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html" target="_blank">Xeon Platinum 8358</a> @ 2.6GHz</td>
 <td>~750G</td>
 <td>-
 </td></tr>
@@ -137,7 +137,7 @@ This has the important consequence that <b>/home and /project are not automatica
 <td>51</td>
 <td>64</td>
 <td>250000M or 244G</td>
-<td>2 x Intel <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Xeon Platinum 8358</a> @ 2.6GHz</td>
+<td>2 x Intel <a rel="noopener noreferrer nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html" target="_blank">Xeon Platinum 8358</a> @ 2.6GHz</td>
 <td>~750G</td>
 <td>-
 </td></tr>
@@ -145,7 +145,7 @@ This has the important consequence that <b>/home and /project are not automatica
 <td>1</td>
 <td>64</td>
 <td>506000M or 494G</td>
-<td>2 x Intel <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Xeon Platinum 8358</a> @ 2.6GHz</td>
+<td>2 x Intel <a rel="noopener noreferrer nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html" target="_blank">Xeon Platinum 8358</a> @ 2.6GHz</td>
 <td>~720G</td>
 <td>1 x NVIDIA Tesla A100 (80GB device memory)
 </td></tr>

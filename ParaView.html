@@ -4,8 +4,8 @@ layout: default
 ---
 <h1>ParaView</h1><div class="mw-parser-output"><p>ParaView is a 3D data visualization application.
 </p>
-<ul><li>Comprehensive documentation can be found at <a rel="nofollow" class="external text" href="https://www.paraview.org/">ParaView.org</a></li>
-<li>Compute Canada documentation on <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/ParaView">ParaView</a></li></ul>
+<ul><li>Comprehensive documentation can be found at <a rel="noopener noreferrer nofollow" class="external text" href="https://www.paraview.org/" target="_blank">ParaView.org</a></li>
+<li>Compute Canada documentation on <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.computecanada.ca/wiki/ParaView" target="_blank">ParaView</a></li></ul>
 <div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#ParaView_on_Siku"><span class="tocnumber">1</span> <span class="toctext">ParaView on Siku</span></a>
@@ -22,12 +22,12 @@ layout: default
 </div>
 
 <h1><span class="mw-headline" id="ParaView_on_Siku">ParaView on Siku</span></h1>
-<p><i>2019 December 3:</i> While we are awaiting a direct connection of Siku.ace-net.ca to the internet, running ParaView involves setting up a two-part <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/SSH_tunnelling">SSH tunnel</a>. (See also <a href="{{ 'Access_workarounds' | relative_url }}" title="Access workarounds">Access workarounds</a>.)
+<p><i>2019 December 3:</i> While we are awaiting a direct connection of Siku.ace-net.ca to the internet, running ParaView involves setting up a two-part <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.computecanada.ca/wiki/SSH_tunnelling" target="_blank">SSH tunnel</a>. (See also <a href="{{ 'Access_workarounds' | relative_url }}" title="Access workarounds">Access workarounds</a>.)
 </p><p>We hope to be able to simplify this guide in the near future.
 </p>
 <h2><span class="mw-headline" id="VNC_method">VNC method</span></h2>
 <p>Install a VNC client on your local machine, if you don't already have one. 
-Illustrations on this page use <a rel="nofollow" class="external text" href="https://tigervnc.org/">TigerVNC</a>.
+Illustrations on this page use <a rel="noopener noreferrer nofollow" class="external text" href="https://tigervnc.org/" target="_blank">TigerVNC</a>.
 </p><p>In one terminal:
 </p>
 <pre>[you@yourhost ~]$  ssh you@placentia.ace-net.ca -p 22 -L 2222:login2.mun.ace-net.ca:22
@@ -87,7 +87,7 @@ Killing Xvnc process ID 32621
 <h2><span class="mw-headline" id="Client-server_method">Client-server method</span></h2>
 <p>You can also user ParaView's client-server mode instead of VNC. 
 This requires that you have matching ParaView versions available on your local machine
-and Siku.  Compute Canada documentation on <a rel="nofollow" class="external text" href="https://docs.computecanada.ca/wiki/ParaView">ParaView</a>
+and Siku.  Compute Canada documentation on <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.computecanada.ca/wiki/ParaView" target="_blank">ParaView</a>
 provides some guidance here, but we have not yet documented the variances.
 </p>
 

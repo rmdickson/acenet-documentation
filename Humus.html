@@ -21,9 +21,9 @@ If you don't have access to Humus and believe you should, please write to suppor
 Copy the PI, and mention in the email your Digital Research Alliance of Canada username. 
 </p><p>We strongly recommend creating and installing an SSH key pair and using that for access.
 </p>
-<ul><li>For more on key pairs, see <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca/wiki/SSH_Keys">https://docs.alliancecan.ca/wiki/SSH_Keys</a>.</li>
-<li>For more on SSH in general, see <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca/wiki/SSH">https://docs.alliancecan.ca/wiki/SSH</a>.</li>
-<li>Step-by-step instructions for setting up <a href="{{ 'Humus:Key-pair_authentication_from_Windows_using_MobaXterm' | relative_url }}" title="Humus:Key-pair authentication from Windows using MobaXterm">key-pair authentication from Windows using MobaXterm</a></li></ul>
+<ul><li>For more on key pairs, see <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.alliancecan.ca/wiki/SSH_Keys" target="_blank">https://docs.alliancecan.ca/wiki/SSH_Keys</a>.</li>
+<li>For more on SSH in general, see <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.alliancecan.ca/wiki/SSH" target="_blank">https://docs.alliancecan.ca/wiki/SSH</a>.</li>
+<li>Step-by-step instructions for setting up <a href="{{ 'Humus_Key_pair_authentication_from_Windows_using_MobaXterm' | relative_url }}" title="Humus:Key-pair authentication from Windows using MobaXterm">key-pair authentication from Windows using MobaXterm</a></li></ul>
 <p>The two machines are named <code>humus216</code> and <code>humus217</code>.
 (The numbers are in relation to the node numbering of Nefelibata.)
 Choose one to log into, like so:
@@ -45,7 +45,7 @@ on the shared Nefelibata filesystem.  But there is very little space on it for H
 Each node has approximately 58 TB of (unshared, node-local) storage space in /scratch.
 </p>
 <h3><span class="mw-headline" id="Data_transfer">Data transfer</span></h3>
-<p><a rel="nofollow" class="external text" href="https://man7.org/linux/man-pages/man1/sftp.1.html">sftp</a> can be used for interactive command-line data transfer, following the pattern shown above for <code>ssh</code>:
+<p><a rel="noopener noreferrer nofollow" class="external text" href="https://man7.org/linux/man-pages/man1/sftp.1.html" target="_blank">sftp</a> can be used for interactive command-line data transfer, following the pattern shown above for <code>ssh</code>:
 </p>
 <pre>sftp -J username@nefelibata.ace-net.ca username@humus216
 &gt; cd /scratch/username
@@ -53,21 +53,21 @@ Each node has approximately 58 TB of (unshared, node-local) storage space in /sc
 &gt; get some-other-file
 &gt; exit
 </pre>
-<p><a rel="nofollow" class="external text" href="https://man7.org/linux/man-pages/man1/scp.1.html">scp</a> can be used similarly for wild-card or script-driven data transfers:
+<p><a rel="noopener noreferrer nofollow" class="external text" href="https://man7.org/linux/man-pages/man1/scp.1.html" target="_blank">scp</a> can be used similarly for wild-card or script-driven data transfers:
 </p>
 <pre>scp -J username@nefelibata.ace-net.ca somefiles.* username@humus216:/scratch/username/
 </pre>
 <p>Graphical (drag-and-drop) file transfer applications can be used if they implement the scp or sftp protocols.
-<a rel="nofollow" class="external text" href="https://winscp.net/eng/index.php">WinSCP</a> has been tested successfully; use <code>username@humus216.nefelibata.ace-net.ca</code> <i>etc.</i>
+<a rel="noopener noreferrer nofollow" class="external text" href="https://winscp.net/eng/index.php" target="_blank">WinSCP</a> has been tested successfully; use <code>username@humus216.nefelibata.ace-net.ca</code> <i>etc.</i>
 </p><p><code>rsync</code> is a good choice for large-scale data transfers.  For example, to back up a directory from 217 to 216
 </p>
 <pre>rsync -r humus217:/scratch/username/back_me_up_here /scratch/username/back_me_up_here
 </pre>
-<p>For more on <code>rsync</code> see <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Transferring_data#Rsync">Transferring_data</a> at the Alliance wiki.
+<p>For more on <code>rsync</code> see <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Transferring_data#Rsync" target="_blank">Transferring_data</a> at the Alliance wiki.
 </p>
 <h3><span class="mw-headline" id="Software">Software</span></h3>
-<p>Humus uses the same <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_modules">modules</a> system as Alliance clusters,
-providing access to the same list of <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Available_software">available software</a>.
+<p>Humus uses the same <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_modules" target="_blank">modules</a> system as Alliance clusters,
+providing access to the same list of <a rel="noopener noreferrer nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Available_software" target="_blank">available software</a>.
 </p><p>For software which requires a graphical user interface (e.g. RStudio), you can connect to Humus using VNC.
 Here is a step-by-step guide to <a href="{{ 'Humus:Creating_a_VNC_session' | relative_url }}" title="Humus:Creating a VNC session">creating a VNC session</a>.
 </p>

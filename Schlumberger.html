@@ -40,7 +40,7 @@ layout: default
 <h2><span class="mw-headline" id="Getting_Access">Getting Access</span></h2>
 <p>Schlumberger products like ECLIPSE are only available to members of the Faculty of Engineering of Memorial University of Newfoundland, who hold a license for Schlumberger products.
 Therefore the software and configuration files are only available to members of the group <code>an_soft_schlumberger</code>.
-</p><p>If you are a member of the MUN's Faculty of Engineering and want to be added to this group, please contact us at <a rel="nofollow" class="external text" href="mailto:support@ace-net.ca?subject=Access%40to%40Schlumberger">support@ace-net.ca</a> and we will confirm with MUN Engineering Computing Services (ECS) whether you are indeed eligible for access to Schlumberger products and add you to the group if that is the case.
+</p><p>If you are a member of the MUN's Faculty of Engineering and want to be added to this group, please contact us at <a rel="noopener noreferrer nofollow" class="external text" href="mailto:support@ace-net.ca?subject=Access%40to%40Schlumberger">support@ace-net.ca</a> and we will confirm with MUN Engineering Computing Services (ECS) whether you are indeed eligible for access to Schlumberger products and add you to the group if that is the case.
 </p>
 <h2><span class="mw-headline" id="Notes">Notes</span></h2>
 <p>Loading the module <code>eclipse-sim/2020.3</code> will set a number of important environment variables, that can be used in the jobscript.
@@ -136,11 +136,11 @@ eclrun --machinefile hostlist_${SLURM_JOBID}.txt  e300 MM40.DATA
 <p>In order to restart an ECLIPSE/E300 simulation the <code>SIMULATION_NAME.DATA</code> needs to be edited as follows:
 </p><p>1. The statement <code>INCLUDE SIMULATION_NAME.INC</code> in the section <code>SOLUTION</code> needs to be replaced by <code>RESTART SIMULATION_NAME iiii</code>, where <code>iiii</code> is the ID of the restart file that is supposed to be used (the largest number for which <code>SIMULATION_NAME.Xiiii</code> and <code>SIMULATION_NAME.Siiii</code> exist), for example <code>0005</code>.
 </p><p>2. The statement <code>SKIPREST</code> needs to be added to the <code>SCHEDULE</code> section.
-</p><p>The Python script <a rel="nofollow" class="external text" href="https://github.com/acenet-arc/eclipse_make_restart/raw/main/eclipse_make_restart.py"><code>eclipse_make_restart.py</code></a> is a tool that performs these steps.
+</p><p>The Python script <a rel="noopener noreferrer nofollow" class="external text" href="https://github.com/acenet-arc/eclipse_make_restart/raw/main/eclipse_make_restart.py" target="_blank"><code>eclipse_make_restart.py</code></a> is a tool that performs these steps.
 </p><p>To install it into your Siku account, run the following commands:
 </p>
 <pre>mkdir -p ~/bin
-wget <a rel="nofollow" class="external free" href="https://github.com/acenet-arc/eclipse_make_restart/blob/main/eclipse_make_restart.py">https://github.com/acenet-arc/eclipse_make_restart/blob/main/eclipse_make_restart.py</a>
+wget <a rel="noopener noreferrer nofollow" class="external free" href="https://github.com/acenet-arc/eclipse_make_restart/blob/main/eclipse_make_restart.py" target="_blank">https://github.com/acenet-arc/eclipse_make_restart/blob/main/eclipse_make_restart.py</a>
 chmod u+x eclipse_make_restart.py
 mv eclipse_make_restart.py  ~/bin/
 </pre>

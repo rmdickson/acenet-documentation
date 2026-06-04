@@ -5,7 +5,7 @@ layout: default
 <h1>Parallel Jobs</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
 <tbody><tr>
 <td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
-<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="noopener noreferrer nofollow" class="external free" href="https://docs.alliancecan.ca" target="_blank">https://docs.alliancecan.ca</a>.
 </p>
 </td></tr></tbody></table>
 <p><br />
@@ -47,7 +47,7 @@ layout: default
 <td><code>4per*, 16per*</code></td>
 <td>For distributed jobs that require a fixed number of cores per host
 </td></tr></tbody></table>
-<p>Other parallel environments may be available.  These can be listed with <code>qconf -spl</code>, but we do not recommend you use these unless they are specifically mentioned on another wiki page (e.g. <a href="{{ 'Gaussian' | relative_url }}" title="Gaussian">Gaussian</a>) or you have consulted with a <a rel="nofollow" class="external text" href="http://www.ace-net.ca/about-us/team/">Computational Research Consultant</a>.
+<p>Other parallel environments may be available.  These can be listed with <code>qconf -spl</code>, but we do not recommend you use these unless they are specifically mentioned on another wiki page (e.g. <a href="{{ 'Gaussian' | relative_url }}" title="Gaussian">Gaussian</a>) or you have consulted with a <a rel="noopener noreferrer nofollow" class="external text" href="http://www.ace-net.ca/about-us/team/" target="_blank">Computational Research Consultant</a>.
 </p>
 <h2><span class="mw-headline" id="OpenMP_or_threaded_jobs">OpenMP or threaded jobs</span></h2>
 <p>Since <a href="{{ 'OpenMP' | relative_url }}" title="OpenMP">OpenMP</a> is for shared memory programming, OpenMP programs must execute on only one node -- they cannot span nodes like MPI programs do. Consequently, they need a distinct parallel environment under the Grid Engine, <code>-pe openmp <i>np</i></code>. The maximum number of slots you can request with this parallel environment on our clusters is 16.
