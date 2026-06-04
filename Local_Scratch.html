@@ -1,0 +1,88 @@
+---
+title: Local Scratch
+layout: default
+---
+<h1>Local Scratch</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
+<tbody><tr>
+<td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+</p>
+</td></tr></tbody></table>
+<p><br />
+</p>
+<dl><dd><i>Main page: <a href="Storage_System.html" title="Storage System">Storage System</a></i></dd></dl>
+<p>Each compute node has its own disk (or in some cases, solid state memory) which is not shared with other compute nodes.  We refer to this as local disk.  If it is used to store temporary files for an individual job, then we refer to that as "local scratch storage".
+</p>
+<h2><span class="mw-headline" id="Grid_Engine_and_Local_Scratch">Grid Engine and Local Scratch</span></h2>
+<p>Local scratch is not organized consistently across all clusters and hosts.  In most cases it is in <code>/scratch/tmp</code>, but there are some hosts where <code>/scratch/tmp</code> doesn't exist or where another location is preferred. <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Grid Engine</a> provides an environment variable <code>TMPDIR</code> which points to a local disk location which always exists and is unique to a job or a task in a <a href="Managing_Many_Tasks.html#Array_jobs" title="Managing Many Tasks"> job array</a>, hence
+</p>
+<pre>$ cd $TMPDIR
+</pre>
+<p>should always succeed inside your submission script.
+</p><p>However, the amount of space in <code>$TMPDIR</code> varies from cluster to cluster and from host to host, so while it always <i>exists</i>, it may or may not be large enough for your purposes. In particular the X6440 "Blade Servers" introduced in late 2009 at Placentia and Glooscap have small local scratch (Placentia nodes cl135-cl266, Glooscap nodes cl059-cl097). If you want to see how much space is available, 
+</p>
+<pre>$ qstat -F localscratch
+</pre>
+<p>will give you a list of all hosts and the local scratch space on each.
+</p><p>You can request <code>localscratch</code> from Grid Engine as a <a href="page_not_existing.html" style='color:red' class="new" title="Sun Grid Engine (page does not exist)"> custom resource</a>, much like you request time or memory. For example, a job submitted with:
+</p>
+<pre>$ qsub -l localscratch=10G job.script
+</pre>
+<p>will only be assigned to hosts with at least 10 gigabytes in <code>$TMPDIR</code>.
+</p>
+<ul><li>Obviously, the more accurately you can predict how much space your code needs, the better this will work:  Ask for too much and your job might not schedule quickly (or at all); ask for too little and the job could fail.</li>
+<li>As with other requestable resources like <code>h_vmem</code>, the space is allocated <i>per process</i> for a parallel job.  See below for more about parallel jobs.</li>
+<li>Grid Engine only knows about the <i>total</i> disk space in the filesystem --- used plus unused --- and about any other jobs which explicitly request <code>localscratch</code>. If other jobs write to the same filesystem without requesting <code>localscratch</code> then there could be less <i>free</i> space than requested.</li></ul>
+<p>For this last reason you might also wish to have your job script check the <i>available space</i> in order to avoid "File system full" or "No space left on device" errors. Here's a script fragment that prints the available space in <code>$TMPDIR</code> in gigabytes:
+</p>
+<pre>$ df --block-size=1G $TMPDIR | awk 'END {print $4}'
+</pre>
+<p>This can be used in a conditional:
+</p>
+<pre>#$ -S /bin/bash
+scratchdir=$TMPDIR
+freespace=`df --block-size=1G $scratchdir | awk 'END {print $4}'`
+if (( $freespace &lt; 10 )); then
+    echo "Not enough free space in TMPDIR $TMPDIR, using /nqs..."
+    scratchdir=/nqs/$USER/$JOB_ID
+    mkdir $scratchdir
+fi
+</pre>
+<p><b>We strongly recommend that you use <code>$TMPDIR</code> and <code>localscratch</code> if you want to use node-local disk.</b>  <code>$TMPDIR</code> is unique to each job, and Grid Engine deletes the directory at the end of the job. Therefore your script should ensure that any output files written to <code>$TMPDIR</code> are copied to Main Storage before the end of the job script.
+</p><p>If you choose <i>not</i> to use <code>$TMPDIR</code> you must:
+</p>
+<ol><li>check for the existence of <code>/scratch/tmp</code>;</li>
+<li>create a subdirectory with your username, <code>/scratch/tmp/$USER</code>, or Grid Engine job number, <code>/scratch/tmp/$JOB_ID</code>;</li>
+<li>ensure at the end of the job that the directory is cleaned up and deleted.</li></ol>
+<p>It can be tricky to write job scripts that clean up all files under every possible failure.  Therefore you should also manually patrol your Local Scratch directories to ensure that the space is not occupied by outdated files from failed or finished jobs.
+</p>
+<h2><span class="mw-headline" id="Multiple_hosts">Multiple hosts</span></h2>
+<p>Grid Engine only creates <code>$TMPDIR</code> on the master or "shepherd" host for a job. Therefore the above comments technically apply to serial jobs, or jobs where all the processes reside on a single host (e.g. Gaussian). If you are using the Open MPI library for running your application, please note that Open MPI will use <code>$TMPDIR</code> for its own purposes and thus will create the directory on those hosts where it is missing, effectively providing <code>$TMPDIR</code> on all hosts assigned to the job. Nonetheless, if your application expects each process to write and read to local disk on different hosts, you need to manage things much more carefully.
+</p><p>The hosts attached to a parallel job are described in the <i>hostfile</i>. The name of the hostfile is given to the job script in the environment variable <code>PE_HOSTFILE</code>.  You can, for example, fill a shell variable with a list of hostnames with code like this:
+</p>
+<pre>hostlist=`awk '{print $1}' $PE_HOSTFILE`
+</pre>
+<p>The Grid Engine requestable resource <code>lscratch</code> can and should be used with parallel jobs. While <code>$TMPDIR</code> is only created on the master host, <code>lscratch</code> will check for sufficient disk space on the same filesystem (typically /scratch/tmp) on each host when scheduling the job. There is no reason you couldn't create and destroy directories named <code>$TMPDIR</code> on worker hosts to match the one on the master host:
+</p>
+<pre>#$ -l h_rt=0:1:0,test=true
+#$ -pe ompi* 2
+
+hostlist=`awk '{print $1}' $PE_HOSTFILE`
+echo "------ host ------- GB free"
+for host in $hostlist; do
+   ssh $host mkdir -p $TMPDIR
+   freespace=`ssh $host df --block-size=1G $TMPDIR | awk 'END {print $4}'`
+   echo "$host   $freespace"
+done
+# .... do some computing here ....
+# then clean up:
+for host in $hostlist; do
+   ssh $host rm -r $TMPDIR
+done
+</pre>
+<p>To further complicate matters, <a href="Open_MPI.html" title="Open MPI">Open MPI</a> <i>does</i> create <code>$TMPDIR</code> on each subordinate host when <code>mpirun</code> is invoked, but then also destroys these <code>$TMPDIR</code>s when the child MPI processes complete.
+</p>
+
+
+</div>
+

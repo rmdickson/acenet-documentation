@@ -1,0 +1,86 @@
+---
+title: Measuring Code Performance
+layout: default
+---
+<h1>Measuring Code Performance</h1><div class="mw-parser-output"><p>You are writing code, perhaps parallel code, and its performance and scaling properties are of interest.  You need tools to let you evaluate the code's speed, but you probably also want to control the sources of variance in the speed.  The scheduling policies and variety of hardware in ACENET clusters don't make this easy, but it is possible to eliminate many sources of variance by making appropriate resource requests for your jobs.
+</p><p>This article will address the following sources of variance:
+</p>
+<ul><li>Different numbers of parallel processes per node.</li>
+<li>Different node hardware: CPU models, motherboard architecture.</li>
+<li>Contention for node resources: Sharing of node-local buses, disk, <em>etc.</em></li>
+<li>Contention for cluster-wide resources:  Inter-node communication network.  Shared filesystems.</li></ul>
+<p>Your are encouraged to contact your local Computational Research Consultant for help, advice and discussions on these matters.
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Record_the_assigned_hardware"><span class="tocnumber">1</span> <span class="toctext">Record the assigned hardware</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Use_local_disk"><span class="tocnumber">2</span> <span class="toctext">Use local disk</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Get_a_regular_distribution_of_processes"><span class="tocnumber">3</span> <span class="toctext">Get a regular distribution of processes</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Get_entire_nodes"><span class="tocnumber">4</span> <span class="toctext">Get entire nodes</span></a></li>
+<li class="toclevel-1 tocsection-5"><a href="#Get_consistent_hardware"><span class="tocnumber">5</span> <span class="toctext">Get consistent hardware</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#Use_test.q"><span class="tocnumber">6</span> <span class="toctext">Use test.q</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Remaining_sources_of_variance"><span class="tocnumber">7</span> <span class="toctext">Remaining sources of variance</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Record_the_assigned_hardware">Record the assigned hardware</span></h2>
+<p>Each job you run should record in its standard output the identity of the hosts on which it was run, as well as other information such as the dates and times the job began and ended.  Grid Engine creates a "hostfile" listing the assigned hosts and the number of slots on each, and puts the name of the hostfile in the environment variable <code>PE_HOSTFILE</code>, so we recommend including lines something like this in your job scripts:
+</p>
+<pre>#$ -l h_rt=...
+echo "Contents of PE_HOSTFILE ------"
+cat $PE_HOSTFILE
+echo "----------- end of PE_HOSTFILE"
+echo "Job begins at $(date)"
+mpirun ...
+echo "Job ends at $(date)"
+</pre>
+<p>For serial or shared-memory jobs you can just call <code>hostname</code> instead of dumping <code>$PE_HOSTFILE</code>.
+</p>
+<h2><span class="mw-headline" id="Use_local_disk">Use local disk</span></h2>
+<p>(To be written: $TMPDIR)
+</p>
+<h2><span class="mw-headline" id="Get_a_regular_distribution_of_processes">Get a regular distribution of processes</span></h2>
+<p>For distributed parallel programming (such as MPI) the normal practice at ACENET is to request <code>-pe ompi* N</code>, where <em>N</em> is the slot count.  When your job is scheduled, the slots may be packed onto a minimal number of nodes, or distributed across <em>N</em> nodes, or anything in between.  This unpredictable distribution of processes can result in performance variance because communications between processes on the same node are usually faster than communications between nodes.  While you should certainly write your code to handle that situation efficiently, during development and testing you may wish to get a regular distribution of processes; say, one on every node, or four per node, or sixteen.
+</p><p>ACENET provides parallel environments analogous to <code>ompi*</code> which guarantee this, named
+</p>
+<pre>1per*
+2per*
+4per*
+16per*
+</pre>
+<p>Not all of these are available at all sites.  You can get the list of what's available at a given site with <code>qconf -spl</code>.
+</p><p>Obviously, jobs with these parallel environments may take longer to schedule than similar jobs requesting <code>ompi*</code> since the scheduler has to satisfy tighter constraints.  Also note that with <code>1per*, 2per*</code>, and <code>4per*</code>, the parallel tasks may still be in contention with other users' processes on the individual nodes; see <a href="#Get_entire_nodes">Get entire nodes</a> below.
+</p>
+<h2><span class="mw-headline" id="Get_entire_nodes">Get entire nodes</span></h2>
+<p>When using <code>-pe ompi*</code> your code may share hosts with other jobs belonging to other users.  If you want to eliminate variance due to competition for host resources (<i>e.g.</i> memory bus bandwidth) you can do this by asking for entire hosts.  
+</p><p>The <code>openmp</code> parallel environment guarantees that all the job's slots are assigned on a single host.  Since ACENET has no general-production hosts with more than 16 slots, <code>-pe openmp 16</code> guarantees that your job will be the only job on its host.  To get exclusive control of multiple hosts, use <code>-pe 16per*</code> as described under <a href="#Get_a_regular_distribution_of_processes">Get a regular distribution of processes</a> above.
+</p><p>A job requesting <code>-pe openmp 4</code> might gain exclusive control of a 4-slot host, or it might be assigned to part of a 16-slot host.  Similarly, <code>-pe 4per* 8</code> might be assigned exclusive control of two 4-slot hosts, parts of two larger hosts, or some mixture.  If you need to do this sort of experiment, see the hints under <a href="#Get_consistent_hardware">Get consistent hardware</a>, below
+</p>
+<h2><span class="mw-headline" id="Get_consistent_hardware">Get consistent hardware</span></h2>
+<p>Most of ACENET's clusters have grown over time with successive purchases of different hardware.  As a result, two otherwise identical jobs may be assigned to different hardware and thus run at different speeds.  You can control for this source of variance in your analysis by <a href="#Record_the_assigned_hardware">Recording the assigned hardware</a> as noted above, and then comparing the recorded host identities with the hardware information given at <a href="page_not_existing.html" style='color:red' class="new" title="Compute Resources (page does not exist)">Compute Resources</a> and the individual cluster descriptions linked therefrom.
+</p><p>However, you can also submit jobs that are constrained only to run on certain machines.  This requires that you identify the block of machines that suit your requirements, for which again you should consult <a href="page_not_existing.html" style='color:red' class="new" title="Compute Resources (page does not exist)">Compute Resources</a>.  But here are some Grid Engine directives that will guarantee assignment to certain blocks of hardware of matching architecture:
+</p>
+<pre># At Glooscap:
+#$ -q *@cl0[0-4]*|cl05[0-8]        # cl001-cl058, Hewlett-Packard 4-core nodes
+#$ -q *@cl059|cl0[6-8]*|cl09[0-7]  # cl059-cl097, SunBlade x6440 16-core nodes
+#$ -q *@cl098|cl099|cl1*           # cl098-cl183, SGI C2112-4G3 16-core nodes
+#
+# At Placentia:
+#$ -q *@cl00*|cl01[0-2]|cl02[1-9]|cl030          # cl001-..-cl030, SunFire X4600 16-core nodes
+#$ -q *@cl05[6-9]|cl0[6789]*|cl10[0-8]           # cl056-cl108, SunFire X2200M2 4-core nodes
+#$ -q *@cl13[5-9]|cl1[4-9]*|cl2[0-5]*|cl26[0-6]  # cl135-cl266, SunBlade X6240 16-core nodes
+#$ -q *@cl32[1-9]|cl33[0-7]                      # cl321-cl337, SunBlade X4140 nodes
+</pre>
+<p><b>Insert only one of these</b> in any given job script, else you might as well not bother!  Also note that within these example blocks, other details such as amount of RAM or local disk may vary.
+</p><p>Detailed data on the installed CPUs (steppings, clock rates) can be obtained for a given <code>host</code> with <code>ssh $host cat /proc/cpuinfo</code>.
+</p>
+<h2><span class="mw-headline" id="Use_test.q">Use test.q</span></h2>
+<p>To be written.  test.q will be useful in certain cases and at certain sites.
+</p>
+<h2><span class="mw-headline" id="Remaining_sources_of_variance">Remaining sources of variance</span></h2>
+<p>(To be written:  Network.  Shared filesystems.)
+</p>
+
+
+</div>
+

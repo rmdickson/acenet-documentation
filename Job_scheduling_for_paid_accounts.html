@@ -1,0 +1,161 @@
+---
+title: Job scheduling for paid accounts
+layout: default
+---
+<h1>Job scheduling for paid accounts</h1><div class="mw-parser-output"><p>If your firm or organization has a paid contract with ACENET for compute time on <a href="Siku.html" title="Siku">Siku</a>, then this page explains how your computing is measured
+and tracked.  Submitting and troubleshooting jobs is discussed <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs">elsewhere</a>.
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Monthly_statements"><span class="tocnumber">1</span> <span class="toctext">Monthly statements</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#The_gory_details"><span class="tocnumber">2</span> <span class="toctext">The gory details</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Terminology"><span class="tocnumber">2.1</span> <span class="toctext">Terminology</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#How_much_computing_can_I_do.3F"><span class="tocnumber">2.2</span> <span class="toctext">How much computing can I do?</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Who_has_been_using_our_account.2C_and_how_much.3F"><span class="tocnumber">2.3</span> <span class="toctext">Who has been using our account, and how much?</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#Billing_units_formula"><span class="tocnumber">2.4</span> <span class="toctext">Billing units formula</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#Why_the_funny_word.2C_QoS.3F"><span class="tocnumber">2.5</span> <span class="toctext">Why the funny word, QoS?</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#What_if_I_have_more_than_one_account_or_QoS.3F"><span class="tocnumber">2.6</span> <span class="toctext">What if I have more than one account or QoS?</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Monthly_statements">Monthly statements</span></h1>
+<p>The principal investigator for your organization should receive an automated email on the first day of every month, summarizing the last twelve months' usage on Siku.
+It will look something like this:
+</p>
+<pre>Here is a report on your firm's recent usage on Siku.
+
+The valid users associated with your account today are:
+  aturing, ghopper
+
+Your quarterly usage cap is currently 2000 billing hours.
+You can adjust this cap at any time by emailing support@ace-net.ca.
+
+Billing hours used, by month (most recent first):
+   Mar 2023        271.48 
+   Feb 2023        292.18 
+   Jan 2023        217.01 
+   Dec 2022        910.99 
+   Nov 2022       1150.67 
+   Oct 2022        883.90 
+   Sep 2022        588.38 
+   Aug 2022        854.17 
+   Jul 2022         12.58 
+   Jun 2022          0.00 
+   May 2022          0.00 
+   Apr 2022          0.00 
+   --------------------
+   TOTAL          5181.36
+
+Billing hours used in the above months, by user:
+   aturing        4619.63
+   ghopper         561.73
+   --------------------
+   TOTAL          5181.36
+
+Billing hours used in most recent month (March 2023), by user:
+   aturing          21.43
+   ghopper         250.05
+   --------------------
+   TOTAL           271.48
+
+Billing hours used in most recent month (March 2023), by comment:
+   (none)          271.84
+   --------------------
+   TOTAL           271.48
+
+Best regards,
+An ACENET robot
+</pre>
+<p>This is, we hope, self-explanatory except perhaps for the last table.
+The "Billing hours used ... by comment" will be uninformative in most cases, but if you add comments to each of your jobs, like so:
+</p>
+<pre>#SBATCH --comment=ALPHA_beta
+</pre>
+<p>...then the final table will break out your usage by the comment.  
+A contract research firm, for example, might use a unique comment string for each of its clients,
+so that the usage on behalf of each client can be easily read from the table.
+</p>
+<h1><span class="mw-headline" id="The_gory_details">The gory details</span></h1>
+<h2><span class="mw-headline" id="Terminology">Terminology</span></h2>
+<ul><li>"User", that's obvious.  One person, one login name.</li>
+<li>"Account" is not the same as "user" in this context. Your firm or organization has a contract with ACENET (or you probably wouldn't be reading this.)  On Siku, that contract is represented by an "account" with a name like "pd-abc-123".</li>
+<li>"QoS" stands for "Quality of Service", but it might be better to think of a "QoS" as a software object which remembers how many CPU hours etc. an account is allowed to use, and how much has been used already.  Each paid account is associated with its own QoS, and the QoS has the same name as the account, like "pd-abc-123".</li>
+<li>"Billing hours" measure the use of the system.  One CPU-hour and associated RAM is worth one billing hour.  A GPU-hour is worth 35 billing hours. See below for a formula, and examples.
+<ul><li>A "billing minute" is simply one-sixtieth of a billing hour.</li>
+<li>We have also used the term "CPU hours" in the past, with the same meaning.</li></ul></li></ul>
+<h2><span id="How_much_computing_can_I_do?"></span><span class="mw-headline" id="How_much_computing_can_I_do.3F">How much computing can I do?</span></h2>
+<p>You can see the number of billing hours available to you through your QoS by running the utility <tt>acct-tool</tt>. 
+The output will look something like this:
+</p>
+<pre>Available QoSs: pd-abc-123
+Default QoS:    pd-abc-123
+
+For QoS 'pd-abc-123' this quarter:
+ Billing (CPU-equiv) hours cap:     2190000.0   (131400000 minutes)
+ Billing (CPU-equiv) hours used:         57.7   (3461 minutes)
+</pre>
+<p>When your team gets close to the limit, you may find that your jobs are not starting, but instead staying in PD (pending) state with "QOSGrpBillingMinutes" showing in the "Reason" field of squeue (or sq).  Or, you may receive this pair of messages on trying to submit a job with with sbatch:
+</p>
+<pre>sbatch: error: QOSGrpBillingMinutes
+sbatch: error: Batch job submission failed: Job violates accounting/QOS policy (job submit limit, user's size and/or time limits)
+</pre>
+<p>In either case this is because the job would put you over your billing limit if it ran for the time requested.  Have your Principal Investigator contact support@ace-net.ca to discuss raising your billing limit.
+</p>
+<h2><span id="Who_has_been_using_our_account,_and_how_much?"></span><span class="mw-headline" id="Who_has_been_using_our_account.2C_and_how_much.3F">Who has been using our account, and how much?</span></h2>
+<p>To see the billing units charged against your account (your QoS) broken down by user, run <tt>acct-history</tt>:
+</p>
+<pre>$ acct-history -S 2019-11-01
+Usage report on QoS 'pd-abc-123':
+     Start time:  2019-11-01
+       End time:  2019-11-14T20:27:50
+
+Billing (CPU-equiv) hours per user:
+           198.4  alice
+          9817.9  bob
+  ------------------------
+         10016.3  TOTAL
+</pre>
+<p>Breakdowns by individual jobs can be obtained from <tt>sacct</tt> with suitable options. 
+See the <a rel="nofollow" class="external text" href="https://slurm.schedmd.com/sacct.html">sacct man page</a> or <a href="Ask_Support.html" title="Ask Support">contact support</a> for help.
+</p><p>A report containing similar information will be sent at the beginning of each month to the senior contact 
+in the organization (i.e., the principal investigator or contract signer).
+</p>
+<h2><span class="mw-headline" id="Billing_units_formula">Billing units formula</span></h2>
+<pre>BillingHours = MAX( CPUs, RAM_GB * 0.215, GPUs * 8.181818 ) * hours
+</pre>
+<p>A job that reserves one CPU and 4G of RAM and runs for one hour consumes 1 billing hour.  
+One CPU and 10G of RAM for one hour?  2.15 billing hours.  
+</p><p>One of our <b>GPU-equipped nodes</b> has 40 CPUs, 186G of RAM, and two GPUs.  To use that node for 24 hours would cost
+MAX( 40, 186*0.215, 2*8.181818 ) * 24 = 40 * 24  = 960 billing hours.
+</p><p>The rate per GB of RAM is chosen so that using either all the CPUs or all the RAM on a basic node costs the same 40 billing units.
+Requesting all the memory on a <b>high-memory node</b> costs 80 billing units.
+</p><p>You can get the billing <i>rate</i> for a live job like so:
+</p>
+<pre>[you@login1 ~]$ scontrol show job 7976 | grep billing
+  TRES=cpu=12,mem=108000M,node=1,billing=22
+</pre>
+<p>This job will be billed at a rate of 22 billing units per unit of elapsed time.  
+You can determine the billing units consumed by an individual job, once it has completed,
+by examining the Slurm accounting record for the job and multiplying the billing rate by the elapsed time:
+</p>
+<pre>[you@login1 ~]$ sacct -X --format=AllocTRES%40,Elapsed --noheader -j 7402
+       billing=40,cpu=40,mem=10G,node=1   00:02:09
+</pre>
+<p>In this example, the billing rate is 40 and the elapsed time is 2 minutes 9 seconds, or 0.0358 hours,
+so the job cost 1.43 billing hours.
+</p><p>(The multiplier for GPU hours was changed from 35.0 to 31.81818 on 2024-04-16,
+and then from 31.81818 to 8.181818 on 2026-04-23.)
+</p>
+<h2><span id="Why_the_funny_word,_QoS?"></span><span class="mw-headline" id="Why_the_funny_word.2C_QoS.3F">Why the funny word, QoS?</span></h2>
+<p>You may well ask, "Why have QoSs at all, why not just use accounts?"  That has to do with Slurm internals.  We would like you to be able to think in terms of a "bank account" of computing time, but to implement that we had to use Slurm's QoS mechanism.  If we were then to call a QoS a "bank account", when the term "account" in Slurm means something slightly different but closely related, that would cause great confusion if and when you ever have to consult the generic Slurm documentation at <a rel="nofollow" class="external free" href="https://slurm.schedmd.com">https://slurm.schedmd.com</a>.
+</p>
+<h2><span id="What_if_I_have_more_than_one_account_or_QoS?"></span><span class="mw-headline" id="What_if_I_have_more_than_one_account_or_QoS.3F">What if I have more than one account or QoS?</span></h2>
+<p>A user typically only has access to one account and one QoS, and your jobs are automatically associated with that account and QoS.  You could have more than one account if, for example, your firm made two separate contracts with ACENET for separate projects, and you are working on both, or if you were a freelancer and working for two different firms with ACENET contracts. In that case it will be up to you to assign each job you submit to the correct QoS using the --qos= option to sbatch, salloc, or srun.
+</p>
+
+
+</div>
+

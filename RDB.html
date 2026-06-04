@@ -1,0 +1,73 @@
+---
+title: RDB
+layout: default
+---
+<h1>RDB</h1><div class="mw-parser-output"><p>These instructions are for members of <b>Memorial University</b>.
+</p><p>Memorial University provides a service to all researchers on campus called <b>Research Data Backup</b>. The implementation of the system is managed and maintained by and through the <b>Labnet</b> system.
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Basic_Outline"><span class="tocnumber">1</span> <span class="toctext">Basic Outline</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#How_To_Get_Access"><span class="tocnumber">2</span> <span class="toctext">How To Get Access</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Examples"><span class="tocnumber">3</span> <span class="toctext">Examples</span></a>
+<ul>
+<li class="toclevel-2 tocsection-4"><a href="#Manual_backup"><span class="tocnumber">3.1</span> <span class="toctext">Manual backup</span></a></li>
+<li class="toclevel-2 tocsection-5"><a href="#Automatic_backup"><span class="tocnumber">3.2</span> <span class="toctext">Automatic backup</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Basic_Outline">Basic Outline</span></h2>
+<p>Anything you put in your home directory on Labnet is automatically backed up on a daily basis as part of the Research Data Backup service. You can get access to up to approximately 6 months of incremental versions of your documents/data through the <a rel="nofollow" class="external text" href="https://webtools.cs.mun.ca">Labnet 'webtools' interface</a>. The number of incremental versions available is not guaranteed, as it is a function of overall system usage.  If you have a Labnet account, you can back up data right now on this service, through <code>rsync</code> or <code>scp</code> directly from <code>placentia</code> head node to either <code>garfield.cs.mun.ca</code> or <code>ganymede.pcglabs.mun.ca</code>.
+</p><p>This is all you need to know <b>if</b> you only need up to 50G of data backed up. If you need more than 50G of space, then a special partition will have to be created for you, and this partition will not be backed up incrementally (i.e. you will have one copy of your data).
+</p>
+<h2><span class="mw-headline" id="How_To_Get_Access">How To Get Access</span></h2>
+<p>If you already have a Labnet account, you are ready to go. If you do not have a Labnet account go to the <a rel="nofollow" class="external text" href="https://webtools.cs.mun.ca/">Labnet 'webtools'</a> page to create one. Click on 'Labnet Account Generation' on the left menu. You will need your <b>MUN Login</b> credentials, and your Labnet user name and password will be the same as your MUN Login ones. If you do not have MUN Login credentials, go to <a rel="nofollow" class="external text" href="https://login.mun.ca/cas/login">this web page</a> to get them activated first. Then go to the Labnet <a rel="nofollow" class="external text" href="https://webtools.cs.mun.ca/">'webtools'</a> page.
+</p>
+<dl><dt>NOTE</dt>
+<dd>If you use the so-called IMAP Email service for your MUN email (i.e. you connect to <code>mail.mun.ca</code> with your email client to get your MUN email) or you use <code>my.mun.ca</code> then you have already activated these credentials. If you do not know your password, you can change it on the MUNLogin page, but this will also change your password for your email client.</dd></dl>
+<p>Once you have activated your Labnet account, test it by logging on to <code>garfield.cs.mun.ca</code> or <code>ganymede.pcglabs.mun.ca</code> via <code>ssh</code> from the <code>placentia</code> head node.
+</p><p>If you have a small amount of data, less than or equal to 50G, then you can simply <code>rsync</code> or <code>scp</code> your data to <code>garfield.cs.mun.ca</code> or <code>ganymede.pcglabs.mun.ca</code>. See below for some examples.
+</p>
+<dl><dt>NOTE</dt>
+<dd>Whether you already have a Labnet account or have to activate one, please <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> inform us</a> that you are going to use this backup service, using the subject line <b>MUN RDB Access</b>, so that we can ensure that your Labnet home directory gets moved to the appropriate file system. Please include your Labnet login ID in the message. <b>Further:</b> this service is on an 'honour' basis, in so far as there are no quotas imposed. So, if you are using the service in the &lt;=50G category and know that you are going to need more, please <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> contact support</a> to let us know, so we can arrange appropriate storage for you.</dd></dl>
+<p>If you have more than 50G of data, please <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> contact support</a> and request <b>MUN RDB Large DATA Access</b> with details of how much space you need. Availability is dependent on University resources. However, the University has made a commitment to this service, so if your full request cannot be accommodated immediately, it should be doable in future. Again, storage above 50G cannot be accommodated in the normal Labnet incremental backup system. You will have one copy of your data.
+</p>
+<h2><span class="mw-headline" id="Examples">Examples</span></h2>
+<p>Create a directory in your Labnet home directory called, e.g., <code>placentia_backup</code>. Log on to <code>garfield.cs.mun.ca</code> or <code>ganymede.pcglabs.mun.ca</code> to do this.  (Of course you can call it whatever you like, but you'll need to make corresponding change whenever <code>placentia_backup</code> appears below.)
+</p><p>Let us further assume that you have a single directory on <a href="https://wiki.ace-net.ca/wiki/Placentia" title="Placentia">Placentia</a> you wish to back up, called <code>your_local_data</code>.
+</p>
+<h3><span class="mw-headline" id="Manual_backup">Manual backup</span></h3>
+<p>To back up <code>your_local_data</code> manually, run the following command on <code>placentia</code> head node (assuming you are in the directory immediately above <code>your_local_data</code>):
+</p>
+<pre>rsync -e ssh -aSx ./your_local_data &lt;labnet_userid&gt;@garfield.cs.mun.ca:placentia_backup/
+</pre>
+<p>This will create a sub-directory on the Labnet system called <code>placentia_backup/your_local_data</code>. You will be prompted for your password when you do this. If you use <code>-aRSx</code> instead of <code>-aSx</code> the full directory structure of your source directory will be preserved, relative to the destination directory, e.g. on Labnet you might see <code>placentia_backup/home/&lt;user&gt;/your_local_data</code>.
+</p><p>You can do this manually as often as you like. The data will be backed up daily in an incremental manner on the Labnet system. So you do not need to worry about keeping track of versions of the data yourself, unless you expect to need to have versions going back longer than about 6 months.
+</p><p>Read the <code>rsync</code> man page for more information about how it works, and how to use it, e.g., for more complex cases (multiple source directories, etc.). It's possible to get fairly sophisticated, with exclude patterns, multiple sources, incremental, etc. If you go that route it is probably a good idea to script it, rather than try to do it all on the command line. For some examples of <code>rsync</code> scripting, see <a rel="nofollow" class="external text" href="http://rsync.samba.org/examples.html">here</a>. There are a lot of resources for help with understanding and scripting <code>rsync</code> on the Internet.
+</p>
+<h3><span class="mw-headline" id="Automatic_backup">Automatic backup</span></h3>
+<p>The above process can be made to happen automatically on a recurring schedule, but in order to do so first you must set up passwordless ssh to Labnet.  If the backup happens automatically in the middle of the night, you won't be there to supply your Labnet password!
+</p><p>1. Copy the contents of <code>~/.ssh/id_rsa.pub</code> from <code>placentia</code> into the file <code>~/.ssh/authorized_keys</code> in your Labnet home directory.  If you've done this correctly the above <code>rsync</code> command will now work without prompting you for a password.
+</p><p>2. Set up a <code>cron</code> job on <code>placentia</code> to do this for you automatically.  Running...
+</p>
+<pre>crontab -e
+</pre>
+<p>...will open an editor (probably <code>vi</code>).  Add a line like this:
+</p>
+<pre>0 22 * * * /usr/bin/rsync -e ssh -aSx /home/&lt;acenet_username&gt;/your_local_data &lt;labnet_username&gt;@garfield.cs.mun.ca:placentia_backup/
+</pre>
+<p>This will run the command for you automatically at 10pm each night. It is basically the same command you would run manually, but with full path names specified. It's a good idea to use full path specifications for everything in a cron table. See <code>man 5 crontab</code> for information on the meaning of the first part of this line, and how to set up, e.g., weekly rather than daily backups.
+</p><p>3 (optional). If you don't like the idea of using your 'internal' <code>placentia</code> ssh key, then instead of step 1 above, create an alternative key (in your home directory on <code>placentia</code>):
+</p>
+<pre>mkdir .sshremote
+chmod 700 .sshremote
+ssh-keygen -t rsa -f .sshremote/placentia  # Hit enter when asked for a pass phrase
+</pre>
+<p>Then replace <code>-e ssh</code> above with <code>-e "ssh -i .sshremote/placentia"</code>.
+</p>
+
+
+</div>
+

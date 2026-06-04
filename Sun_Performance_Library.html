@@ -1,0 +1,78 @@
+---
+title: Sun Performance Library
+layout: default
+---
+<h1>Sun Performance Library</h1><div class="mw-parser-output"><table border="0" cellspacing="0" cellpadding="5" width="608">
+
+<tbody><tr valign="top">
+<td><b>Short Description:</b></td>
+<td></td>
+<td>Sun Performance Library is a set of optimized, high-speed mathematical subroutines for solving linear algebra and other numerically intensive problems. Sun Performance Library is based on a collection of public domain applications available from Netlib <a rel="nofollow" class="external autonumber" href="http://www.netlib.org">[1]</a>. Sun has enhanced these public domain applications and bundled them as the Sun Performance Library.
+</td></tr>
+<tr valign="top">
+<td><b>Libraries:</b>
+</td>
+<td>
+</td>
+<td>
+<ul><li>LAPACK version 3.0 – For solving linear algebra problems.</li>
+<li>BLAS1 (Basic Linear Algebra Subprograms) – For performing vector-vector operations.</li>
+<li>BLAS2 – For performing matrix-vector operations.</li>
+<li>BLAS3 – For performing matrix-matrix operations.</li>
+<li>FFTPACK - fast Fourier transform of periodic and other symmetric sequences.</li>
+<li>NIST SparseBLAS - Sparse Basic Linear Algebra Subprograms (BLAS) Library</li></ul>
+</td></tr>
+<tr valign="top">
+<td><b>Version:</b></td>
+<td></td>
+<td>Part of Sun Studio 12
+</td></tr>
+<tr valign="top">
+<td><b>Location:</b></td>
+<td></td>
+<td>/opt/sun/sunstudio12/prod/lib/amd64/
+</td></tr>
+<tr valign="top">
+<td><b>Usage:</b></td>
+<td></td>
+<td>for FORTRAN code, include USE SUNPERF in your code, for example::
+<pre>  SUBROUTINE SUB(N,ALPHA,X,Y) 
+  USE SUNPERF 
+  INTEGER(8) N 
+  REAL(8) ALPHA, X(N), Y(N) 
+ &#160;! EQUIVALENT TO DAXPY_64(N,ALPHA,X,1_8,Y,1_8) 
+  CALL AXPY_64(ALPHA=ALPHA,X=X,Y=Y) 
+  END
+</pre>
+<p>and then compile with the -dalign and -xlic_lib=sunperf  flags:
+</p>
+<pre> f95 -dalign my_file.f -xlic_lib=sunperf
+</pre>
+<p>for C code, the Sun Performance Library contains native C interfaces for each of the routines 
+contained in BLAS.  Make sure to compile with the -dalign and -xlic_lib=sunperf  flags:
+</p>
+<pre> cc -dalign my_file.c -xlic_lib=sunperf
+</pre>
+<p>See the <a rel="nofollow" class="external text" href="http://docs-pdf.sun.com/819-3692-10/819-3692-10.pdf">Sun Performance Library User's Guide</a>.
+</p>
+</td></tr>
+<tr valign="top">
+<td><b>Documentation:</b></td>
+<td></td>
+<td><a rel="nofollow" class="external text" href="http://docs-pdf.sun.com/819-3692-10/819-3692-10.pdf">Sun Performance Library User's Guide</a>
+</td></tr>
+<tr>
+<td></td>
+<td></td>
+<td><a rel="nofollow" class="external text" href="http://math.nist.gov/spblas/">NIST Sparse BLAS</a>
+</td></tr>
+<tr>
+<td></td>
+<td></td>
+<td><a rel="nofollow" class="external text" href="http://www.netlib.org/fftpack/doc">FFTPACK from Netlib</a>
+</td></tr></tbody></table>
+
+
+
+</div>
+

@@ -1,0 +1,42 @@
+---
+title: PDL
+layout: default
+---
+<h1>PDL</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>PDL turns Perl in to a free, array-oriented, numerical language similar to IDL and MatLab.</dd>
+<dt>Usage</dt>
+<dd>First, load the modulefile to get access to the additionally installed <a href="https://wiki.ace-net.ca/wiki/Perl" title="Perl">Perl</a> modules like so:</dd></dl>
+<pre>$ module load perl
+</pre>
+<dl><dd>You can access the Perl module by adding the following lines into your <a href="https://wiki.ace-net.ca/wiki/Perl" title="Perl">Perl</a> scripts:</dd></dl>
+<pre>use PDL;
+</pre>
+<dl><dd>If you want to enable the interactive PDL shell, create the file <code>.perldlrc</code> with the following content:</dd></dl>
+<pre>use lib "/usr/local/perl_modules/PDL/lib64/perl5/site_perl/5.8.5/x86_64-linux-thread-multi/";
+
+use PDL;
+use PDL::Dbg;  # Enable useful commands
+use PDL::AutoLoader;
+#use PDL::Lite; # Alternative to above for hard-core freaks
+
+# PDL waffle options (and pacify -w)
+BEGIN{
+   $PDL::debug = $PDL::debug = 0;
+   $PDL::verbose = $PDL::verbose = 1;
+}
+
+if ( $PERLDL::TERM-&gt;ReadLine() =~ /::Perl$/ ) {
+   if ( defined $readline::rl_MaxHistorySize ) {
+      $readline::rl_MaxHistorySize = $PERLDL::HISTFILESIZE;
+   }
+}
+
+use PDL::Doc::Perldl; # online docs module
+
+1;
+</pre>
+
+
+
+</div>
+

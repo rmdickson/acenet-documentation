@@ -1,0 +1,63 @@
+---
+title: Hadoop
+layout: default
+---
+<h1>Hadoop</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>Apache Hadoop is a software framework that supports data-intensive distributed applications.</dd>
+<dt>Modulefile</dt>
+<dd><i>None yet.  Should extend PATH, and maybe replace /usr/local/hadoop-1.0.4/conf/hadoop-sge.sh.  Requires java module, probably.</i></dd>
+<dt>Examples</dt>
+<dd></dd>
+<dd><i>See below</i></dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://hadoop.apache.org/">Apache Hadoop home page</a></dd>
+<dd><a rel="nofollow" class="external text" href="http://hadoop.apache.org/docs/r0.19.0/commands_manual.html">Command reference</a></dd>
+<dd><a rel="nofollow" class="external text" href="http://www.rc.usf.edu/trac/hadoop/wiki/SGEIntegration">SGE integration</a> (for ACENET tech staff)</dd></dl>
+<dl><dt>Notes</dt>
+<dd>Support for Hadoop is being introduced at ACENET experimentally.  At the present time it can only be run on selected hosts at <a href="Glooscap.html" title="Glooscap">Glooscap</a>, and only by selected users who have been invited to help us evaluate our rollout.  This documentation page is being made available to help those users, but has intentionally not yet been linked to the <a href="Available_Software.html" title="Available Software">Available Software</a> page.</dd></dl>
+<h2><span class="mw-headline" id="Usage">Usage</span></h2>
+<p>Here's a sample job script. To make this work you'll need:
+</p>
+<ul><li>Java code. We use <code>/usr/local/hadoop-1.0.4/hadoop-examples-1.0.4.jar</code> below, containing the standard Hadoop word-count example.</li>
+<li>Sample data. We used <a rel="nofollow" class="external text" href="http://www.gutenberg.org/cache/epub/20417/pg20417.txt">Gutenberg e-text 20417</a>.</li>
+<li>Add <code>/usr/local/hadoop-1.0.4/bin</code> to your PATH.</li></ul>
+<pre>#$ -cwd
+#$ -j y
+#$ -l h_rt=1:00:00,h_vmem=4G
+#$ -pe hadoop 64
+
+source /usr/local/hadoop-1.0.4/conf/hadoop-sge.sh
+hadoop_config  # Prepare the Hadoop environment.
+hadoop_format  # OPTIONAL: Create the Hadoop filesystem.
+hadoop_start   # Start the Hadoop services.
+
+# Copy input to the HDFS filesystem.
+hadoop fs -put gutenberg/pg20417.txt pg20417.txt
+
+# Run the hadoop task(s) here. Specify the jar, class, input, and output.
+hadoop jar ./hadoop-examples-1.0.4.jar wordcount pg20417.txt output
+
+# Copy the output files from the HDFS filesystem.
+hadoop fs -get output hadoop-output.$JOB_ID
+
+# PLEASE always stop the Hadoop service processes before exiting the job!
+hadoop_stop
+</pre>
+<p>Results from this sample script should be found in hadoop-output.$JOB_ID/part-r-00000.
+</p><p>For debugging purposes you might find it useful to run <a href="page_not_existing.html" style='color:red' class="new" title="Interactive Jobs (page does not exist)">interactively</a>:
+</p>
+<pre>$ qrsh -pe hadoop 16 -l h_rt=1:0:0,h_vmem=4G -cwd bash
+</pre>
+<p>Data copied into the Hadoop Filesystem will persist between jobs, though running <code>hadoop_format</code> may (or may not) destroy old data.  Best practice is to delete data explicitly with <code>hadoop fs -rmr</code> or the equivalent when you are done with it.
+</p><p>Please always remember to call hadoop_stop before exiting, so daemons are not left occupying memory.
+</p><p>The <code>hadoop</code> parallel environment will only work if you request a multiple of 16 slots. 
+</p><p>We've empirically measured the time to <code>hadoop fs -put</code> 100GB to be about 25 minutes.
+</p>
+<h3><span class="mw-headline" id="Troubleshooting_and_Known_Issues">Troubleshooting and Known Issues</span></h3>
+<p>Various different errors can be produced by insufficient memory. Always request <code>h_vmem=4G</code>.  In combination with the <code>-pe hadoop</code> this will ensure Grid Engine makes all the RAM in the machine available.
+</p><p>The default replication factor in HDFS is set to 3.  One of our testers recommended a value of 4.  You can change the replication factor by editing 'hdfs-site.xml' in conf.$jobid after calling the shell function hadoop_config but before calling hadoop_format.  A block size of 512M or 1G in HDFS has also been recommended.
+</p>
+
+
+</div>
+

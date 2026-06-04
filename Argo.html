@@ -1,0 +1,209 @@
+---
+title: Argo
+layout: default
+---
+<h1>Argo</h1><div class="mw-parser-output"><p><br />
+Argo is a computer cluster located at Memorial University of Newfoundland,
+installed in late 2023, and
+managed by ACENET on behalf of researchers who have purchased the equipment.
+The environment is very similar the environment on to the 
+<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Technical_documentation">Alliance general-purpose systems</a>,
+with the exceptions described below.  
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Access"><span class="tocnumber">1</span> <span class="toctext">Access</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Addresses"><span class="tocnumber">2</span> <span class="toctext">Addresses</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Data_transfer"><span class="tocnumber">2.1</span> <span class="toctext">Data transfer</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-4"><a href="#Software"><span class="tocnumber">3</span> <span class="toctext">Software</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#Containers"><span class="tocnumber">3.1</span> <span class="toctext">Containers</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-6"><a href="#Job_scheduling"><span class="tocnumber">4</span> <span class="toctext">Job scheduling</span></a></li>
+<li class="toclevel-1 tocsection-7"><a href="#Storage"><span class="tocnumber">5</span> <span class="toctext">Storage</span></a></li>
+<li class="toclevel-1 tocsection-8"><a href="#Node_characteristics"><span class="tocnumber">6</span> <span class="toctext">Node characteristics</span></a></li>
+<li class="toclevel-1 tocsection-9"><a href="#SSH_host_key_fingerprints"><span class="tocnumber">7</span> <span class="toctext">SSH host key fingerprints</span></a>
+<ul>
+<li class="toclevel-2 tocsection-10"><a href="#argologin1"><span class="tocnumber">7.1</span> <span class="toctext">argologin1</span></a></li>
+<li class="toclevel-2 tocsection-11"><a href="#argologin2"><span class="tocnumber">7.2</span> <span class="toctext">argologin2</span></a></li>
+<li class="toclevel-2 tocsection-12"><a href="#dtn.argo.ace-net.ca"><span class="tocnumber">7.3</span> <span class="toctext">dtn.argo.ace-net.ca</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-13"><a href="#Notes_and_known_issues"><span class="tocnumber">8</span> <span class="toctext">Notes and known issues</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Access">Access</span></h2>
+<p>You may only access Argo with the permission of one of the contributing Principal Investigators.
+If you don't have access to Argo and believe you should, please write to support@ace-net.ca and say so.
+Copy the PI with whom you are associated, and mention in the email your Digital Research Alliance of Canada username. 
+</p><p>When your Alliance username has been added to the access control list for Argo, you can log in like so:
+</p>
+<pre>ssh username@argo.ace-net.ca
+</pre>
+<p>Argo uses the Alliance's <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Multifactor_authentication">multi-factor authentication</a>
+and <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/SSH_Keys#Using_CCDB">SSH-key authentication</a> mechanisms.
+We <i>strongly recommend</i> that you register an SSH key and use that in place of password authentication.
+</p>
+<h2><span class="mw-headline" id="Addresses">Addresses</span></h2>
+<table class="wikitable">
+
+<tbody><tr>
+<td>Login nodes (ssh):</td>
+<td><b><code>argo.ace-net.ca</code></b>
+</td></tr>
+<tr>
+<td><a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Globus">Globus</a> collection:</td>
+<td><b><code>alliancecan#argo</code></b><br />
+</td></tr>
+<tr>
+<td>Data transfer node (rsync, scp, sftp,...):</td>
+<td><b><code>dtn.argo.ace-net.ca</code></b>
+</td></tr>
+<tr>
+<td>JupyterHub:</td>
+<td><b><code>argo-portal.alliancecan.ca/jupyter</code></b>
+</td></tr>
+<tr>
+<td>Monitoring:</td>
+<td><b><code>argo-portal.alliancecan.ca/userportal/</code></b>
+</td></tr></tbody></table>
+<h4><span class="mw-headline" id="Data_transfer">Data transfer</span></h4>
+<p>Please use the data transfer node <code>dtn.argo.ace-net.ca</code> for long-running data transfers, e.g. more than a few gigabytes.
+</p><p>Globus file-transfer service is available.  The collection name is <code>alliancecan#argo</code>
+</p>
+<ul><li>If you want to use Globus to move data to or from <code>/oceanstor</code>, create a symbolic link to <code>/oceanstor</code> in your home, project, or scratch directory.</li></ul>
+<h2><span class="mw-headline" id="Software">Software</span></h2>
+<p>Argo uses the same <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_modules">modules</a> system as Alliance clusters,
+providing access to the same list of <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Available_software">available software</a>.
+</p>
+<h3><span class="mw-headline" id="Containers">Containers</span></h3>
+<p><a rel="nofollow" class="external text" href="https://apptainer.org/docs/admin/main/user_namespace.html">User namespaces</a> are disabled on login nodes for security reasons, which means that Apptainer will (probably) not work.  We recommend that you test containers on compute nodes using <code>srun</code> or <code>salloc</code>; Apptainer should work there.  For more on <code>srun</code> or <code>salloc</code> see <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs#Interactive_jobs">Interactive jobs</a>.
+</p>
+<h2><span class="mw-headline" id="Job_scheduling">Job scheduling</span></h2>
+<p>The basic guidance on job scheduling is to ask for the run time, memory, CPUs, and GPUs you need 
+and let the scheduler assign your jobs to nodes or partitions automatically.  
+</p><p><b>Maximum run time is 14 days,</b> which was determined in consultation with the two largest contributing Principal Investigators.  
+If this is insufficient, have your PI contact support@ace-net.ca to request 
+a review of this limit.
+</p><p>All compute nodes at Argo are contributed by one or another research group.  
+Members of each research group (or any other group designated by the contributing PI)
+can run jobs on their contributed nodes with run-times of up to 14 days.  
+</p><p>Idle compute nodes contributed by other research groups than your own may
+be used by jobs of up to <b>1 day (24 hours) run-time</b> if it is purely a compute node,
+and up to <b>3 hours run-time</b> if it is a GPU node.
+</p><p>You should never have to use <code>--partition</code>; 
+your job should automatically be assigned a list of suitable partitions at submission time.  
+Likewise you should never have to use <code>--account</code> 
+since all users on Argo belong to one and only one Slurm account.
+</p><p><a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_GPUs_with_Slurm">GPUs</a> may be requested using either the <code>--gres=gpu</code> syntax or the newer <code>--gpus=</code> syntax, e.g. one of:
+</p>
+<pre>#SBATCH --gres=gpu:a100:1
+#SBATCH --gpus=a100:1
+#SBATCH --gres=gpu:h100:1
+#SBATCH --gpus=h100:1
+#SBATCH --gres=gpu:l40:1
+#SBATCH --gpus=l40:1
+</pre>
+<p>See "<a href="#Node_characteristics">Node characteristics</a>" below for the numbers and types of GPUs installed.
+</p>
+<h2><span class="mw-headline" id="Storage">Storage</span></h2>
+<p>There is no tape system at Argo.  
+This has the important consequence that <b>/home and /project are not automatically backed up</b> as they are at similar Alliance clusters.
+</p>
+<h2><span class="mw-headline" id="Node_characteristics">Node characteristics</span></h2>
+<table class="wikitable sortable">
+<tbody><tr>
+<th>Nodes</th>
+<th>Cores</th>
+<th>Available memory</th>
+<th>CPU</th>
+<th>Storage</th>
+<th>GPU
+</th></tr>
+<tr>
+<td>22</td>
+<td>64</td>
+<td>506000M or 494G</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Xeon Platinum 8358</a> @ 2.6GHz</td>
+<td>~750G</td>
+<td>-
+</td></tr>
+<tr>
+<td>51</td>
+<td>64</td>
+<td>250000M or 244G</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Xeon Platinum 8358</a> @ 2.6GHz</td>
+<td>~750G</td>
+<td>-
+</td></tr>
+<tr>
+<td>1</td>
+<td>64</td>
+<td>506000M or 494G</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/products/sku/212282/intel-xeon-platinum-8358-processor-48m-cache-2-60-ghz/specifications.html">Xeon Platinum 8358</a> @ 2.6GHz</td>
+<td>~720G</td>
+<td>1 x NVIDIA Tesla A100 (80GB device memory)
+</td></tr>
+<tr>
+<td>1</td>
+<td>48</td>
+<td>1018000M or 994G</td>
+<td>2 x Intel Xeon Gold 5418Y @ 3.5GHz</td>
+<td>~1800G</td>
+<td>4 x NVIDIA Tesla H100 (93GB device memory)
+</td></tr>
+<tr>
+<td>1</td>
+<td>64</td>
+<td>1018000M or 994G</td>
+<td>2 x Intel Xeon Platinum 8352S @ 2.2GHz</td>
+<td>~1700G</td>
+<td>3 x NVIDIA Tesla L40 (46GB device memory)
+</td></tr>
+<tr>
+<td>2</td>
+<td>64</td>
+<td>250000M or 244G</td>
+<td>2 x Intel Xeon Platinum 8358 @ 2.6GHz</td>
+<td>(tbd)</td>
+<td>1 x NVIDIA Tesla A30 (24GB device memory)
+</td></tr></tbody></table>
+<ul><li>"Available memory" is the amount of memory configured for use by Slurm jobs.  Actual memory is slightly larger to allow for operating system overhead.</li>
+<li>"Storage" is node-local storage.  Access it via the $SLURM_TMPDIR environment variable.</li>
+<li>Hyperthreading is turned off.</li></ul>
+<p>Operating system: Rocky Linux 9
+</p>
+<h2><span class="mw-headline" id="SSH_host_key_fingerprints">SSH host key fingerprints</span></h2>
+<h4><span class="mw-headline" id="argologin1">argologin1</span></h4>
+<dl><dt>ED25519 (256b)</dt>
+<dd><code>SHA256:ivMcbACnaXK3C6RHBxE3zh17F/zROsR2E9ZW9vewwv8</code></dd>
+<dd><code>MD5:7f:0a:fe:09:4b:0d:8e:41:f9:96:cc:b1:aa:60:6d:1f</code></dd>
+<dt>RSA (3072b)</dt>
+<dd><code>SHA256:BYs1/5Uareg8Ly05zaIRu1Js+dCe1ybmjvYxirli2Lg</code></dd>
+<dd><code>MD5:10:2f:79:d2:85:19:d6:73:28:e1:4a:24:ce:73:1e:4e</code></dd></dl>
+<h4><span class="mw-headline" id="argologin2">argologin2</span></h4>
+<dl><dt>ED25519 (256b)</dt>
+<dd><code>SHA256:ivMcbACnaXK3C6RHBxE3zh17F/zROsR2E9ZW9vewwv8</code></dd>
+<dd><code>MD5:7f:0a:fe:09:4b:0d:8e:41:f9:96:cc:b1:aa:60:6d:1f</code></dd>
+<dt>RSA (3072b)</dt>
+<dd><code>SHA256:ILN9LOkykPIG+PGSi0GDNT6fUFbApC4ECxgSfk4OKZk</code></dd>
+<dd><code>MD5:95:80:47:b9:d8:a7:c5:31:13:9a:72:22:7c:e7:f8:f8</code></dd></dl>
+<h4><span class="mw-headline" id="dtn.argo.ace-net.ca">dtn.argo.ace-net.ca</span></h4>
+<dl><dt>ED25519 (256b)</dt>
+<dd><code>SHA256:ivMcbACnaXK3C6RHBxE3zh17F/zROsR2E9ZW9vewwv8</code></dd>
+<dd><code>MD5:7f:0a:fe:09:4b:0d:8e:41:f9:96:cc:b1:aa:60:6d:1f</code></dd>
+<dt>RSA (3072b)</dt>
+<dd><code>SHA256:oDqXPh9d2g4UkYv7HwtehZPyRVFOkol/jURyw3yI3Jo</code></dd>
+<dd><code>MD5:62:c6:d9:d9:53:c5:71:e9:4f:d9:69:46:e4:3a:0c:38</code></dd></dl>
+<h2><span class="mw-headline" id="Notes_and_known_issues">Notes and known issues</span></h2>
+<ul><li>We have enabled user namespaces to support the operation of Apptainer <i>only on compute nodes.</i> You will not be able to test an Apptainer image on a login node. If you wish to do interactive testing, use <code>salloc</code> to get an interactive shell on a compute node.</li></ul>
+
+
+
+</div>
+

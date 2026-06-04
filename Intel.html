@@ -1,0 +1,29 @@
+---
+title: Intel
+layout: default
+---
+<h1>Intel</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>Intel Compiler Suite XE for Fortran, C, C++ with MKL</dd>
+<dt>Modulefile</dt>
+<dd><code>intel</code></dd>
+<dt>Commands</dt>
+<dd><code>ifort, icc, icpc, idb, idbc</code></dd>
+<dt>Versions</dt>
+<dd>We have various versions of the Intel compilers installed: 10, 11 and 12.</dd>
+<dd>Please use "<code>module avail intel</code>" and "<code>module whatis intel</code>" to see which versions are available.</dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://software.intel.com/en-us/articles/intel-composer-xe/">Vendor documentation</a> (select the Support tab)</dd>
+<dd><a rel="nofollow" class="external text" href="http://software.intel.com/en-us/articles/intel-math-kernel-library-documentation/">MKL documentation</a></dd>
+<dd><a rel="nofollow" class="external text" href="http://software.intel.com/en-us/articles/intel-compiler-and-composer-update-version-numbers-to-compiler-version-number-mapping">Making sense of Intel compiler names and version numbers</a></dd>
+<dt>Linking against MKL</dt>
+<dd>To link your code against the MKL library, add the following options to the compiler (v12):</dd>
+<dd><code>-mkl=sequential -limf</code></dd>
+<dt>Debugging</dt></dl>
+<dl><dd><ul><li>Intel compilers allow you to perform Static Security Analysis (SSA) (aka Source Code Analyzer/Checker or Static Verifier).</li>
+<li>If you are running the debugger in the graphical interface mode with <code>idb</code>, you will require to load the java <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> modulefile</a> in your <a href="https://wiki.ace-net.ca/wiki/User_Guide#Unix_Shell" title="User Guide"> shell profile</a> along with the Intel compiler modulefile. Here is an example:</li></ul></dd></dl>
+<pre> module load java intel
+</pre>
+
+
+</div>
+

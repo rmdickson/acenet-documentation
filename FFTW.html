@@ -1,0 +1,27 @@
+---
+title: FFTW
+layout: default
+---
+<h1>FFTW</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>FFTW is a C subroutine library for computing the discrete Fourier transform (DFT) in one or more dimensions, of arbitrary input size, and of both real and complex data (as well as of even/odd data, i.e. the discrete cosine/sine transforms or DCT/DST).</dd>
+<dt>Modulefile</dt>
+<dd><code>fftw</code></dd>
+<dt>Versions</dt>
+<dd>3.3.1 (default) and 2.1.5</dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://www.fftw.org">FFTW homepage</a></dd>
+<dt>Usage</dt>
+<dd>Here is an example how one could link their code compiled with GCC against the appropriate FFTW library:</dd></dl>
+<pre>$ module load gcc fftw/gcc
+$ gcc &lt;compiler commands&gt; -I$FFTW/include -L$FFTW/lib -lfftw3
+</pre>
+<dl><dt>Notes</dt></dl>
+<ol><li>Both single precision and double precision libraries are available:
+<ul><li>For FFTW2, the single precision libraries have the prefix "<code>s</code>", for example <code>libsfftw.a</code> (compare to the double precision equivalent <code>libfftw.a</code>)</li>
+<li>For FFTW3, the single precision libraries have the suffix "<code>f</code>", for example <code>libfftw3f.a</code> (compare to the double precision equivalent <code>libfftw3.a</code>)</li></ul></li>
+<li>FFTW2 compiled with the medium memory model with PGI can be accessed directly at <code>/usr/local/FFTW2m</code></li></ol>
+
+
+
+</div>
+

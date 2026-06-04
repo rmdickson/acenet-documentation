@@ -1,0 +1,100 @@
+---
+title: Managing Many Serial Tasks
+layout: default
+---
+<h1>Managing Many Serial Tasks</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
+<tbody><tr>
+<td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+</p>
+</td></tr></tbody></table>
+<dl><dd><i>Main page: <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a></i></dd></dl>
+<p>Many interesting problems can be addressed with a large number of independent computations. Examples include:
+</p>
+<ul><li>parameter scanning</li>
+<li>statistical or "Monte Carlo" sampling</li>
+<li>image processing (multiple images)</li></ul>
+<p>This page talks about how to handle problems which can be broken into chunks which do <i>not need to communicate with each other</i> during the computation. Terms such as "perfectly parallel", "embarrassingly parallel", "parametric parallelism", "serial farming", and "high throughput computing" have been applied.
+</p><p>In other words, this page is primarily for those users who are running serial jobs. It explains how to handle them efficiently without putting a great burden on the scheduler.
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Array_jobs"><span class="tocnumber">1</span> <span class="toctext">Array jobs</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Packing_serial_jobs"><span class="tocnumber">2</span> <span class="toctext">Packing serial jobs</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Job_dependency_list"><span class="tocnumber">3</span> <span class="toctext">Job dependency list</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Array_jobs">Array jobs</span></h2>
+<p>An arbitrary number of tasks which differ only in some parameter can be conveniently submitted as an <b>array job</b>. An array job has a single <code>JOB_ID</code>, but in addition also has a number of <b>tasks</b> numbered according to the range you supply with the <code>-t</code> parameter. For example:
+</p>
+<pre>$ qsub -t 1-10 runme
+Your job-array 54321.1-10:1 ("runme") has been submitted
+</pre>
+<p>Job 54321 will be scheduled as 10 independent tasks which may start at different times on different hosts. The individual tasks are differentiated by the value of an environment variable <code>$SGE_TASK_ID</code>. The script can reference <code>$SGE_TASK_ID</code> to select an input file, for example, or to set a command-line argument for the application code:
+</p>
+<pre>my_app &lt;input.$SGE_TASK_ID
+my_app $SGE_TASK_ID some_arg another_arg 0
+</pre>
+<p>Click <a rel="nofollow" class="external text" href="http://wiki.gridengine.info/wiki/index.php/Simple-Job-Array-Howto">here</a> for more on array jobs, with examples. Still more examples can be found in <a href="/w/images/6/6e/ManyJobs_May14.pdf" class="internal" title="ManyJobs May14.pdf"> this presentation</a>.
+</p><p>Using an array job instead of a large number of separate serial jobs has advantages for other users and the system as a whole. A waiting array job only produces one line of output in <code>qstat</code> or <code>showq</code>, making these tools easier to use. The scheduler does not have to analyze job requirements for all the array tasks separately, so it runs more efficiently too.
+</p><p>The Grid Engine environment variable <code>$TMPDIR</code> will point to a <a href="Local_Scratch.html#Grid_Engine_and_Local_Scratch" title="Local Scratch"> local directory</a> with a unique name for each task.
+</p>
+<h2><span class="mw-headline" id="Packing_serial_jobs">Packing serial jobs</span></h2>
+<p>A number of serial jobs <b>with the same expected run-time</b> can be packed together into one submission script to run concurrently on the same host. Here is a sample script that packs 3 serial jobs, and starts them with a 10-sec interval from each other:
+</p>
+<pre>#$ -cwd
+#$ -l h_rt=01:00:00
+#$ -pe openmp 3
+
+./serial_app1 &lt; data1.dat &amp;
+sleep 10
+./serial_app2 &lt; data2.dat &amp;
+sleep 10
+./serial_app3 &lt; data3.dat &amp;
+wait
+</pre>
+<p>Note that every execution line is ended with the ampersand (to run the binaries in background), allowing the shell to proceed on parsing the script until it reaches the 'wait' command, which prevents the shell from quitting until all currently active child processes are complete. This results in a concurrent execution of the five launched binaries.
+</p><p>We also recommend copying your input files to a <a href="Local_Scratch.html" title="Local Scratch"> local directory</a>, before launching your executables. Copying your data once before running multiple binaries is especially important if you are using the same input files for each run. This greatly reduces the stress on the network and the storage system, and prevents your jobs from wasting wall-clock time being in the I/O waiting state. Here is a sample script that you could modify to your needs:
+</p>
+<pre>#$ -cwd
+#$ -l h_rt=01:00:00
+#$ -pe openmp 5
+
+cd $TMPDIR/
+cp $HOME/data*.dat ./
+cp $HOME/serial_app* ./
+
+./serial_app1 &lt; data1.dat &amp;
+./serial_app2 &lt; data2.dat &amp;
+./serial_app3 &lt; data3.dat &amp;
+./serial_app4 &lt; data4.dat &amp;
+./serial_app5 &lt; data5.dat &amp;
+wait
+</pre>
+<p>It's also efficient to write results to <code>$TMPDIR</code>, then copy them to network storage at the end of the job:  A single large write across the network is more efficient than many small writes.  But please remember that after a job is complete, <b>Grid Engine will automatically delete the <code>$TMPDIR</code> directory.</b>
+</p>
+<h2><span class="mw-headline" id="Job_dependency_list">Job dependency list</span></h2>
+<p>You might have a series of jobs to be run in a specific order.  For example, one program might generate a file which will be used as input to another program, or a later run of the same program.  With Grid Engine you can define a <b>job dependency list</b> with the option <code>-hold_jid</code>. This <a href="page_not_existing.html" style='color:red' class="new" title="Sun Grid Engine (page does not exist)">option</a> can be specified in the command line with the <code>qsub</code> command or in the submission script like so:
+</p>
+<pre>$ qsub -hold_jid job1 job2 
+</pre>
+<p>The job dependency list consists of comma-separated job IDs, job names, or job name patterns. You can get more information from <code>man qsub</code> - search for "hold_jid".
+</p><p>For example, assume that <code>job3</code> should be run only after both <code>job1</code> and <code>job2</code> have completed. This is how it can be accomplished using command line options:
+</p>
+<pre>$ qsub job1
+Your job 6789 ("job1") has been submitted
+$ qsub job2
+Your job 6790 ("job2") has been submitted
+$ qsub -hold_jid job1,job2 job3   <i># or qsub -hold_jid 6789,6790 job3</i>
+</pre>
+<p>Grid Engine will put job3 on hold, marking it with an "h" in the <code>qstat</code> output. Once the first two are finished, <code>job3</code> can be scheduled.
+</p><p>One can use <code>qstat -j</code> to get detailed information on the job's predecessors required to complete (look for <code>jid_predecessor_list</code>).
+</p>
+<dl><dt>IMPORTANT</dt>
+<dd>If a referenced job fails while running (e.g. by exceeding its <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> <code>h_rt</code> limit</a>), it does not prevent the dependent jobs from executing. The eligibility criterion for the dependent jobs is the mere fact of <b>completion</b> of the referenced jobs — successful or not. However, if the referenced job failed because it could not get <b>started</b>, then Grid Engine will recognize this, and the job will be marked with the 'E' symbol indicating the <a href="FAQ.html#Eqw:_Job_waiting_in_error_state" title="FAQ"> error state</a>. A job in the error state has <code>exit_code</code> 100, and according to the documentation (<code>man qsub</code>), <i>"If any of the referenced jobs exits with exit code 100, the submitted job will remain ineligible for execution"</i>.</dd></dl>
+
+
+
+</div>
+

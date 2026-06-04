@@ -1,0 +1,27 @@
+---
+title: FSL
+layout: default
+---
+<h1>FSL</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>FSL is a comprehensive library of analysis tools for FMRI, MRI and DTI brain imaging data.</dd>
+<dt>Modulefile</dt>
+<dd><code>fsl</code></dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/">FSL Wiki</a> and <a rel="nofollow" class="external text" href="https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FslOverview">Overview of FSL tools</a>.</dd>
+<dt>Usage</dt>
+<dd></dd>
+<dd>FSL requires substantial preparation of your environment. In order to run FSL commands, you must load a <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> modulefile</a> followed by sourcing a configuration script.</dd>
+<dd>Here is an example:</dd></dl>
+<pre>#$ -cwd
+#$ -l h_rt=01:00:00
+
+module load fsl
+source ${FSLDIR}/etc/fslconf/fsl.sh
+
+flirt -version
+</pre>
+
+
+
+</div>
+

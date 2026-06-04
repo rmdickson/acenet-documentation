@@ -1,0 +1,245 @@
+---
+title: Python
+layout: default
+---
+<h1>Python</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>Python is a cross platform dynamic object-oriented programming language.</dd>
+<dt>Modulefile</dt>
+<dd><code>python</code></dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://www.python.org">Python homepage</a></dd>
+<dt>Usage</dt>
+<dd><code>$ module load python</code></dd>
+<dd><code>$ module load gcc python/2.7.2</code></dd>
+<dd><code>$ module load gcc python/3.4.1</code></dd>
+<dd>You will need also to load the <code>openmpi/gcc</code> modulefile if you are going to use <a href="https://wiki.ace-net.ca/wiki/Mpi4py" title="Mpi4py">mpi4py</a>.</dd></dl>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Python_Wheelhouse_on_Glacdyn.2FGlacdyn2"><span class="tocnumber">1</span> <span class="toctext">Python Wheelhouse on Glacdyn/Glacdyn2</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Python_modules"><span class="tocnumber">2</span> <span class="toctext">Python modules</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#SciPy_Stack"><span class="tocnumber">2.1</span> <span class="toctext">SciPy Stack</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Other"><span class="tocnumber">2.2</span> <span class="toctext">Other</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#How_to_install_own_modules_for_Python_3_or_Python_2.7"><span class="tocnumber">3</span> <span class="toctext">How to install own modules for Python 3 or Python 2.7</span></a></li>
+<li class="toclevel-1 tocsection-6"><a href="#How_to_install_own_modules_for_any_version_of_Python"><span class="tocnumber">4</span> <span class="toctext">How to install own modules for any version of Python</span></a></li>
+</ul>
+</div>
+
+<h3><span id="Python_Wheelhouse_on_Glacdyn/Glacdyn2"></span><span class="mw-headline" id="Python_Wheelhouse_on_Glacdyn.2FGlacdyn2">Python Wheelhouse on Glacdyn/Glacdyn2</span></h3>
+<p>Similar to the Compute Canada Software Stack we have started a small Wheelhouse
+with Python wheels on the legacy ACENET machines.  
+It is located at /usr/local/wheelhouse and can be activated by setting
+the PIP_CONFIG_FILE variable as shown below.
+</p><p>The following example creates a virtual python environment and installs a 
+Cartopy wheel, that has been tested on our systems:
+</p>
+<pre># load PIP configuration to activate wheelhouse:
+export PIP_CONFIG_FILE=/usr/local/pip.conf
+
+# load required modules:
+module purge
+module load  gcc/4.9.3  python/3.7.7  proj/8.2.1  geos/3.10.2
+
+# create and activate venv
+python3 -m venv ~/env_cartopy
+source ~/env_cartopy/bin/activate
+
+# install packages from wheelhouse (--no-index bypasses PyPI)
+pip install --no-index -U pip wheel numpy scipy matplotlib ipython Cartopy==0.20.2
+</pre>
+<h2><span class="mw-headline" id="Python_modules">Python modules</span></h2>
+<h3><span class="mw-headline" id="SciPy_Stack">SciPy Stack</span></h3>
+<table cellpadding="3" style="border: 1px solid #a3b1bf">
+<tbody><tr>
+<th valign="top" bgcolor="#cee0f2" align="left" width="150px">Python module
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">2.6.2
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">2.7.2
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">2.7.10
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">3.4.x
+</th></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://numpy.scipy.org">Numpy</a></td>
+<td>1.4.1</td>
+<td>1.8.1</td>
+<td>1.9.2</td>
+<td>1.12.0
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://www.scipy.org">Scipy</a></td>
+<td>0.7.2</td>
+<td>0.14.0</td>
+<td>0.16.0</td>
+<td>0.18.1
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://matplotlib.sourceforge.net">Matplotlib</a></td>
+<td>1.1.0</td>
+<td>1.2.1</td>
+<td>1.4.3</td>
+<td>1.5.1
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://ipython.org">IPython</a></td>
+<td>0.12</td>
+<td>1.2.1</td>
+<td>4.2.0</td>
+<td>4.2.0
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://pandas.pydata.org">pandas</a></td>
+<td>--</td>
+<td>0.14.0</td>
+<td>0.18.1</td>
+<td>0.18.1
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://sympy.org">SymPy</a></td>
+<td>--</td>
+<td>0.7.5</td>
+<td>--</td>
+<td>1.0
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://pypi.python.org/pypi/nose/">Nose</a></td>
+<td>0.11.3</td>
+<td>1.3.3</td>
+<td>1.3.7</td>
+<td>1.3.7
+</td></tr></tbody></table>
+<h3><span class="mw-headline" id="Other">Other</span></h3>
+<table cellpadding="3" style="border: 1px solid #a3b1bf">
+<tbody><tr>
+<th valign="top" bgcolor="#cee0f2" align="left" width="150px">Python module
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">2.6.2
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">2.7.2
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">2.7.10
+</th>
+<th valign="top" bgcolor="#cee0f2" align="left" width="75px">3.4.1
+</th></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://mercurial.selenic.com">Mercurial</a></td>
+<td>2.11</td>
+<td>2.11</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://dirac.cnrs-orleans.fr/plone/software/scientificpython/">NumericalPython</a></td>
+<td>23.8.2</td>
+<td>23.8.2</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://dirac.cnrs-orleans.fr/plone/software/scientificpython/">ScientificPython</a></td>
+<td>2.8</td>
+<td>2.8</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td>Stsci_python</td>
+<td>2.9</td>
+<td>--</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a href="https://wiki.ace-net.ca/wiki/Mpi4py" title="Mpi4py">mpi4py</a></td>
+<td>1.2.1</td>
+<td>1.3</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://code.google.com/p/numexpr/">numexpr</a></td>
+<td>--</td>
+<td>2.1</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://pypi.python.org/pypi/netCDF4">netCDF4</a></td>
+<td>--</td>
+<td>1.1.0</td>
+<td>--</td>
+<td>1.2.4
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://www.pytables.org">PyTables</a></td>
+<td>--</td>
+<td>3.0.0</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://matplotlib.org/basemap/">basemap</a></td>
+<td>--</td>
+<td>1.0.6</td>
+<td>1.0.7</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="http://www.scons.org/">SCons</a></td>
+<td>--</td>
+<td>2.3.4</td>
+<td>--</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="https://riverbankcomputing.com/software/sip">SIP</a></td>
+<td>--</td>
+<td>4.19.2</td>
+<td>4.19.2</td>
+<td>--
+</td></tr>
+<tr valign="top" bgcolor="#f5faff">
+<td><a rel="nofollow" class="external text" href="https://www.riverbankcomputing.com/software/pyqt/download">PyQt4</a></td>
+<td>--</td>
+<td>4.12</td>
+<td>4.12</td>
+<td>--
+</td></tr></tbody></table>
+<p>If you need additional modules, we encourage you to installing them in your own filespace using one of the methods described below:
+</p>
+<h2><span class="mw-headline" id="How_to_install_own_modules_for_Python_3_or_Python_2.7">How to install own modules for Python 3 or Python 2.7</span></h2>
+<p>You can use the <code>pip</code> utility for easy installation. See the <a rel="nofollow" class="external text" href="https://docs.python.org/3.4/installing/index.html">following page</a> for details (do not forget the <code>--user</code> option), like so:
+</p>
+<pre> $ pip install --user package-name
+</pre>
+<p>You can use <code>easy_install</code>, too.
+</p>
+<h2><span class="mw-headline" id="How_to_install_own_modules_for_any_version_of_Python">How to install own modules for any version of Python</span></h2>
+<p>See the <a rel="nofollow" class="external text" href="http://docs.python.org/release/2.7.2/install/index.html">Python documentation</a> for details:
+</p>
+<ul><li>Configure Python to find the new modules by adding the following line into your <code>~/.bashrc</code> (replace <code>python2.X</code> with <code>python2.6</code> or <code>python2.7</code> depending on the version of python you are using):</li></ul>
+<pre>$ export PYTHONPATH=$HOME/lib/python2.X/site-packages/:$PYTHONPATH
+</pre>
+<p>Then you can re-source your <code>~/.bashrc</code> to get the changes into the current shell avoiding logging out:
+</p>
+<pre>$ source ~/.bashrc
+</pre>
+<ul><li>Download and unpack the source files.  (Here as an example we download the <code>xlrd</code> package.)</li></ul>
+<pre>$ wget --no-check-certificate <a rel="nofollow" class="external free" href="https://pypi.python.org/packages/source/x/xlrd/xlrd-0.9.3.tar.gz">https://pypi.python.org/packages/source/x/xlrd/xlrd-0.9.3.tar.gz</a>
+$ tar xzf xlrd-0.9.3.tar.gz
+$ cd xlrd-0.9.3/
+</pre>
+<ul><li>Install a module specifying a prefix</li></ul>
+<pre>$ python setup.py install --prefix=$HOME
+</pre>
+<ul><li>If a module requires a fortran compiler then we strongly recommend to specify <code>gfortran</code> instead of <code>g77</code> like so:</li></ul>
+<pre>$ python setup.py build --fcompiler=gnu95 install --prefix=$HOME
+</pre>
+
+
+</div>
+

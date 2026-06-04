@@ -1,0 +1,38 @@
+---
+title: SWI-Prolog
+layout: default
+---
+<h1>SWI-Prolog</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>SWI-Prolog offers a comprehensive Prolog environment. Prolog is a logic programming general purpose fifth generation language associated with artificial intelligence and computational linguistics.</dd>
+<dt>Modulefile</dt>
+<dd><code>pl</code></dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://www.swi-prolog.org">SWI-Prolog homepage</a></dd>
+<dt>Usage</dt>
+<dd></dd></dl>
+<pre>$ module load pl
+$ pl
+</pre>
+<h2><span class="mw-headline" id="Prolog-mpi">Prolog-mpi</span></h2>
+<dl><dt>Description</dt>
+<dd>Prolog-mpi is an application suite for allowing SWI-Prolog applications to take advantage of the MPI environment. It must be used as a standalone application: instead of launching the Prolog executable, one launches <code>pl-mpi</code>. The executing context is then free to use the exported predicates for distributing data.</dd>
+<dt>Modulefile</dt>
+<dd><code>pl-mpi</code></dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://apps.lumii.lv/prolog-mpi">Prolog-mpi homepage</a></dd>
+<dt>Usage</dt>
+<dd>Here is an example of a submission script:</dd></dl>
+<pre>#$ -cwd
+#$ -l h_rt=01:00:00
+#$ -pe ompi* 4
+
+module purge
+module load gcc openmpi/gcc pl-mpi
+
+mpirun pl-mpi
+</pre>
+
+
+
+</div>
+

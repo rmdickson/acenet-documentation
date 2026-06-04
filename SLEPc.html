@@ -1,0 +1,19 @@
+---
+title: SLEPc
+layout: default
+---
+<h1>SLEPc</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>SLEPc is the Scalable Library for Eigenvalue Problem Computations.</dd>
+<dt>Modulefile</dt>
+<dd><code>slepc</code></dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://www.grycap.upv.es/slepc/">SLEPc homepage</a></dd>
+<dt>Usage</dt>
+<dd>Here is an example how one could link their code compiled with GCC against the appropriate SLEPc library:</dd></dl>
+<pre>$ module load gcc openmpi/gcc slepc/gcc
+$ gcc &lt;compiler commands&gt; -I$SLEPC/include -L$SLEPC/lib -lslepc
+</pre>
+
+
+</div>
+

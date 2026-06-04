@@ -1,0 +1,191 @@
+---
+title: Multi-factor authentication at Siku
+layout: default
+---
+<h1>Multi-factor authentication at Siku</h1><div class="mw-parser-output"><p>This page applies to industrial clients.  Academics will continue to use Alliance MFA.<br />
+If you have any questions, please contact <a rel="nofollow" class="external text" href="mailto:support@ace-net.ca">ACENET Support</a>.
+</p>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Multi-Factor_Authentication"><span class="tocnumber">1</span> <span class="toctext">Multi-Factor Authentication</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Adding_Factors"><span class="tocnumber">2</span> <span class="toctext">Adding Factors</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Smart_Device"><span class="tocnumber">2.1</span> <span class="toctext">Smart Device</span></a></li>
+<li class="toclevel-2 tocsection-4"><a href="#Yubikey"><span class="tocnumber">2.2</span> <span class="toctext">Yubikey</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-5"><a href="#Using_Factors"><span class="tocnumber">3</span> <span class="toctext">Using Factors</span></a>
+<ul>
+<li class="toclevel-2 tocsection-6"><a href="#Push_Notification"><span class="tocnumber">3.1</span> <span class="toctext">Push Notification</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#One-Time_Password"><span class="tocnumber">3.2</span> <span class="toctext">One-Time Password</span></a></li>
+<li class="toclevel-2 tocsection-8"><a href="#Yubikey_OTP"><span class="tocnumber">3.3</span> <span class="toctext">Yubikey OTP</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-9"><a href="#Modifying_Factors"><span class="tocnumber">4</span> <span class="toctext">Modifying Factors</span></a></li>
+<li class="toclevel-1 tocsection-10"><a href="#FAQ"><span class="tocnumber">5</span> <span class="toctext">FAQ</span></a></li>
+</ul>
+</div>
+
+<h1><span class="mw-headline" id="Multi-Factor_Authentication">Multi-Factor Authentication</span></h1>
+<p>Multi-factor authentication (MFA) enhances your account security by requiring more than just a password. Once your account is set up to use MFA, you must enter your username and password as usual, followed by a second authentication step to access our service.  Cisco Duo Security is a flexible and user-friendly cloud-based service for <a rel="nofollow" class="external text" href="https://duo.com/product/multi-factor-authentication-mfa">MFA authentication</a>. You can choose any of the following methods for this second step:
+</p>
+<ul><li>Approve a notification on a smart device using the Duo Mobile application.</li>
+<li>Enter a One Time Password (OTP) using the Duo Mobile application.</li>
+<li>Press a button on a hardware key (YubiKey).</li></ul>
+<h1><span class="mw-headline" id="Adding_Factors">Adding Factors</span></h1>
+<h2><span class="mw-headline" id="Smart_Device">Smart Device</span></h2>
+<p>1. Install the Duo Mobile authentication application from the&#160;<a rel="nofollow" class="external text" href="https://itunes.apple.com/us/app/duo-mobile/id422663827">Apple Store</a>&#160;or&#160;<a rel="nofollow" class="external text" href="https://play.google.com/store/apps/details?id=com.duosecurity.duomobile">Google Play</a>.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:203px;"><img alt="Duo-mobile-app-icon.png" src="img/Duo-mobile-app-icon.png" width="201" height="203" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Duo-mobile-app-icon.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>2. Open the enrollment email which is sent to you from Duo Security, and click on the provided link to complete the MFA enrollment. After clicking the link, you are directed to Duo Security portal to register your device. 
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Enrollment-Link.png" src="img/300px-Enrollment-Link.png" width="300" height="325" class="thumbimage" srcset="img/450px-Enrollment-Link.png 1.5x, img/600px-Enrollment-Link.png 2x" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Enrollment-Link.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>3. Click on <i>Get started</i>. 
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Duo-Security-GetStarted.png" src="img/Duo-Security-GetStarted.png" width="300" height="397" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Duo-Security-GetStarted.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>4. Click on <i>Duo Mobile</i> to add your device.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Duo-Security-AddDevice.png" src="img/Duo-Security-AddDevice.png" width="300" height="376" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Duo-Security-AddDevice.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>5. Select <i>I have a tablet</i> and Click <i>Next</i>.
+</p>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 235px"><div style="width: 235px">
+			<div class="thumb" style="width: 230px;"><div style="margin:82px auto;"><img alt="Duo-Security-Tablet.png" src="img/200px-Duo-Security-Tablet.png" width="200" height="266" srcset="img/Duo-Security-Tablet.png 1.5x" /></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 235px"><div style="width: 235px">
+			<div class="thumb" style="width: 230px;"><div style="margin:85.5px auto;"><img alt="Duo-Security-Tablet-Next.png" src="img/200px-Duo-Security-Tablet-Next.png" width="200" height="259" srcset="img/Duo-Security-Tablet-Next.png 1.5x" /></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+<p><br clear="left" />
+</p><p>6. Open your Duo Mobile App,  tap on <b>+ Add</b> , and tap on <b>Use the QR code</b> to scan the given QR code. It adds your smart device to Duo MFA, then Duo informs you that a device was added.  Click <i>Continue</i> to complete the setup.
+</p>
+<ul class="gallery mw-gallery-traditional">
+		<li class="gallerybox" style="width: 235px"><div style="width: 235px">
+			<div class="thumb" style="width: 230px;"><div style="margin:83.5px auto;"><img alt="Duo-Security-QR.png" src="img/200px-Duo-Security-QR.png" width="200" height="263" srcset="img/Duo-Security-QR.png 1.5x" /></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+		<li class="gallerybox" style="width: 235px"><div style="width: 235px">
+			<div class="thumb" style="width: 230px;"><div style="margin:90.5px auto;"><img alt="Duo-Security-DeviceAdded.png" src="img/200px-Duo-Security-DeviceAdded.png" width="200" height="249" srcset="img/Duo-Security-DeviceAdded.png 1.5x" /></div></div>
+			<div class="gallerytext">
+			</div>
+		</div></li>
+</ul>
+<p><br clear="left" />
+</p><p>7. Duo sends you an email about registering a new device.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Duo-Security-SetupCompleted.png" src="img/Duo-Security-SetupCompleted.png" width="300" height="376" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Duo-Security-SetupCompleted.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p>
+<h2><span class="mw-headline" id="Yubikey">Yubikey</span></h2>
+<p>If you do not have a smartphone or tablet, do not wish to use your phone or tablet for multifactor authentication, or are often in a situation when using your phone or tablet is not possible, then a YubiKey is another option at Siku. 
+</p><p>A YubiKey is a hardware token made by the&#160;<a rel="nofollow" class="external text" href="https://www.yubico.com/">Yubico</a>&#160;company. Multiple protocols are supported by YubiKeys; our cluster uses the One-Time Password (OTP) protocol.  Note that some YubiKey models are not compatible don't support the "OTP" function, which is required.  We recommend using the YubiKey 5 Series.  See the&#160;<a rel="nofollow" class="external text" href="https://www.yubico.com/products/identifying-your-yubikey/">Yubico identification page</a>&#160;for reference.
+</p><p>To register your YubiKey you will need its Public ID, Private ID, and Secret Key. If you have this information, add them into `yubikey-info.txt` in your home directory, and send a request to <a rel="nofollow" class="external text" href="mailto:support@ace-net.ca">ACENET Support</a> to connect the hardware token with your account. If you do not have this information, configure your key using the steps below.
+</p><p>1. Download and install the YubiKey Manager software from the&#160;<a rel="nofollow" class="external text" href="https://www.yubico.com/support/download/yubikey-manager/">Yubico website</a>.
+</p><p>2. Insert your YubiKey into your computer and launch the YubiKey Manager software.
+</p><p>3. In the YubiKey Manager software, select&#160;<i>Applications</i>, then&#160;<i>OTP</i>.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Yubico-Manager-OTP.png" src="img/Yubico-Manager-OTP.png" width="300" height="211" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Yubico-Manager-OTP.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>4. Select&#160;<i>Configure</i>&#160;for either slot 1 or slot 2. Slot 1 corresponds to a short touch (pressing for 1 to 2.5 seconds), while slot 2 is a long touch on the key (pressing for 3 to 5 seconds). Slot 1 is typically pre-registered for Yubico cloud mode. If you are already using this slot for other services, either use slot 2, or click on&#160;<i>Swap</i>&#160;to transfer the configuration to slot 2 before configuring slot 1.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Yubico-Manager-OTP-configuration.png" src="img/Yubico-Manager-OTP-configuration.png" width="300" height="211" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Yubico-Manager-OTP-configuration.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>5. Select&#160;<i>Yubico OTP</i>.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Select-Yubico-OTP.png" src="img/Select-Yubico-OTP.png" width="300" height="212" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Select-Yubico-OTP.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>6. Select&#160;<i>Use serial</i>, then generate a private ID and a secret key.&#160;Securely save a copy of the data in the Public ID, Private ID, and Secret Key fields before you click on&#160;<i>Finish</i>.
+</p>
+<div class="thumb tleft"><div class="thumbinner" style="width:302px;"><img alt="Generate-Yubikey-IDs.png" src="img/Generate-Yubikey-IDs.png" width="300" height="211" class="thumbimage" />  <div class="thumbcaption"><div class="magnify"><a href="https://wiki.ace-net.ca/wiki/File:Generate-Yubikey-IDs.png" class="internal" title="Enlarge"></a></div></div></div></div>
+<p><br clear="left" />
+</p><p>7. Store the Yubikey information to `~/yubikey-info.txt` and send a request to <a rel="nofollow" class="external text" href="mailto:support@ace-net.ca">ACENET Support</a> to enable Yubikey OTP for your account.
+</p>
+<h1><span class="mw-headline" id="Using_Factors">Using Factors</span></h1>
+<p>The next day after enabling MFA for your account, when you connect via SSH to <code>industry.siku.ace-net.ca</code> you will use either your password or SSH key, depending on whether you have an SSH key pair installed.
+Following that you will be prompted to use your second factor.
+</p>
+<h2><span class="mw-headline" id="Push_Notification">Push Notification</span></h2>
+<p>If you type <b>1</b>, Duo sends a Push Notification to the phone or other device you have registered. Approve it to log in.
+</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span>$ ssh -i .ssh/testuser-duo.pem an-testuser-duo@industry.siku.ace-net.ca
+<span class="o">(</span>an-testuser-duo@industry.siku.ace-net.ca<span class="o">)</span> Duo two-factor login <span class="k">for</span> an-testuser-duo
+
+Enter a passcode or <span class="k">select</span> one of the following options:
+
+ <span class="m">1</span>. Duo Push to Android
+
+Passcode or option <span class="o">(</span><span class="m">1</span>-1<span class="o">)</span>: <span class="m">1</span>
+Success. Logging you in...
+Success. Logging you in...
+-----------------------------------------------------------------------------
+Welcome to Siku
+
+-----------------------------------------------------------------------------
+<span class="o">[</span>an-testuser-duo@sikuindustry ~<span class="o">]</span>$
+</pre></div>
+<h2><span class="mw-headline" id="One-Time_Password">One-Time Password</span></h2>
+<p>If you enter an OTP associated with your Duo account, you can log in.
+</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span>$ ssh -i .ssh/testuser-duo.pem an-testuser-duo@industry.siku.ace-net.ca
+<span class="o">(</span>an-testuser-duo@industry.siku.ace-net.ca<span class="o">)</span> Duo two-factor login <span class="k">for</span> an-testuser-duo
+
+Enter a passcode or <span class="k">select</span> one of the following options:
+
+ <span class="m">1</span>. Duo Push to Android
+
+Passcode or option <span class="o">(</span><span class="m">1</span>-1<span class="o">)</span>: <span class="m">004145</span>
+Success. Logging you in...
+Success. Logging you in...
+-----------------------------------------------------------------------------
+Welcome to Siku
+
+-----------------------------------------------------------------------------
+<span class="o">[</span>an-testuser-duo@sikuindustry ~<span class="o">]</span>$
+</pre></div>
+<h2><span class="mw-headline" id="Yubikey_OTP">Yubikey OTP</span></h2>
+<p>If you set up a Yubikey OTP, you can press the Yubikey (short or long press based on your configuration) as the second factor to log in.
+</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span>$ ssh -i .ssh/testuser-duo.pem an-testuser-duo@industry.siku.ace-net.ca
+<span class="o">(</span>an-testuser-duo@industry.siku.ace-net.ca<span class="o">)</span> Duo two-factor login <span class="k">for</span> an-testuser-duo
+
+Enter a passcode or <span class="k">select</span> one of the following options:
+
+ <span class="m">1</span>. Duo Push to Android
+
+Passcode or option <span class="o">(</span><span class="m">1</span>-1<span class="o">)</span>: vvcccbikhhhgjtdkevjfiegcelneekhnejnbddhucvjk
+Success. Logging you in...
+Success. Logging you in...
+-----------------------------------------------------------------------------
+Welcome to Siku
+
+-----------------------------------------------------------------------------
+<span class="o">[</span>an-testuser-duo@sikuindustry ~<span class="o">]</span>$
+</pre></div>
+<h1><span class="mw-headline" id="Modifying_Factors">Modifying Factors</span></h1>
+<p>If you want to change any factors, you must send a request to <a rel="nofollow" class="external text" href="mailto:support@ace-net.ca">ACENET Support</a> to remove the previous registered devices. When you connect to SSH login node, you will get a link to register the new device. You are required to register a device for MFA to be able to log in; otherwise, your connection request is rejected.
+</p>
+<div class="mw-highlight mw-content-ltr" dir="ltr"><pre><span></span>$ ssh -i .ssh/testuser-duo.pem an-testuser-duo@industry.siku.ace-net.ca
+Please enroll at https://api-32e4b421.duosecurity.com/frame/portal/v4/enroll?code<span class="o">=</span>fd78e57dd5203990<span class="p">&amp;</span><span class="nv">akey</span><span class="o">=</span>DA56VMJTOO61J96M27ED
+
+Please enroll at https://api-32e4b421.duosecurity.com/frame/portal/v4/enroll?code<span class="o">=</span>fd78e57dd5203990<span class="p">&amp;</span><span class="nv">akey</span><span class="o">=</span>DA56VMJTOO61J96M27ED
+
+Please enroll at https://api-32e4b421.duosecurity.com/frame/portal/v4/enroll?code<span class="o">=</span>fd78e57dd5203990<span class="p">&amp;</span><span class="nv">akey</span><span class="o">=</span>DA56VMJTOO61J96M27ED
+
+an-testuser-duo@industry.siku.ace-net.ca: Permission denied <span class="o">(</span>keyboard-interactive<span class="o">)</span>.
+</pre></div>
+<h1><span class="mw-headline" id="FAQ">FAQ</span></h1>
+<p>...
+</p>
+
+
+</div>
+

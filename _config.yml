@@ -3,3 +3,5 @@ description: Accelerate Discovery
 theme: just-the-docs
 
 url: https://acenet-arc.github.io/acenet-documentation
+logo: "/assets/ACENET-Logo-RGB-En.png"
+favicon_ico: "/assets/favicon.ico"

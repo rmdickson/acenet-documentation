@@ -1,0 +1,89 @@
+---
+title: Mahone
+layout: default
+---
+<h1>Mahone</h1><div class="mw-parser-output"><table class="wikitable" border="1" style="background-color:#FFFFCC;">
+<tbody><tr>
+<td><img alt="Achtung.png" src="img/40px-Achtung.png" width="40" height="35" srcset="img/60px-Achtung.png 1.5x, img/80px-Achtung.png 2x" /> <b>Legacy documentation</b>
+<p>This page describes a service provided by a retired ACENET system.  Most ACENET services are currently provided by national systems, for which please visit <a rel="nofollow" class="external free" href="https://docs.alliancecan.ca">https://docs.alliancecan.ca</a>.
+</p>
+</td></tr></tbody></table>
+<p><a href="page_not_existing.html" style='color:red' class="new" title="Compute Resources (page does not exist)">Overview</a> | <a class="mw-selflink selflink">Mahone</a> | <a href="Placentia.html" title="Placentia">Placentia</a> | <a href="Fundy.html" title="Fundy">Fundy</a> | <a href="Glooscap.html" title="Glooscap">Glooscap</a>
+</p>
+<h2><span class="mw-headline" id="General_Information">General Information</span></h2>
+<table cellpadding="5" width="608" style="border: 1px solid #a3b1bf">
+
+<tbody><tr>
+<td width="90px"><strong>DNS</strong></td>
+<td>mahone.ace-net.ca
+</td></tr>
+<tr bgcolor="#cee0f2">
+<td><strong>Description</strong></td>
+<td>A parallel cluster at Saint Mary's University well suited to MPI work
+</td></tr>
+<tr>
+<td><strong>Total nodes</strong></td>
+<td>134
+</td></tr>
+<tr bgcolor="#cee0f2">
+<td><strong>Total cores</strong></td>
+<td>536
+</td></tr>
+<tr>
+<td><strong>Node Model</strong></td>
+<td>SunFire X4100, SunFire X2200
+</td></tr>
+<tr bgcolor="#cee0f2">
+<td><strong>Architecture</strong></td>
+<td>Three 8.0 GB/sec. HyperTransport link with 6.0 GB/sec. access between processor and memory
+</td></tr>
+<tr>
+<td><strong>RAM Model</strong></td>
+<td>DDR1/400 ECC registered DIMMs (128-bit plus ECC databus)
+</td></tr>
+<tr bgcolor="#cee0f2">
+<td><strong>RAM/Node</strong></td>
+<td>16 GB <br />64 GB (cl064-cl079)
+</td></tr>
+<tr>
+<td><strong>Sockets/Node</strong></td>
+<td>2
+</td></tr>
+<tr bgcolor="#cee0f2">
+<td><strong>CPU</strong></td>
+<td>AMD Opteron Processor 285 SE 2593 MHz (cl001-cl042)<br />AMD Opteron Processor 290 2792 MHz (cl043-cl063)<br />AMD Opteron Processor 2222 3015 MHz (cl064-cl141)
+</td></tr>
+<tr>
+<td><strong>Cores/CPU</strong></td>
+<td>2
+</td></tr>
+<tr bgcolor="#cee0f2">
+<td><strong>Interconnect</strong></td>
+<td><a rel="nofollow" class="external text" href="http://www.myri.com/scs/performance/Myrinet-2000/">Myrinet-2000</a> (MX-2G) (cl002-cl063), 224 cores<br />
+<p>Myrinet-10G (MX-10G) (cl064-cl141), 312 cores
+</p>
+</td></tr>
+<tr>
+<td><strong>Operating System</strong></td>
+<td>EL6
+</td></tr>
+</tbody></table>
+<h2><span class="mw-headline" id="GPU_Nvidia_nodes">GPU Nvidia nodes</span></h2>
+<p>Please Mahone has four 4-core GPU equipped nodes. Please see the <a href="page_not_existing.html" style='color:red' class="new" title="CUDA (page does not exist)">CUDA</a> page for details on how to use them.
+</p>
+<h2><span class="mw-headline" id="Myrinet_switches_and_Open_MPI">Myrinet switches and Open MPI</span></h2>
+<p>Nodes cl002 thru cl063 have a Myrinet-2000 switch; new nodes cl064 thru cl141 have a Myrinet-10G switch.  <b>Myrinet MPI jobs cannot span the two switch groups.</b>  To ensure that Grid Engine does not assign parallel jobs to hosts spanning the two switches, there are two <a href="Parallel_Jobs.html" title="Parallel Jobs"> parallel environments</a>: <code>ompi_2000</code> serving hosts connected to the Myrinet-2000 switch, and <code>ompi</code> for the Myrinet-10G hosts.
+</p><p>MPI users should use 'wild card' syntax in the parallel environment specification in order to qualify a job to run in whichever switch group has sufficient resources available.  For example:
+</p>
+<pre>#$ -pe ompi* 16
+</pre>
+<p>This specifies a 16-slot Open MPI job which will run on either Myrinet-2000 or Myrinet-10G, depending on which resource is available.  The command line analogue must quote or escape the '*' character to avoid shell globbing:
+</p>
+<pre>$ qsub -pe "ompi*" 16 scriptname
+</pre>
+<p><a href="page_not_existing.html" style='color:red' class="new" title="Compute Resources (page does not exist)">Overview</a> | <a class="mw-selflink selflink">Mahone</a> | <a href="Placentia.html" title="Placentia">Placentia</a> | <a href="Fundy.html" title="Fundy">Fundy</a> | <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a>
+</p>
+
+
+</div>
+

@@ -1,0 +1,101 @@
+---
+title: TotalView
+layout: default
+---
+<h1>TotalView</h1><div class="mw-parser-output"><div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Summary"><span class="tocnumber">1</span> <span class="toctext">Summary</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Compiling_the_code"><span class="tocnumber">2</span> <span class="toctext">Compiling the code</span></a></li>
+<li class="toclevel-1 tocsection-3"><a href="#Basics"><span class="tocnumber">3</span> <span class="toctext">Basics</span></a></li>
+<li class="toclevel-1 tocsection-4"><a href="#Debugging_Open_MPI_programs"><span class="tocnumber">4</span> <span class="toctext">Debugging Open MPI programs</span></a>
+<ul>
+<li class="toclevel-2 tocsection-5"><a href="#On_the_head_node"><span class="tocnumber">4.1</span> <span class="toctext">On the head node</span></a></li>
+<li class="toclevel-2 tocsection-6"><a href="#On_the_compute_nodes_.28through_the_grid_engine_queues.29"><span class="tocnumber">4.2</span> <span class="toctext">On the compute nodes (through the grid engine queues)</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-7"><a href="#Issues"><span class="tocnumber">5</span> <span class="toctext">Issues</span></a>
+<ul>
+<li class="toclevel-2 tocsection-8"><a href="#Debugging_an_MPI_code"><span class="tocnumber">5.1</span> <span class="toctext">Debugging an MPI code</span></a></li>
+<li class="toclevel-2 tocsection-9"><a href="#PGI_C.2B.2B"><span class="tocnumber">5.2</span> <span class="toctext">PGI C++</span></a></li>
+<li class="toclevel-2 tocsection-10"><a href="#Sun_Studio"><span class="tocnumber">5.3</span> <span class="toctext">Sun Studio</span></a></li>
+</ul>
+</li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Summary">Summary</span></h2>
+<p>The TotalView debugger can be used for debugging both serial and parallel (MPI, OpenMP) applications. However, parallel program users will find TotalView extremely useful due to its focus on multi-processor programs debugging. It contains both a graphical and a command line interface; and it includes several features for MPI and OpenMP debugging.
+</p>
+<dl><dt>Availability</dt>
+<dd><a href="https://wiki.ace-net.ca/wiki/Mahone" title="Mahone">Mahone</a>, <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a>, <a href="https://wiki.ace-net.ca/wiki/Placentia" title="Placentia">Placentia</a>, <a href="https://wiki.ace-net.ca/wiki/Fundy" title="Fundy">Fundy</a>: fully supported (head node and compute nodes)</dd>
+<dd>Replay Engine only available at <a href="https://wiki.ace-net.ca/wiki/Mahone" title="Mahone">Mahone</a>, <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a></dd></dl>
+<dl><dt>Modulefile</dt>
+<dd><code>totalview</code></dd></dl>
+<dl><dt>Usage</dt>
+<dd></dd>
+<dd>Users are advised to have a <code>.tvdrc</code> file in their home directory, which contains <a rel="nofollow" class="external text" href="http://www.open-mpi.org/faq/?category=running#run-with-tv">recommended settings</a> for debugging Open MPI applications. This will configure TotalView to skip <code>mpirun</code> and jump right into your MPI application, otherwise it will stop deep in the machine code of <code>mpirun</code> itself, which is not what most users want. The file <code>.tvdrc</code> gets generated automatically when you load the <code>totalview</code> modulefile:</dd></dl>
+<pre> $ module load totalview
+</pre>
+<dl><dd>If you already have <code>.tvdrc</code> in your home directory, it will not be overwritten. If you want to ensure to that you got the right file, you may need to remove the existing one and then reload the modulefile.</dd></dl>
+<dl><dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com">TotalView Technologies homepage</a></dd>
+<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support/support.html">TotalView Support, Documentation, Video Tutorials, Tips &amp; Tricks</a></dd>
+<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support/videos.html?id=187&amp;return=1#d187">Getting Started with TotalView</a> (Video)</dd>
+<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support/documentation/totalview.html">Printable PDF Documentation</a></dd>
+<dd><a rel="nofollow" class="external text" href="http://computing.llnl.gov/tutorials/totalview">TotalView Tutorial</a> from Lawrence Livermore National Laboratory</dd>
+<dd><a rel="nofollow" class="external text" href="http://www.totalviewtech.com/support-other/release_notes.html">TotalView Release Notes</a></dd></dl>
+<h2><span class="mw-headline" id="Compiling_the_code">Compiling the code</span></h2>
+<p>In order to provide necessary symbolic debug information for a debugger, you need to recompile your code. Usually, this requires the <code>-g</code> flag to your compiler.
+</p>
+<pre> $ mpif90 -g -o test test.f90
+</pre>
+<p>When trying to do <b>memory debugging across nodes</b>, you need to link in the Totalview library <code>tvheap</code> to your code. In order to do this, your compile line would look like
+</p>
+<pre> $ mpif77 -g -ltvheap_64 source.f77
+</pre>
+<h2><span class="mw-headline" id="Basics">Basics</span></h2>
+<ul><li>Graphical Interface: <code>totalview</code></li>
+<li>Command Line Interface: <code>totalviewcli</code></li></ul>
+<p>If you want to use the GUI-based TotalView parallel debugger then you need to make sure that you are connecting to the head node of the cluster with the X11 forwarding enabled in your SSH client. That will allow you to get windows of a remotely started application shown on your own desktop. Unix users need to run the X11 server on their desktops (if you are running any window manager then you already have the X11 server installed) and connect to the head node with the <code>-X</code> option for the SSH client (<code>ssh -X servername.ace-net.ca</code>). Those using <a rel="nofollow" class="external text" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> on Windows need to install <a rel="nofollow" class="external text" href="http://sourceforge.net/projects/xming">XMing</a> and enable X11 forwarding in PuTTY.
+</p>
+<h2><span class="mw-headline" id="Debugging_Open_MPI_programs">Debugging Open MPI programs</span></h2>
+<p>You can use the Totalview debugger either on the head node, or through the grid engine queues. To debug a job you just need to include <code>--debug</code> in the command line. Open MPI will automatically invoke TotalView to run your MPI process if you have <code>totalview</code> <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> module</a> loaded in your <a href="https://wiki.ace-net.ca/wiki/User_Guide#Unix_Shell" title="User Guide"> shell profile</a>.
+</p>
+<h3><span class="mw-headline" id="On_the_head_node">On the head node</span></h3>
+<p>If your application is not computationally intensive, does not use a lot of memory, and you are running debugging sessions for short periods of time (<b>any process run on the head node should not consume more than 15 minutes of CPU time</b>) with a small number of processes (no more than 2), then you can debug your program on the head node. For example:
+</p>
+<pre> $ mpirun --debug -np 2 my_parallel_application
+</pre>
+<p>Debugging a serial or OpenMP job: 
+</p>
+<pre> $ totalview my_program
+</pre>
+<h3><span id="On_the_compute_nodes_(through_the_grid_engine_queues)"></span><span class="mw-headline" id="On_the_compute_nodes_.28through_the_grid_engine_queues.29">On the compute nodes (through the grid engine queues)</span></h3>
+<p>If your debugging sessions do not qualify to run on the head node, then you need to use <a href="https://wiki.ace-net.ca/wiki/Test_Jobs" title="Test Jobs"> dedicated test.q resources</a>, which allow to run a job for less than 1 hour.
+</p>
+<pre> $ qrsh -cwd -pe "ompi*" 4 -l h_rt=00:30:00,test=true mpirun --debug myapplication
+</pre>
+<p>If you are debugging large jobs, and require more slots than what <code>test.q</code> can provide, then you can request free slots for an interactive job in the <a href="page_not_existing.html" style='color:red' class="new" title="Scheduling Policies and Mechanics (page does not exist)"> production <code>short.q</code> queue</a>. If free resources are available, they will be granted to you.
+</p>
+<pre> $ qrsh -cwd -pe "ompi*" 20 -l h_rt=00:30:00 mpirun --debug myapplication
+</pre>
+<p>Debugging a serial or OpenMP job:
+</p>
+<pre> $ qrsh -cwd -l h_rt=00:30:00,test=true totalview myapplication
+</pre>
+<p>Read more about running <a href="page_not_existing.html" style='color:red' class="new" title="Interactive Jobs (page does not exist)"> interactive jobs</a>.
+</p>
+<h2><span class="mw-headline" id="Issues">Issues</span></h2>
+<h3><span class="mw-headline" id="Debugging_an_MPI_code">Debugging an MPI code</span></h3>
+<p>If you are debugging an MPI code, please be aware of the following situation might occur, which may lead you to believe that there is a problem with the debugger. Once you have launched your code in the debugger, and have answered "yes" in the dialog window to stop the parallel job, you will need to set a break point somewhere below the MPI_Init() call and then click "Go". If you do not set a break point below MPI_Init() and just click "Next", then you will get a message "Waiting to reach location" that does not go away, until you cancel it. If you set a break point before MPI_Init(), then the debugger will ignore it.
+</p>
+<h3><span id="PGI_C++"></span><span class="mw-headline" id="PGI_C.2B.2B">PGI C++</span></h3>
+<p>There is an issue with the pgCC compiler, where Totalview doesn't correctly match the code line it is executing with the code line it is displaying as executing. Note that some MPI wrappers (mpiCC, mpicxx or mpic++) that use the pgCC compiler will also suffer from this issue. To debug with the pgCC compiler and the MPI wrappers use the Portland group debugger <a href="page_not_existing.html" style='color:red' class="new" title="PGDBG (page does not exist)">PGDBG</a>.
+</p>
+<h3><span class="mw-headline" id="Sun_Studio">Sun Studio</span></h3>
+<p>There is currently an issue with programs that are compiled using the Sun compiler. When you try and debug programs that are compiled with the Sun compiler, Totalview can't get the values for variables in the program. This problem doesn't exist if you use the Portland compiler or the GNU compiler.
+</p>
+
+
+</div>
+

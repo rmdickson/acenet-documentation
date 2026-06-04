@@ -1,0 +1,94 @@
+---
+title: OpenMP
+layout: default
+---
+<h1>OpenMP</h1><div class="mw-parser-output"><p><a rel="nofollow" class="external text" href="http://openmp.org/wp/">OpenMP</a> (Open Multi-Processing) is a standard for building parallel applications on shared-memory computers (multiprocessors). It consists primarily of a set of compiler directives, with some library routines besides.
+</p><p>The maximum number of threads available for OpenMP jobs on our clusters is either 4 or 16 depending on the execution host upon which the job is running. The number of threads is communicated to an OpenMP program at execution time with the environment variable <code>OMP_NUM_THREADS</code> via the Grid Engine <code>$NSLOTS</code> variable. Here is the line you need to add to your submissing script for an OpenMP program if your execution shell is <code>bash</code>
+</p>
+<pre> export OMP_NUM_THREADS=$NSLOTS
+</pre>
+<p>or <code>csh</code>:
+</p>
+<pre> setenv OMP_NUM_THREADS $NSLOTS
+</pre>
+<p>In order to force the compiler to interpret the OpenMP directives in the source code, you need to specify appropriate flags during the compilation, otherwise a serial code will be generated.
+</p>
+<table cellpadding="3" style="border: 1px solid #a3b1bf">
+<tbody><tr>
+<th width="120px" bgcolor="#cee0f2" align="left">Compiler
+</th>
+<th bgcolor="#cee0f2" align="left">Option
+</th></tr>
+<tr bgcolor="#f5faff">
+<td><a href="page_not_existing.html" style='color:red' class="new" title="PGI (page does not exist)">PGI</a></td>
+<td><code>-mp</code>
+</td></tr>
+<tr bgcolor="#f5faff">
+<td><a href="https://wiki.ace-net.ca/wiki/GCC" title="GCC">GCC</a></td>
+<td><code>-fopenmp</code>
+</td></tr>
+<tr bgcolor="#f5faff">
+<td><a href="https://wiki.ace-net.ca/wiki/Intel_compilers" title="Intel compilers"> Intel</a></td>
+<td><code>-openmp</code>
+</td></tr></tbody></table>
+<p>The good introduction to OpenMP can be found <a rel="nofollow" class="external text" href="http://computing.llnl.gov/tutorials/openMP">here</a>.
+</p>
+<h2><span class="mw-headline" id="Thread_stack_size">Thread stack size</span></h2>
+<dl><dd><i>See: <a href="https://wiki.ace-net.ca/wiki/Memory_Management#OpenMP" title="Memory Management"> Memory Management</a></i></dd></dl>
+<h2><span class="mw-headline" id="Hello_world_program">Hello world program</span></h2>
+<p>Here is an example of the simple OpenMP program written in Fortran 90, along with the instructions on how to compile, run interactively and submit this program to the cluster. 
+</p>
+<pre>program hello
+
+implicit none
+include 'omp_lib.h'
+integer&#160;:: my_rank = 0, p = 1
+
+!$omp parallel private( my_rank )
+
+!$omp single
+write(*,'("Hello parallel world!")')
+!$ p = omp_get_num_threads()
+write(*,'("Number of threads is ", i3)') p
+!$omp end single
+
+!$ my_rank = omp_get_thread_num()
+write(*,'("Hello world from thread", i3)') my_rank
+
+!$omp end parallel
+
+write(*,'("Back to the sequential world.")')
+
+end program hello
+</pre>
+<p>And this is how you compile the code and run it interactively on the head node in <code>csh</code>.
+</p>
+<pre> $ pgf90 -mp -o hello hello.f90
+ $ export OMP_NUM_THREADS=4
+ $ ./hello
+ Hello parallel world!
+ Number of threads is   4
+ Hello world from thread  3
+ Hello world from thread  0
+ Hello world from thread  1
+ Hello world from thread  2
+ Back to the sequential world.
+ $
+</pre>
+<p>To submit the code <code>hello</code> to the <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> scheduler</a>, you need to create a small submission script. With this script you instruct the scheduler where to execute the code, where to write the output, and with how many threads you want you code to be run. Here is an example of such a script called <code>submit_hello.sh</code>.
+</p>
+<pre> #$ -cwd
+ #$ -l h_rt=01:00:00
+ #$ -pe openmp 4
+
+ export OMP_NUM_THREADS=$NSLOTS
+ ./hello
+</pre>
+<p>Finally, to submit the job, type in the command line
+</p>
+<pre> $ qsub submit_hello.sh
+</pre>
+
+
+</div>
+

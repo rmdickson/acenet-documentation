@@ -1,0 +1,25 @@
+---
+title: HDF
+layout: default
+---
+<h1>HDF</h1><div class="mw-parser-output"><dl><dt>Description</dt>
+<dd>HDF5 is a data model, library, and file format for storing and managing data. It supports an unlimited variety of datatypes, and is designed for flexible and efficient I/O and for high volume and complex data. HDF5 is portable and is extensible, allowing applications to evolve in their use of HDF5. The HDF5 Technology suite includes tools and applications for managing, manipulating, viewing, and analyzing data in the HDF5 format.</dd>
+<dd>HDF (also known as HDF4) is a library and multi-object file format for storing and managing data between machines. There are two versions of HDF: HDF4 and HDF5. HDF4 is the first HDF format. Although HDF4 is still funded, new users that are not constrained to using HDF4, should use HDF5.</dd>
+<dt>Modulefile</dt>
+<dd><code>hdf</code></dd>
+<dt>Versions</dt>
+<dd>5-1.8.9 (default) and 4.2.7</dd>
+<dt>Documentation</dt>
+<dd><a rel="nofollow" class="external text" href="http://www.hdfgroup.org">HDF homepage</a></dd>
+<dt>Usage</dt>
+<dd>Here is an example how one could link their code compiled with GCC against the appropriate HDF5 library:</dd></dl>
+<pre>$ module load gcc hdf/gcc
+$ gcc &lt;compiler commands&gt; -I$HDF_DIR/include -L$HDF_DIR/lib -lhdf5
+</pre>
+<dl><dt>See also</dt>
+<dd><a href="https://wiki.ace-net.ca/wiki/HDFView" title="HDFView">HDFView</a></dd></dl>
+
+
+
+</div>
+

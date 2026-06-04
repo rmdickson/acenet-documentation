@@ -1,0 +1,29 @@
+---
+title: X11 forwarding
+layout: default
+---
+<h1>X11 forwarding</h1><div class="mw-parser-output"><dl><dd><i>Main page: <a href="https://wiki.ace-net.ca/wiki/User_Guide" title="User Guide">User Guide</a></i></dd></dl>
+<p>If you want to use certain GUI-based tools then you need to make sure that you are connected to the head node of the cluster with X11 forwarding enabled in your SSH client. This will allow an application on the cluster to display graphics on your desktop.
+</p>
+<h2><span class="mw-headline" id="Unix_and_MacOS_X">Unix and MacOS X</span></h2>
+<p>Users need to run the X11 server on their desktops. If you are running any window manager then you already have the X11 server installed. When you connect to the head node you must also use the <code>-X</code> option for the SSH client
+</p>
+<pre> $ ssh -X servername.ace-net.ca
+</pre>
+<h2><span class="mw-headline" id="Windows">Windows</span></h2>
+<ul><li>You can use the all-in-one tool <a rel="nofollow" class="external text" href="http://mobaxterm.mobatek.net">MobaXterm</a> that combines the ssh client, X11 server and SFTP client. By default X11 forwarding is enabled. If for some reason you need to disable it, start MobaXTerm, go to <b>Settings&#160;» Configuration&#160;» SSH </b>, and deselect the <b>X11-Forwarding</b> box.</li>
+<li>Alternatively, you can use a combination of <a rel="nofollow" class="external text" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> and an X11 server, such as <a rel="nofollow" class="external text" href="http://sourceforge.net/projects/xming">XMing</a> or <a rel="nofollow" class="external text" href="http://x.cygwin.com/">Cygwin/X</a>. You will need to enable X11 forwarding in PuTTY. This option can be found on the treeview in the PuTTY configuration dialogue: <b>Connection&#160;» SSH&#160;» X11&#160;» Enable X11 forwarding</b>.</li></ul>
+<p><img alt="PuTTY config screen X11" src="img/PuTTY-X11-forwarding.PNG" width="469" height="449" />
+</p>
+<h2><span class="mw-headline" id="Test">Test</span></h2>
+<p>A simple test of whether you have X11 working properly is to log on to a cluster and type
+</p>
+<pre>$ xclock
+</pre>
+<p>It should open a simple clock application new window looking something like this:
+</p><p><img alt="xclock display" src="img/201px-Xclock.PNG" width="201" height="142" srcset="img/Xclock.PNG 1.5x" />
+</p>
+
+
+</div>
+

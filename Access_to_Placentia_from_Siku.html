@@ -1,0 +1,49 @@
+---
+title: Access to Placentia from Siku
+layout: default
+---
+<h1>Access to Placentia from Siku</h1><div class="mw-parser-output"><p><br />
+Access to Placentia (and Glacdyn2) from Siku requires the use of <code>ecdsa</code> keys for both the host-key as well as SSH-public-key authentication.
+</p>
+<h2><span id="~/.ssh/config_on_Siku"></span><span class="mw-headline" id=".7E.2F.ssh.2Fconfig_on_Siku"><code>~/.ssh/config</code> on Siku</span></h2>
+<p>Add the following lines to your <code>~/.ssh/config</code> on Siku:
+</p>
+<pre>Host placentia
+   HostName     placentia.ace-net.ca
+   #User        placentia_username  # if different from Siku
+   IdentitiesOnly yes
+   IdentityFile ~/.ssh/id_ecdsa
+   PubkeyAcceptedKeyTypes ecdsa-sha2-nistp521
+   HostKeyAlgorithms      ecdsa-sha2-nistp521
+
+# uncomment the following lines if access to glacdyn2 is needed:
+#Host glacdyn2   
+#   Hostname     glacdyn2
+#   #User        glacdyn_username  # if different from Siku
+#   ProxyJump    placentia
+#   IdentitiesOnly yes
+#   IdentityFile ~/.ssh/id_ecdsa
+#   PubkeyAcceptedKeyTypes ecdsa-sha2-nistp521
+#   HostKeyAlgorithms ecdsa-sha2-nistp521
+</pre>
+<h2><span class="mw-headline" id="remove_old_RSA_hostkeys">remove old RSA hostkeys</span></h2>
+<p>Old RSA hostkeys need to be removed from the <code>known_hosts</code> file, e.g. with the following commands:
+</p>
+<pre>ssh-keygen -R placentia.ace-net.ca -f ~/.ssh/known_hosts
+ssh-keygen -R glacdyn2             -f ~/.ssh/known_hosts
+</pre>
+<h2><span class="mw-headline" id="generate_an_ECDSA_keypair_on_Siku">generate an ECDSA keypair on Siku</span></h2>
+<pre>ssh-keygen -t ecdsa -b 521  -C "$(date --iso) ${USER}@siku for placentia"
+ssh-copy-id -i ~/.ssh/id_ecdsa user@placentia 
+ssh-copy-id -i ~/.ssh/id_ecdsa user@glacdyn2 
+</pre>
+<p>At this time you will likely be prompted to verify and accept Placentia's and Glacdyn2's ECDSA host keys.
+</p><p>Their fingerprints are:
+</p>
+<pre>521 SHA256:hxBXW1kAP8WS8dTvDvNOgdvazlgA/IwNA5Xvvahr+1k placentia.ace-net.ca (ECDSA)
+521 SHA256:Htx7lgNNjJi7ivh6ehMNkX8Ao9ObJU5XEnSyjpxgXiU glacdyn2 (ECDSA)
+</pre>
+
+
+</div>
+

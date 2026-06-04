@@ -1,0 +1,57 @@
+---
+title: Humus:Creating a VNC session
+layout: default
+---
+<h1>Humus:Creating a VNC session</h1><div class="mw-parser-output"><p>Before doing this, you should have SSH key-pair authentication working.
+See <a href="Humus:Key-pair_authentication_from_Windows_using_MobaXterm.html" title="Humus:Key-pair authentication from Windows using MobaXterm">Humus:Key-pair_authentication_from_Windows_using_MobaXterm</a>.
+</p>
+<pre>(1) Log in to the remote host you want to work on.  I'll use humus217 in this example.
+    This may look something like this, depending on your individual set-up:
+       $ ssh -J rdickson@nefelibata.ace-net.ca rdickson@humus217.nefelibata.ace-net.ca
+
+(2) In the session on humus217 that you have just opened, start a vncserver.  
+    Note the display number which you can read from the log file name, "3" in this example.
+       $ vncserver
+       ...
+       Log file is /home/rdickson/.vnc/humus217.nefelibata.ace-net.ca:3.log
+
+(3) Get the port number by adding 5900 to the display number.  You'll need this port number in steps (4) and (5) below.
+    In our example, the display number is 3 so the port number is 5903.
+
+(4) In a <b>second</b> terminal, open an SSH tunnel from your local machine to the remote host.  Use the port number you just determined for both the local and remote ends of the tunnel.
+    In this example, using MobaXterm I "Start local terminal" and then enter:
+       &gt; ssh -J rdickson@nefelibata.ace-net.ca -L5903:127.0.0.1:5903 rdickson@humus217.nefelibata.ace-net.ca
+    You should get a shell prompt indicating you're connected to the remote host (e.g. humus217).
+ 
+You should now have two sessions open on the remote host:  
+The first, in which you started vncserver to get the display number,
+and the second, which provides an SSH tunnel through which VNC can connect.
+
+(5) On your personal computer, start your VNC client and connect to "localhost:&lt;port number&gt;".
+    If you're using TigerVNC and your port number is (for example) 5903, put "localhost:5903" in the "VNC server" field of the TigerVNC Connection Details dialog.
+
+(6) It should prompt you for a password.  
+    Supply the VNC password you set most recently.  (See below for more on VNC passwords).
+    A graphical desktop should appear.
+
+(7) Enjoy your graphical desktop.  Do great research&#160;:-)
+
+(8) When you're finished working, close everything:
+    - Log out from the graphical desktop and close the window. 
+      With TigerVNC, this terminates your VNC client.
+    - Exit the tunnel session.
+    - Terminate the vncserver with 'vncserver -kill&#160;:&lt;display number&gt;".
+      In this example, 'vncserver -kill&#160;:3'.  Note the colon (:).
+      If you've lost track of the display number, you can find it again with 'vncserver -list'.
+</pre>
+<p>A note about VNC passwords:
+The first time you run 'vncserver' it will ask you to set a password.  Do so.  Don't worry about the view-only password; you can respond "no" to that question.
+</p><p>The software will save that password and re-use it when you run 'vncserver' again.  This password is only useful to someone who can reach the corresponding port number on the remote host (e.g. port 5903 on humus217), so you don't need to be especially paranoid about it.  But using a UNIQUE password is still important!  DO NOT re-use your CCDB password, for example.
+</p><p>If you set a VNC password and then forget what it was, or if you want to change it, run 'vncpasswd'.  You will NOT be required to supply the old password in order to set a new one.
+</p><p>MobaXterm has a built-in VNC client.  So at step (5) above, instead of starting TigerVNC, you can start a VNC session in MobaXterm.  For the remote hostname use "localhost" (yes, seems weird, I know) and put the port number in the separate "Port" field.  You will be prompted to "enter your password for localhost"; enter your VNC password there.
+</p><p>Back to <a href="Humus.html" title="Humus">Humus</a> main page.
+</p>
+
+
+</div>
+

@@ -1,0 +1,433 @@
+---
+title: Siku
+layout: default
+---
+<h1>Siku</h1><div class="mw-parser-output"><p><br />
+Siku is a high-performance computer cluster installed in 2019 at Memorial University in St. John's, Newfoundland.
+</p><p>It is funded in large part by the <a rel="nofollow" class="external text" href="https://www.canada.ca/en/atlantic-canada-opportunities.html">Atlantic Canada Opportunities Agency (ACOA)</a>
+with the intention of generating regional economic benefits through industry engagement,
+while recognizing the important work that ACENET does for academic research in the region.
+</p><p>Siku is only accessible to selected clients.  
+</p>
+<ul><li><b><i>Industrial</i></b> researchers wishing to access Siku should write to <a rel="nofollow" class="external text" href="mailto:info@ace-net.ca">info@ace-net.ca</a>.
+<ul><li>To add a member to an existing industrial account, the principal investigator should write to <a rel="nofollow" class="external text" href="mailto:info@ace-net.ca">support@ace-net.ca</a> with the new member's name, email address, telephone number (if available), and a suggested username beginning in "an-", e.g. "an-jdoe".</li></ul></li>
+<li>If you are the Principal Investigator of an <b><i>academic</i></b> research group in Atlantic Canada and you would like your group to use Siku, write to <a rel="nofollow" class="external text" href="mailto:support@ace-net.ca">support@ace-net.ca</a> and ask.
+<ul><li>We will assume that all members of your research group with an active role at <a rel="nofollow" class="external free" href="https://ccdb.alliancecan.ca">https://ccdb.alliancecan.ca</a> should get access to Siku unless you tell us otherwise.</li>
+<li>If you later add a new member of your group at CCDB, Siku access is not given automatically.  Write to support@ace-net.ca mentioning Siku, the PI's name, and the new user's login name.</li></ul></li></ul>
+<div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
+<ul>
+<li class="toclevel-1 tocsection-1"><a href="#Addresses"><span class="tocnumber">1</span> <span class="toctext">Addresses</span></a></li>
+<li class="toclevel-1 tocsection-2"><a href="#Authentication_and_authorization"><span class="tocnumber">2</span> <span class="toctext">Authentication and authorization</span></a>
+<ul>
+<li class="toclevel-2 tocsection-3"><a href="#Passwords.2C_changing_and_resetting_your_password"><span class="tocnumber">2.1</span> <span class="toctext">Passwords, changing and resetting your password</span></a>
+<ul>
+<li class="toclevel-3 tocsection-4"><a href="#Local_accounts"><span class="tocnumber">2.1.1</span> <span class="toctext">Local accounts</span></a></li>
+<li class="toclevel-3 tocsection-5"><a href="#Alliance_accounts"><span class="tocnumber">2.1.2</span> <span class="toctext">Alliance accounts</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-6"><a href="#SSH_key_pairs_recommended"><span class="tocnumber">2.2</span> <span class="toctext">SSH key pairs recommended</span></a></li>
+<li class="toclevel-2 tocsection-7"><a href="#SSH_with_Hardware_Security_Keys_at_Siku"><span class="tocnumber">2.3</span> <span class="toctext">SSH with Hardware Security Keys at Siku</span></a>
+<ul>
+<li class="toclevel-3 tocsection-8"><a href="#Setup"><span class="tocnumber">2.3.1</span> <span class="toctext">Setup</span></a></li>
+<li class="toclevel-3 tocsection-9"><a href="#Troubleshooting"><span class="tocnumber">2.3.2</span> <span class="toctext">Troubleshooting</span></a>
+<ul>
+<li class="toclevel-4 tocsection-10"><a href="#Windows_10_and_11_Users"><span class="tocnumber">2.3.2.1</span> <span class="toctext">Windows 10 and 11 Users</span></a></li>
+<li class="toclevel-4 tocsection-11"><a href="#Mac_Users"><span class="tocnumber">2.3.2.2</span> <span class="toctext">Mac Users</span></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-12"><a href="#Similarities_and_differences_with_national_GP_clusters"><span class="tocnumber">3</span> <span class="toctext">Similarities and differences with national GP clusters</span></a></li>
+<li class="toclevel-1 tocsection-13"><a href="#Job_scheduling"><span class="tocnumber">4</span> <span class="toctext">Job scheduling</span></a>
+<ul>
+<li class="toclevel-2 tocsection-14"><a href="#What_kind_of_Slurm_account_do_I_have.3F"><span class="tocnumber">4.1</span> <span class="toctext">What kind of Slurm account do I have?</span></a></li>
+<li class="toclevel-2 tocsection-15"><a href="#What_is_the_longest_job_I_can_run.3F"><span class="tocnumber">4.2</span> <span class="toctext">What is the longest job I can run?</span></a></li>
+<li class="toclevel-2 tocsection-16"><a href="#How_do_I_get_a_node_with_a_GPU.3F"><span class="tocnumber">4.3</span> <span class="toctext">How do I get a node with a GPU?</span></a></li>
+<li class="toclevel-2 tocsection-17"><a href="#How_do_I_select_a_node-type.3F"><span class="tocnumber">4.4</span> <span class="toctext">How do I select a node-type?</span></a></li>
+<li class="toclevel-2 tocsection-18"><a href="#Why_was_my_job_rejected.3F"><span class="tocnumber">4.5</span> <span class="toctext">Why was my job rejected?</span></a></li>
+<li class="toclevel-2 tocsection-19"><a href="#Why_hasn.27t_my_job_started.3F"><span class="tocnumber">4.6</span> <span class="toctext">Why hasn't my job started?</span></a></li>
+<li class="toclevel-2 tocsection-20"><a href="#My_monthly_usage_report_doesn.27t_look_right"><span class="tocnumber">4.7</span> <span class="toctext">My monthly usage report doesn't look right</span></a></li>
+<li class="toclevel-2 tocsection-21"><a href="#Other_restrictions"><span class="tocnumber">4.8</span> <span class="toctext">Other restrictions</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-22"><a href="#Storage_quotas_and_filesystem_characteristics"><span class="tocnumber">5</span> <span class="toctext">Storage quotas and filesystem characteristics</span></a></li>
+<li class="toclevel-1 tocsection-23"><a href="#Node_characteristics"><span class="tocnumber">6</span> <span class="toctext">Node characteristics</span></a></li>
+<li class="toclevel-1 tocsection-24"><a href="#SSH_host_key_fingerprints"><span class="tocnumber">7</span> <span class="toctext">SSH host key fingerprints</span></a>
+<ul>
+<li class="toclevel-2 tocsection-25"><a href="#Login_nodes:"><span class="tocnumber">7.1</span> <span class="toctext">Login nodes:</span></a>
+<ul>
+<li class="toclevel-3 tocsection-26"><a href="#siku.ace-net.ca"><span class="tocnumber">7.1.1</span> <span class="toctext">siku.ace-net.ca</span></a></li>
+<li class="toclevel-3 tocsection-27"><a href="#industry.siku.ace-net.ca"><span class="tocnumber">7.1.2</span> <span class="toctext">industry.siku.ace-net.ca</span></a></li>
+</ul>
+</li>
+<li class="toclevel-2 tocsection-28"><a href="#Data_Transfer_Node_.28DTN.29:"><span class="tocnumber">7.2</span> <span class="toctext">Data Transfer Node (DTN):</span></a></li>
+</ul>
+</li>
+<li class="toclevel-1 tocsection-29"><a href="#Known_issues"><span class="tocnumber">8</span> <span class="toctext">Known issues</span></a></li>
+</ul>
+</div>
+
+<h2><span class="mw-headline" id="Addresses">Addresses</span></h2>
+<table class="wikitable">
+
+<tbody><tr>
+<td>Login nodes (ssh) for <a href="#Alliance_accounts">Alliance accounts</a>:</td>
+<td><b><code>siku.ace-net.ca</code></b>
+</td></tr>
+<tr>
+<td>Login node (ssh) for <a href="#Local_accounts">local accounts</a>:</td>
+<td><b><code>industry.siku.ace-net.ca</code></b>
+</td></tr>
+<tr>
+<td><a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Globus">Globus</a> collection:</td>
+<td><b><code>alliancecan#siku</code></b><br />
+</td></tr>
+<tr>
+<td>Data transfer node (rsync, scp, sftp,...):</td>
+<td><b><code>dtn.siku.ace-net.ca</code></b>
+</td></tr>
+<tr>
+<td>JupyterHub:</td>
+<td><b><code>siku-portal.alliancecan.ca/jupyter</code></b>
+</td></tr>
+<tr>
+<td>Monitoring:</td>
+<td><b><code>siku-portal.alliancecan.ca/userportal/</code></b>
+</td></tr></tbody></table>
+<h2><span class="mw-headline" id="Authentication_and_authorization">Authentication and authorization</span></h2>
+<p>Multi-factor authentication (MFA) using <a rel="nofollow" class="external text" href="https://duo.com/docs">Duo</a> is required to access Siku.
+</p>
+<h3><span id="Passwords,_changing_and_resetting_your_password"></span><span class="mw-headline" id="Passwords.2C_changing_and_resetting_your_password">Passwords, changing and resetting your password</span></h3>
+<h4><span class="mw-headline" id="Local_accounts">Local accounts</span></h4>
+<p><b>If your username has the prefix <code>an-</code>,</b> then you have a <i>local account</i>.  
+When your account was created you should have received an initial password and a link through which 
+you to register for MFA with Duo. 
+</p><p>If you have a local account, you can change your password by logging in to the cluster and running <code>passwd</code>. 
+The password must meet the following criteria:
+</p>
+<ul><li>Minimum length: 12</li>
+<li>Minimum number of lowercase characters: 1</li>
+<li>Minimum number of uppercase characters: 1</li>
+<li>Minimum number of digits: 1</li></ul>
+<p>If you have forgotten your password and need it reset, 
+or if you have trouble with Duo as your second factor, write to support@ace-net.ca
+</p>
+<h4><span class="mw-headline" id="Alliance_accounts">Alliance accounts</span></h4>
+<p><b>If you have an active account with the <i>Digital Research Alliance of Canada</i></b> ("The Alliance") and have been granted access to Siku, 
+you can log in using your Alliance username and password.  
+You can change your password or reset a forgotten password by visiting <a rel="nofollow" class="external text" href="https://ccdb.alliancecan.ca/security/change_password">https://ccdb.alliancecan.ca/security/change_password</a>.
+You must register for multi-factor authentication at <a rel="nofollow" class="external text" href="https://ccdb.alliancecan.ca/multi_factor_authentications">https://ccdb.alliancecan.ca/multi_factor_authentications</a>.
+You can find more guidance for that at <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Multifactor_authentication">https://docs.alliancecan.ca/wiki/Multifactor_authentication</a>.
+</p><p><br />
+</p>
+<h3><span class="mw-headline" id="SSH_key_pairs_recommended">SSH key pairs recommended</span></h3>
+<p>No matter whether you have a local or an Alliance account, 
+we encourage you to use a passphrase-protected <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/SSH_Keys">SSH key pair</a> for regular access to Siku.
+Used properly, a key pair is more secure than a password.
+</p><p>If you want to use key-pair authentication 
+</p>
+<ul><li>and you have a local account, email your public key to support@ace-net.ca from the email address we have on file for you.</li>
+<li>If you have an Alliance account, visit <a rel="nofollow" class="external free" href="https://ccdb.alliancecan.ca/ssh_authorized_keys">https://ccdb.alliancecan.ca/ssh_authorized_keys</a> and register your public key there.</li></ul>
+<p>SSH public keys are not read from `~/.ssh/authorized_keys`, so `ssh-copy-id` will not work.
+</p>
+<h3><span class="mw-headline" id="SSH_with_Hardware_Security_Keys_at_Siku">SSH with Hardware Security Keys at Siku</span></h3>
+<p>In order to help our clients improve the security of their login authentication, we now offer the option to connect to Siku using SSH keys backed by a hardware security key (e.g. <a rel="nofollow" class="external text" href="https://www.yubico.com/products/yubikey-5-overview/">Yubikey</a>). You can use either of two new types of cryptographic keys, ecdsa-sk or ed25519-sk, and authenticate to ACENET's systems via one of the most secure methods currently available.
+</p><p>If you have a hardware security key and are working on Windows 11, MacOS 12 or 13, or a modern Linux distribution, you can likely start using this option  now.
+</p><p>On older operating systems, you will need to update OpenSSH. If you're not sure how to do that, or are unsure whether this option is right for you, you can experiment with the cross-platform application <a rel="nofollow" class="external text" href="https://termius.com/">Termius</a>, which will provide support right out of the box on a trial basis.
+</p>
+<h4><span class="mw-headline" id="Setup">Setup</span></h4>
+<p>If you’re already using <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/SSH_Keys">SSH keys</a> to access ACENET's systems, you are familiar with everything you need to know to begin working with the new key types.
+</p><p>You will need to register a public key of either type <code>ecdsa-sk</code> or <code>ed25519-sk</code>. If you do not already have a key of one of these types, you can use a graphical application to create one, or type <code>ssh-keygen -t ecdsa-sk</code> into PowerShell or a terminal emulator. Remember that you will be prompted to activate a hardware security key as part of the key generation process, and have your Yubikey (or a similar device) on hand.
+</p><p>Authentication is the same as with other SSH keys, except that you will again have to respond to a prompt to activate a hardware security key to authenticate successfully.
+</p>
+<h4><span class="mw-headline" id="Troubleshooting">Troubleshooting</span></h4>
+<h5><span class="mw-headline" id="Windows_10_and_11_Users">Windows 10 and 11 Users</span></h5>
+<p>Windows users can use PowerShell to access ACENET’s systems and will frequently be able to SSH with the new key types without issue. If you encounter an issue, it’s likely because your version of OpenSSH is not set up to use Windows Hello as a Security Key Provider by default. There is a quick fix.
+Download the most current version of OpenSSH for PowerShell <a rel="nofollow" class="external text" href="https://github.com/PowerShell/Win32-OpenSSH/releases">HERE</a>.
+</p>
+<ol><li>Run the following command in a PowerShell session:</li>
+<li>Start-Process -NoNewWindow msiexec.exe -ArgumentList "/i C:\Users\USERNAME\Downloads\OpenSSH-Win64-CURRENT_VERSION.msi ADDLOCAL=Client ADD_PATH=1" -Wait</li>
+<li>Reboot</li></ol>
+<p>This will resolve most issues in short order. Alternatively, you can choose to experiment with the cross-platform <a rel="nofollow" class="external text" href="https://termius.com/">Termius</a> application, which will provide support for generating and using the new key types on a trial basis.
+</p>
+<h5><span class="mw-headline" id="Mac_Users">Mac Users</span></h5>
+<p>If you are using MacOS 12 or better, you should be able to SSH with the new key types without issue. Users with older versions of the OS can often update to access new features. If you cannot update, you can either choose to install a current version of OpenSSH via the <a rel="nofollow" class="external text" href="https://brew.sh/">Brew</a> package manager, or use the cross-platform <a rel="nofollow" class="external text" href="https://termius.com/">Termius</a> application, which will provide support for generating and using the new key types on a trial basis.
+</p>
+<h2><span class="mw-headline" id="Similarities_and_differences_with_national_GP_clusters">Similarities and differences with national GP clusters</span></h2>
+<p>Siku is designed from experience gained with the <i>Alliance</i> systems,
+<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga/en">Béluga</a>,
+<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Cedar">Cedar</a>,
+<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Graham">Graham</a>,
+<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Narval">Narval</a>, and
+<a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Niagara">Niagara</a>.
+Users familiar with those systems will find much familiar here.
+</p>
+<ul><li>The filesystem is similarly structured. See <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management">Storage and file management</a>.
+<ul><li>There is no "Nearline" archival filesystem.</li></ul></li>
+<li>The same scheduler is used, <a rel="nofollow" class="external text" href="https://slurm.schedmd.com/documentation.html">Slurm</a>, although with simpler policies.  See "Job Scheduling", below.</li>
+<li>The same <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_modules">modules</a> system provides access to the same list of <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Available_software">available software</a>.</li>
+<li><a rel="nofollow" class="external text" href="https://apptainer.org/docs/admin/main/user_namespace.html">User namespaces</a> are disabled on login nodes for security reasons, which means that Apptainer will (probably) not work.  We recommend that you test containers on compute nodes using <code>srun</code> or <code>salloc</code>; Apptainer should work there.  For more on <code>srun</code> or <code>salloc</code> see <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs#Interactive_jobs">Interactive jobs</a>.</li></ul>
+<h2><span class="mw-headline" id="Job_scheduling">Job scheduling</span></h2>
+<p>Tasks taking more than 10 CPU-minutes or 4 GB of RAM should not be run directly on a login node, but submitted to the job scheduler, Slurm.
+</p><p>Scheduling policies on Siku are different from the <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Running_jobs">policies on Alliance systems</a>.  What resources you can use, especially the length of a job you can run, depends on what kind of Slurm account you have.  (This is different from what type of login account you have, described under "Authentication and authorization" above.  Sorry about that.)
+</p>
+<h4><span id="What_kind_of_Slurm_account_do_I_have?"></span><span class="mw-headline" id="What_kind_of_Slurm_account_do_I_have.3F">What kind of Slurm account do I have?</span></h4>
+<ul><li>If you work for an organization which is paying for access to Siku, you have a <i>paid</i> (pd-) account.</li>
+<li>If you are in an academic research group which is not paying for access to Siku, you have a <i>default</i> (def-) account.</li>
+<li>If you are an academic in a research group which has contributed equipment to Siku, you also have a <i>contributed</i> (ctb-) account in addition to a <i>default</i> account.  Your jobs will normally be submitted under the contributed account, but you may override this by including the <code>--account=def-???</code> directive in a job script.</li></ul>
+<p>If you want to find out what Slurm accounts are available to you, run <code>sacctmgr show associations where user=$USER format=account%20</code> and examine the prefix on the account code:
+</p>
+<ul><li><code>an-pd...</code> or <code>pd-...</code> is a paid account</li>
+<li><code>def-...</code> is a default account</li>
+<li><code>ctb-...</code> is a contributed account</li></ul>
+<p>If you have a paid account you may also wish to read about <a href="https://wiki.ace-net.ca/wiki/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.
+</p>
+<h4><span id="What_is_the_longest_job_I_can_run?"></span><span class="mw-headline" id="What_is_the_longest_job_I_can_run.3F">What is the longest job I can run?</span></h4>
+<ul><li>If you are <i>NOT</i> requesting a GPU and
+<ul><li>... you have a default account, you may request up to 24 hours.</li>
+<li>... you have a paid or contributed account, you may request up to 14 days (336 hours).
+<ul><li>Jobs longer than 3 days but less than 14 days are subject to some restrictions in order to keep waiting times from getting too long.  See "Why hasn't my job started?" below for more about this.</li></ul></li></ul></li>
+<li>If you are requesting a GPU and
+<ul><li>... your account-owner has <i>NOT</i> contributed a GPU to the cluster, you may request up to 24 hours.</li>
+<li>... your account-owner has contributed a GPU to the cluster, you may request up to 3 days (72 hours).</li></ul></li></ul>
+<p>There are a few nodes which accept only 3-hour jobs or shorter from most users (partition <code>contrib3h</code>).  Consequently, jobs with a run time of 3 hours or less will often schedule much more quickly than other jobs.  If you want an interactive job for testing purposes, we recommend <code>salloc --time=3:0:0</code> (or less).  If you can arrange your production workflow to include 3-hour jobs, those may benefit from more rapid scheduling.
+</p>
+<h4><span id="How_do_I_get_a_node_with_a_GPU?"></span><span class="mw-headline" id="How_do_I_get_a_node_with_a_GPU.3F">How do I get a node with a GPU?</span></h4>
+<p><a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Using_GPUs_with_Slurm">GPUs</a> should be requested following these examples:
+</p>
+<dl><dd><ul><li>Request one GPU, any model:</li></ul></dd></dl>
+<pre>#SBATCH --gpus=1
+</pre>
+<dl><dd><ul><li>Request one GPU, specifically model V100:</li></ul></dd></dl>
+<pre>#SBATCH --gpus=v100:1
+</pre>
+<dl><dd><ul><li>Request two GPUs, specifically model RTX6000:</li></ul></dd></dl>
+<pre>#SBATCH --gpus=rtx6000:2
+</pre>
+<p>See "<a href="#Node_characteristics">Node characteristics</a>" below for the numbers and types of GPUs installed.
+</p>
+<h4><span id="How_do_I_select_a_node-type?"></span><span class="mw-headline" id="How_do_I_select_a_node-type.3F">How do I select a node-type?</span></h4>
+<p>Siku has 67 CPU-nodes with 40 CPU-cores per node and 33 nodes with 48 CPU-cores per node.
+When running highly parallel calculations, it may be worth targeting the 48-core nodes
+by explicitly requesting <code>#SBATCH --ntasks-per-node=48</code>.
+</p><p>Jobs with <code>#SBATCH --ntasks-per-node=40</code> may end up running on either of
+those node-types, in which case the remaining CPU cores may be used by other jobs.
+In this case please avoid requesting all memory on the node by using <code>--mem=0</code>,
+as this would block the remaining 8 CPU-cores on 48-core nodes from being used and you
+would be charged for CPU-usage by the scheduler, even though your job isn't using them.<br />
+Instead try to use no more than <code>--mem-per-cpu=4775M</code>, which will allow
+your job to fit on any of the available node-types.
+</p><p>If you want to target the 40-core nodes specifically, e.g. because your calculations
+cannot easily be adapted to make use of the 48-core nodes, you can use
+<code>#SBATCH --constraint=40core</code> to prevent the 48-core nodes from being considered
+for your job.
+</p><p>See <a href="https://wiki.ace-net.ca/wiki/Siku#Node_characteristics" title="Siku">Node characteristics</a> for all available node configurations.
+</p>
+<h4><span id="Why_was_my_job_rejected?"></span><span class="mw-headline" id="Why_was_my_job_rejected.3F">Why was my job rejected?</span></h4>
+<p>If you receive <code>sbatch: error: Batch job submission failed:</code> when you submit a job, the rest of the message will usually indicate the problem.  Here are some you might see:
+</p>
+<ul><li><code>Invalid qos specification</code>:  You've used a <code>--partition</code> or <code>--qos</code> directive.  Remove the directive and try again.</li>
+<li><code>Requested time limit is invalid (missing or exceeds some limit)</code>
+<ul><li><code>def-</code> accounts are limited to 24h.</li>
+<li>GPU jobs are limited to 24h.</li>
+<li><code>pd-</code> and <code>ctb-</code> accounts are limited to 7d.</li></ul></li>
+<li><code>Invalid account or account/partition combination specified</code>
+<ul><li>Most Siku users do not need to supply <code>--account</code>; delete the directive and try again.</li>
+<li>If you think you should have access to more than one account, see "What kind of account do I have?" above.</li></ul></li></ul>
+<h4><span id="Why_hasn't_my_job_started?"></span><span class="mw-headline" id="Why_hasn.27t_my_job_started.3F">Why hasn't my job started?</span></h4>
+<p>The output from the <code>sq</code> and <code>squeue</code> commands includes a Reason field.  Here are some Reasons you may see, and what to do about them.
+</p>
+<ul><li><code>Resources</code>:  The scheduler is waiting for other jobs to finish in order to have enough resources to run this job.</li>
+<li><code>Priority</code>: Higher priority jobs are being scheduled ahead of this one.
+<ul><li><code>pd-</code> and <code>ctb-</code> accounts always have higher priority than <code>def-</code> accounts.  Within these tiers, priority is determined by the amount of computing that each account has done recently.</li></ul></li>
+<li><code>QOSGrpBillingMinutes</code>:  You are close to the quarterly usage limit for your paid account. See <a href="https://wiki.ace-net.ca/wiki/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.</li>
+<li><code>QOSGrpCpuLimit</code>:  This may be due to:
+<ul><li>The limit on the number of CPUs which can be used by long jobs at one time, considering all accounts in aggregate.</li>
+<li>The limit on the number of CPUs which can be used by a <code>ctb-</code> account at one time.  Jobs for a <code>ctb-</code> account run in the same priority tier as <code>pd-</code> jobs, but they cannot use more than a fixed amount of resources at any one time.  Use <code>--account=def-xxx</code> to avoid this limit, but at the cost of priority</li>
+<li>Certain users of <code>ctb-</code> accounts may be subject to a stronger constraint on the number of simultaneous CPUs, at the request of the contributing PI.</li>
+<li>Such a job should eventually run, when other jobs in the pool sharing the same limit finish.</li></ul></li>
+<li><code>QOSGrpGRES</code>: The <code>ctb-</code> account you are using has a limit on the number of GPUs which may be in use at one time.  If <code>sinfo --partition=all_gpus</code> shows there are idle GPUs, try resubmitting the pending job with <code>--account=def-xxx</code>.</li>
+<li><code>MaxCpuPerAccount</code>:  Long-job limit per account.</li>
+<li><code>QOSMaxWallDurationPerJobLimit</code>:  You have submitted a job with a time limit &gt;24h from <code>def-</code> account. This job will never run; <code>scancel</code> and resubmit with a time limit less than or equal to 24h.
+<ul><li>Certain users of <code>ctb-</code> accounts may be subject to a similar constraint with a different time limit, at the request of the contributing PI.</li></ul></li>
+<li><code>ReqNodeNotAvail, Reserved for maintenance</code>: There is maintenance scheduled to take place in the near future.  Your job's time limit is long enough that it might not finish before the maintenance outage begins.
+<ul><li>You can determine the start time of the maintenance outage with <code>scontrol show reservations</code>, and the current time with <code>date</code>.</li></ul></li>
+<li><code>BadConstraints</code>: We have seen jobs which display <code>BadConstraints</code> and then run normally without intervention.  Treat it as a meaningless message, unless you think your job has been waiting in this state for an unusually long time, in which case <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support">Ask Support</a> for help.</li></ul>
+<h4><span id="My_monthly_usage_report_doesn't_look_right"></span><span class="mw-headline" id="My_monthly_usage_report_doesn.27t_look_right">My monthly usage report doesn't look right</span></h4>
+<p>See <a href="https://wiki.ace-net.ca/wiki/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.
+</p>
+<h4><span class="mw-headline" id="Other_restrictions">Other restrictions</span></h4>
+<ul><li>Each account may have no more than 5,000 jobs pending or running at one time.  This is to prevent overloading the scheduler processes.  A job array counts as multiple jobs.</li></ul>
+<h2><span class="mw-headline" id="Storage_quotas_and_filesystem_characteristics">Storage quotas and filesystem characteristics</span></h2>
+<table class="wikitable" style="font-size: 95%; text-align: center;">
+<caption>
+</caption>
+<tbody><tr>
+<th>Filesystem
+</th>
+<th>Default Quota
+</th>
+<th>Backed up?
+</th>
+<th>Purged?
+</th>
+<th>Mounted on Compute Nodes?
+</th></tr>
+<tr>
+<td>Home Space
+</td>
+<td>52 GB and 512K files per user
+</td>
+<td>Yes
+</td>
+<td>No
+</td>
+<td>Yes
+</td></tr>
+<tr>
+<td>Scratch Space
+</td>
+<td>20 TB and 1M files per user
+</td>
+<td>No
+</td>
+<td>Not yet implemented
+</td>
+<td>Yes
+</td></tr>
+<tr>
+<td>Project Space
+</td>
+<td>1 TB and 512K files per group
+</td>
+<td>Yes
+</td>
+<td>No
+</td>
+<td>Yes
+</td></tr></tbody></table>
+<p>/home is backed up to tape daily and /project weekly.  Tapes are duplicated against media failure.  All backups are kept on-site.
+</p>
+<h2><span class="mw-headline" id="Node_characteristics">Node characteristics</span></h2>
+<table class="wikitable sortable">
+<tbody><tr>
+<th>Nodes</th>
+<th>Cores</th>
+<th>Available memory</th>
+<th>CPU</th>
+<th>Storage</th>
+<th>GPU
+</th></tr>
+<tr>
+<td>42</td>
+<td>40</td>
+<td>181G or 186000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6248">Xeon Gold 6248</a> @ 2.5GHz</td>
+<td>~720G</td>
+<td>-
+</td></tr>
+<tr>
+<td>8</td>
+<td>40</td>
+<td>370G or 378880M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6248">Xeon Gold 6248</a> @ 2.5GHz</td>
+<td>~720G</td>
+<td>-
+</td></tr>
+<tr>
+<td>17</td>
+<td>40</td>
+<td>275G or 282000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6248">Xeon Gold 6248</a> @ 2.5GHz</td>
+<td>~720G</td>
+<td>-
+</td></tr>
+<tr>
+<td>33</td>
+<td>48</td>
+<td>275G or 282000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6240r">Xeon Gold 6240R</a> @ 2.4GHz</td>
+<td>~720G</td>
+<td>-
+</td></tr>
+<tr>
+<td>1</td>
+<td>40</td>
+<td>181G or 186000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6148">Xeon Gold 6148</a> @ 2.4GHz</td>
+<td>~720G</td>
+<td>3 x NVIDIA Tesla V100 (32GB memory)
+</td></tr>
+<tr>
+<td>1</td>
+<td>40</td>
+<td>181G or 186000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6148">Xeon Gold 6148</a> @ 2.4GHz</td>
+<td>~720G</td>
+<td>2 x NVIDIA Tesla V100 (32GB memory)
+</td></tr>
+<tr>
+<td>1</td>
+<td>40</td>
+<td>181G or 186000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6248">Xeon Gold 6248</a> @ 2.5GHz</td>
+<td>~720G</td>
+<td>4 x NVIDIA Quadro RTX 6000 (24GB memory)
+</td></tr>
+<tr>
+<td>1</td>
+<td>40</td>
+<td>181G or 186000M</td>
+<td>2 x Intel <a rel="nofollow" class="external text" href="https://en.wikichip.org/wiki/intel/xeon_gold/6248">Xeon Gold 6248</a> @ 2.5GHz</td>
+<td>~720G</td>
+<td>2 x NVIDIA Quadro RTX 6000 (24GB memory)
+</td></tr></tbody></table>
+<ul><li>"Available memory" is the amount of memory configured for use by Slurm jobs.  Actual memory is slightly larger to allow for operating system overhead.</li>
+<li>"Storage" is node-local storage.  Access it via the $SLURM_TMPDIR environment variable.</li>
+<li>Hyperthreading is turned off.</li>
+<li>All GPUs are PCIe-linked.  NVLINK is not currently supported.</li></ul>
+<p>Operating system: Rocky Linux 9.x
+</p>
+<h2><span class="mw-headline" id="SSH_host_key_fingerprints">SSH host key fingerprints</span></h2>
+<h3><span class="mw-headline" id="Login_nodes:">Login nodes:</span></h3>
+<h4><span class="mw-headline" id="siku.ace-net.ca">siku.ace-net.ca</span></h4>
+<dl><dt>ED25519 (256b)</dt>
+<dd><code>SHA256:ivMcbACnaXK3C6RHBxE3zh17F/zROsR2E9ZW9vewwv8</code></dd>
+<dd><code>MD5:7f:0a:fe:09:4b:0d:8e:41:f9:96:cc:b1:aa:60:6d:1f</code></dd>
+<dt>RSA (3072b)</dt>
+<dd><code>SHA256:ILN9LOkykPIG+PGSi0GDNT6fUFbApC4ECxgSfk4OKZk</code></dd>
+<dd><code>MD5:95:80:47:b9:d8:a7:c5:31:13:9a:72:22:7c:e7:f8:f8</code></dd></dl>
+<h4><span class="mw-headline" id="industry.siku.ace-net.ca">industry.siku.ace-net.ca</span></h4>
+<dl><dt>ED25519 (256b)</dt>
+<dd><code>SHA256:mbl/JVD9LnluYV/9g13oSv5tgzd32U9MEl7H+28oaLE</code></dd>
+<dd><code>MD5:d6:e3:7c:9e:93:0c:8a:2b:24:ba:94:ce:77:4f:62:9a</code></dd>
+<dt>RSA (3072b)</dt>
+<dd><code>SHA256:C1CNHK0B/i2e8+t9Sya1m/ugofXQFdwTfFR3JcsRIiI</code></dd>
+<dd><code>MD5:04:f4:d8:33:a5:cf:e0:7b:e1:16:fb:86:f8:3f:e9:20</code></dd></dl>
+<h3><span id="Data_Transfer_Node_(DTN):"></span><span class="mw-headline" id="Data_Transfer_Node_.28DTN.29:">Data Transfer Node (DTN):</span></h3>
+<dl><dt>ED25519 (256b)</dt>
+<dd><code>SHA256:qc5JZcUIJAT/J6Dob3QVIqqdQWTZXwgtGzW3sTj6hZQ</code></dd>
+<dd><code>MD5:9f:fd:68:c9:06:03:0d:6c:95:2c:b2:a8:b6:65:9f:58</code></dd>
+<dt>RSA (3072b)</dt>
+<dd><code>SHA256:oDqXPh9d2g4UkYv7HwtehZPyRVFOkol/jURyw3yI3Jo</code></dd>
+<dd><code>MD5:62:c6:d9:d9:53:c5:71:e9:4f:d9:69:46:e4:3a:0c:38</code></dd></dl>
+<h2><span class="mw-headline" id="Known_issues">Known issues</span></h2>
+<ul><li>Globus file transfer service is only available to academic users, since it is integrated with the Digital Research Alliance's authentication and authorization systems.</li></ul>
+<ul><li>We have enabled <a rel="nofollow" class="external text" href="https://apptainer.org/docs/admin/main/user_namespace.html">user namespaces</a> to support the operation of Apptainer <i>only on compute nodes</i>.  You will not be able to test an Apptainer image on a login node.  If you wish to do interactive testing with Apptainer, use <code>salloc</code> to get an interactive shell on a compute node.</li></ul>
+<ul><li>If you are <i>not</i> an academic user and intend to compile programs, please read <a href="https://wiki.ace-net.ca/wiki/License_considerations_for_commercial_users" title="License considerations for commercial users">License considerations for commercial users</a>.</li></ul>
+<ul><li>Multi-Processing using <code>libverbs</code> is not working as expected. MPI implementations, however, should work.</li></ul>
+<ul><li>Directories are automatically created at first logon.  This may produce a race condition that results in errors like the following:</li></ul>
+<pre>Could not chdir to home directory /home/username: No such file or directory
+/usr/bin/xauth:  error in locking authority file /home/username/.Xauthority
+Lmod has detected the following error:  Unable to load module because of error when  evaluating modulefile: ...
+</pre>
+<p>Should this occur on first login, simply log out, wait a minute, and log back in again.
+</p>
+<ul><li>Multi-node Julia jobs currently end with <code>Authentication failed</code> message.  Workarounds are to do the calculation on a single node, or <a rel="nofollow" class="external text" href="https://docs.alliancecan.ca/wiki/Julia">use an Alliance cluster</a>.</li></ul>
+
+
+
+</div>
+

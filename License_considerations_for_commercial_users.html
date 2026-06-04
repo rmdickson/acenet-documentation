@@ -1,0 +1,38 @@
+---
+title: License considerations for commercial users
+layout: default
+---
+<h1>License considerations for commercial users</h1><div class="mw-parser-output"><h2><span class="mw-headline" id="Intel_compiler_suite">Intel compiler suite</span></h2>
+<p>Intel's compiler suite has been governed by different license terms over the years.
+For a long time it was available without charge to academic users, but commercial
+users were expected to pay a suitable license fee to Intel.
+</p><p>According to ACENET's best understanding compilers in the <code>intel/2020.1.217</code> 
+and earlier modules are governed by such a license, which allows only academic use for free. 
+<code>intel/2020.1.217</code> is the version loaded by default when you log in to Siku.
+</p><p>Intel's <a rel="nofollow" class="external text" href="https://www.intel.com/content/www/us/en/developer/articles/troubleshooting/oneapi-commercial-faq.html">"Commercial Products Support FAQ – 2020 Update"</a>
+(retrieved 2022-08-19) reads, in part:
+</p>
+<pre>Q: Are all of the oneAPI Toolkits available for free?
+
+A: Yes, all of the oneAPI Toolkits are available for free download and use for
+   commercial and non-commercial purposes.  The oneAPI Toolkits obtained for
+   free are supported via community forums and are public.  
+   Only the most recent releases of the Toolkits will be made available.
+</pre>
+<p>The key word here is "oneAPI".  At this time of writing we have two versions of the 
+Intel oneAPI compilers in our software stack, that are therefore free for commercial use:
+</p>
+<pre>[user@login1 ~]$ module  whatis intel/2021.2.0
+intel/2021.2.0     &#160;: Description: Intel C, C++ &amp; Fortran compilers (classic and oneAPI)
+intel/2021.2.0     &#160;: Homepage: <a rel="nofollow" class="external free" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html">https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html</a>
+intel/2021.2.0     &#160;: URL: <a rel="nofollow" class="external free" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html">https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html</a>
+
+[user@login1 ~]$ module  whatis intel/2022.1.0
+intel/2022.1.0     &#160;: Description: Intel C, C++ &amp; Fortran compilers (classic and oneAPI)
+intel/2022.1.0     &#160;: Homepage: <a rel="nofollow" class="external free" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html">https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html</a>
+intel/2022.1.0     &#160;: URL: <a rel="nofollow" class="external free" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html">https://software.intel.com/content/www/us/en/develop/tools/oneapi/hpc-toolkit.html</a>
+</pre>
+
+
+</div>
+
