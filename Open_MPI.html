@@ -17,7 +17,7 @@ layout: default
 
 <h2><span class="mw-headline" id="Open_MPI">Open MPI</span></h2>
 <p>The default (and preferred) MPI implementation on our clusters is Open MPI. It's free, open source, production-quality MPI-2 implementation.
-</p><p><b>Note:</b> Do not confuse the Open MPI library with the <a href="https://wiki.ace-net.ca/wiki/OpenMP" title="OpenMP">OpenMP</a> interface.
+</p><p><b>Note:</b> Do not confuse the Open MPI library with the <a href="/OpenMP" title="OpenMP">OpenMP</a> interface.
 </p>
 <dl><dt>Documentation</dt>
 <dd><a rel="nofollow" class="external text" href="http://www.open-mpi.org">Open MPI web site</a></dd>
@@ -35,7 +35,7 @@ layout: default
 <li>Better performance, especially on large shared-memory nodes.</li>
 <li>No need to recompile your application on every cluster.</li>
 <li>Better integration with Sun Grid Engine.</li>
-<li>Better integration with parallel debuggers (see <a href="https://wiki.ace-net.ca/wiki/TotalView" title="TotalView">TotalView</a>).</li>
+<li>Better integration with parallel debuggers (see <a href="/TotalView" title="TotalView">TotalView</a>).</li>
 <li>User friendly, easy to use.</li></ul>
 <h2><span class="mw-headline" id="Commands">Commands</span></h2>
 <p>You can use the following standard commands:
@@ -53,7 +53,7 @@ layout: default
  $ man MPI_Send
 </pre>
 <h2><span class="mw-headline" id="Running_production_jobs">Running production jobs</span></h2>
-<p>Below is an example of a <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> submission script</a> for an MPI job. There is no need to specify the list of hosts and/or the number of processes for the <code>mpirun</code> command because <a class="mw-selflink selflink">Open MPI</a> will obtain this information directly from Grid Engine. You should use the <code>ompi*</code> <a href="https://wiki.ace-net.ca/wiki/Parallel_Jobs" title="Parallel Jobs"> parallel environment</a> for Open MPI jobs.
+<p>Below is an example of a <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> submission script</a> for an MPI job. There is no need to specify the list of hosts and/or the number of processes for the <code>mpirun</code> command because <a class="mw-selflink selflink">Open MPI</a> will obtain this information directly from Grid Engine. You should use the <code>ompi*</code> <a href="/Parallel_Jobs" title="Parallel Jobs"> parallel environment</a> for Open MPI jobs.
 </p>
 <pre>  #$ -cwd
   #$ -pe ompi* 4
@@ -76,10 +76,10 @@ layout: default
 <p>Some users may want to use alternative builds of Open MPI to compile their applications. We provide several versions of Open MPI built with PGI, Intel and GCC compilers. In order to use them, you should load a specific <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> modulefile</a>. All Open MPI modulefiles are mutually exclusive. In order to minimize user's confusion and prevent version conflict, we suggest users to load an Open MPI modulefile interactively before compiling an application and then again in the submission script to run it.
 </p>
 <h2><span class="mw-headline" id="Further_reading">Further reading</span></h2>
-<ul><li><a href="https://wiki.ace-net.ca/wiki/Parallel_Jobs" title="Parallel Jobs">Parallel Jobs</a></li>
+<ul><li><a href="/Parallel_Jobs" title="Parallel Jobs">Parallel Jobs</a></li>
 <li><a href="page_not_existing.html" style='color:red' class="new" title="Interactive Jobs (page does not exist)">Interactive Jobs</a></li>
-<li><a href="https://wiki.ace-net.ca/wiki/Test_Jobs" title="Test Jobs">Test Jobs</a></li>
-<li><a href="https://wiki.ace-net.ca/wiki/Memory_Management" title="Memory Management">Memory Management</a></li>
+<li><a href="/Test_Jobs" title="Test Jobs">Test Jobs</a></li>
+<li><a href="/Memory_Management" title="Memory Management">Memory Management</a></li>
 <li>Tips on writing <a href="page_not_existing.html" style='color:red' class="new" title="Job Scripts (page does not exist)">Job Scripts</a></li></ul>
 
 

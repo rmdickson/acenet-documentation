@@ -31,7 +31,7 @@ layout: default
 </p>
 <h2><span class="mw-headline" id="Applying_for_a_WebMO_account">Applying for a WebMO account</span></h2>
 <ul><li>Apply for an <a href="/Get_an_Account" title="Get an Account"> ACENET Account</a></li>
-<li>Please <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> contact support</a> asking to be added to the WebMO group</li></ul>
+<li>Please <a href="/Ask_Support" title="Ask Support"> contact support</a> asking to be added to the WebMO group</li></ul>
 <p>If you have been asked to use WebMO for class purposes your instructor may register your entire class at once, in which case you don't need to contact support separately. Follow the instructions your instructor provides and you will be sent a group password via email. Class instructors, please see the <a href="page_not_existing.html" style='color:red' class="new" title="Roster registration for WebMO and NQS (page does not exist)">Roster registration for WebMO and NQS</a> page.
 </p>
 <ul><li>After you receive your group password:
@@ -42,12 +42,12 @@ layout: default
 <h2><span class="mw-headline" id="User_guide">User guide</span></h2>
 <h3><span class="mw-headline" id="New_Users_to_WebMO">New Users to WebMO</span></h3>
 <p>Any users new to using the WebMO interface should read their very useful <a rel="nofollow" class="external text" href="http://www.webmo.net/download/WebMO_Users_Guide.pdf">User Guide</a>, and after read the changes ACENET made as it will affect your WebMO experience.
-</p><p>If you wish to use the <a href="https://wiki.ace-net.ca/wiki/Gaussian" title="Gaussian">Gaussian</a> or <a href="page_not_existing.html" style='color:red' class="new" title="NWChem (page does not exist)">NWChem</a> interfaces of Webmo please visit the pages of those packages and follow the instructions to get added to the unix group required to use those packages.  Otherwise you will not have an option to use either of these interfaces.  In addition, to use the  <a href="https://wiki.ace-net.ca/wiki/Gaussian" title="Gaussian">Gaussian</a> webmo interface you must sign up for <a rel="nofollow" class="external text" href="http://www.ace-net.ca/wiki/NQS#No-quota_Scratch">no quota scratch</a>.
+</p><p>If you wish to use the <a href="/Gaussian" title="Gaussian">Gaussian</a> or <a href="page_not_existing.html" style='color:red' class="new" title="NWChem (page does not exist)">NWChem</a> interfaces of Webmo please visit the pages of those packages and follow the instructions to get added to the unix group required to use those packages.  Otherwise you will not have an option to use either of these interfaces.  In addition, to use the  <a href="/Gaussian" title="Gaussian">Gaussian</a> webmo interface you must sign up for <a rel="nofollow" class="external text" href="http://www.ace-net.ca/wiki/NQS#No-quota_Scratch">no quota scratch</a>.
 </p>
 <h3><span class="mw-headline" id="ACENET_Changes_and_Warnings">ACENET Changes and Warnings</span></h3>
 <p>There are a number of changes that had to be made to get WebMO to work with ACENET's systems and to adhere to our policies
 </p>
-<ul><li>There are two new values to the job submission screen: h_rt and h_vmem.  Please refer to ACENET's <a href="https://wiki.ace-net.ca/wiki/User_Guide" title="User Guide">User Guide</a> to learn why.</li>
+<ul><li>There are two new values to the job submission screen: h_rt and h_vmem.  Please refer to ACENET's <a href="/User_Guide" title="User Guide">User Guide</a> to learn why.</li>
 <li>The jobs are run and the input and output stored in <b>your</b> scratch space <code>/home/<i>${USER}</i>/scratch/webmo</code>.</li>
 <li>Some intermediate files associated with each job are stored in the <b>webmo</b> scratch space, <code>/home/webmo/scratch/<i>UserName</i></code>.</li>
 <li>The files in <code>/home/webmo/scratch/<i>UserName</i></code> will have to be cleaned occasionally.
@@ -61,7 +61,7 @@ layout: default
 </p><p>Jobs within WebMO are being erroneously marked as <span style="color: red"><i>Failed</i></span> although they are actually running. 
 Once a job finishes, it's status will change from <span style="color: red"><i>Failed</i></span> to <span style="color: green"><i>Complete</i></span>.<br />  
 Please check your job status with the <code>qstat</code> command after logging on to <code>placentia.ace-net.ca</code> via SSH
-(see the <a href="https://wiki.ace-net.ca/wiki/User_Guide" title="User Guide">User Guide</a>). Once the WebMO job no longer shows up in the output of qstat, it can be actually considered as failed.<br />
+(see the <a href="/User_Guide" title="User Guide">User Guide</a>). Once the WebMO job no longer shows up in the output of qstat, it can be actually considered as failed.<br />
 Looking at the "Raw Output" file from the allegedly <span style="color: red"><i>Failed</i></span> job (in the Actions column of the Job Manager table)
 can also reveal either reveal an error message - in which case the job would be actually failed - or if the output looks normal and
 after reloading more output is being appended, the job is still running.
@@ -82,7 +82,7 @@ To see this space, open the file using a text editor and ask it to show the hidd
 <pre>set list
 </pre>
 <p>Remove the space, then try to import the molecule into WebMO.
-</p><p>If you know of any additional issues with WebMO please <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> email support</a>.
+</p><p>If you know of any additional issues with WebMO please <a href="/Ask_Support" title="Ask Support"> email support</a>.
 </p>
 <h2><span class="mw-headline" id="Upcoming_WebMO_features_for_ACENET">Upcoming WebMO features for ACENET</span></h2>
 <ul><li>Email notification for completed/failed jobs.</li></ul>

@@ -223,7 +223,7 @@ your job to fit on any of the available node-types.
 cannot easily be adapted to make use of the 48-core nodes, you can use
 <code>#SBATCH --constraint=40core</code> to prevent the 48-core nodes from being considered
 for your job.
-</p><p>See <a href="https://wiki.ace-net.ca/wiki/Siku#Node_characteristics" title="Siku">Node characteristics</a> for all available node configurations.
+</p><p>See <a href="/Siku#Node_characteristics" title="Siku">Node characteristics</a> for all available node configurations.
 </p>
 <h4><span id="Why_was_my_job_rejected?"></span><span class="mw-headline" id="Why_was_my_job_rejected.3F">Why was my job rejected?</span></h4>
 <p>If you receive <code>sbatch: error: Batch job submission failed:</code> when you submit a job, the rest of the message will usually indicate the problem.  Here are some you might see:
@@ -242,7 +242,7 @@ for your job.
 <ul><li><code>Resources</code>:  The scheduler is waiting for other jobs to finish in order to have enough resources to run this job.</li>
 <li><code>Priority</code>: Higher priority jobs are being scheduled ahead of this one.
 <ul><li><code>pd-</code> and <code>ctb-</code> accounts always have higher priority than <code>def-</code> accounts.  Within these tiers, priority is determined by the amount of computing that each account has done recently.</li></ul></li>
-<li><code>QOSGrpBillingMinutes</code>:  You are close to the quarterly usage limit for your paid account. See <a href="https://wiki.ace-net.ca/wiki/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.</li>
+<li><code>QOSGrpBillingMinutes</code>:  You are close to the quarterly usage limit for your paid account. See <a href="/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.</li>
 <li><code>QOSGrpCpuLimit</code>:  This may be due to:
 <ul><li>The limit on the number of CPUs which can be used by long jobs at one time, considering all accounts in aggregate.</li>
 <li>The limit on the number of CPUs which can be used by a <code>ctb-</code> account at one time.  Jobs for a <code>ctb-</code> account run in the same priority tier as <code>pd-</code> jobs, but they cannot use more than a fixed amount of resources at any one time.  Use <code>--account=def-xxx</code> to avoid this limit, but at the cost of priority</li>
@@ -254,9 +254,9 @@ for your job.
 <ul><li>Certain users of <code>ctb-</code> accounts may be subject to a similar constraint with a different time limit, at the request of the contributing PI.</li></ul></li>
 <li><code>ReqNodeNotAvail, Reserved for maintenance</code>: There is maintenance scheduled to take place in the near future.  Your job's time limit is long enough that it might not finish before the maintenance outage begins.
 <ul><li>You can determine the start time of the maintenance outage with <code>scontrol show reservations</code>, and the current time with <code>date</code>.</li></ul></li>
-<li><code>BadConstraints</code>: We have seen jobs which display <code>BadConstraints</code> and then run normally without intervention.  Treat it as a meaningless message, unless you think your job has been waiting in this state for an unusually long time, in which case <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support">Ask Support</a> for help.</li></ul>
+<li><code>BadConstraints</code>: We have seen jobs which display <code>BadConstraints</code> and then run normally without intervention.  Treat it as a meaningless message, unless you think your job has been waiting in this state for an unusually long time, in which case <a href="/Ask_Support" title="Ask Support">Ask Support</a> for help.</li></ul>
 <h4><span id="My_monthly_usage_report_doesn't_look_right"></span><span class="mw-headline" id="My_monthly_usage_report_doesn.27t_look_right">My monthly usage report doesn't look right</span></h4>
-<p>See <a href="https://wiki.ace-net.ca/wiki/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.
+<p>See <a href="/Tracking_paid_accounts" title="Tracking paid accounts">Tracking paid accounts</a>.
 </p>
 <h4><span class="mw-headline" id="Other_restrictions">Other restrictions</span></h4>
 <ul><li>Each account may have no more than 5,000 jobs pending or running at one time.  This is to prevent overloading the scheduler processes.  A job array counts as multiple jobs.</li></ul>
@@ -416,7 +416,7 @@ for your job.
 <h2><span class="mw-headline" id="Known_issues">Known issues</span></h2>
 <ul><li>Globus file transfer service is only available to academic users, since it is integrated with the Digital Research Alliance's authentication and authorization systems.</li></ul>
 <ul><li>We have enabled <a rel="nofollow" class="external text" href="https://apptainer.org/docs/admin/main/user_namespace.html">user namespaces</a> to support the operation of Apptainer <i>only on compute nodes</i>.  You will not be able to test an Apptainer image on a login node.  If you wish to do interactive testing with Apptainer, use <code>salloc</code> to get an interactive shell on a compute node.</li></ul>
-<ul><li>If you are <i>not</i> an academic user and intend to compile programs, please read <a href="https://wiki.ace-net.ca/wiki/License_considerations_for_commercial_users" title="License considerations for commercial users">License considerations for commercial users</a>.</li></ul>
+<ul><li>If you are <i>not</i> an academic user and intend to compile programs, please read <a href="/License_considerations_for_commercial_users" title="License considerations for commercial users">License considerations for commercial users</a>.</li></ul>
 <ul><li>Multi-Processing using <code>libverbs</code> is not working as expected. MPI implementations, however, should work.</li></ul>
 <ul><li>Directories are automatically created at first logon.  This may produce a race condition that results in errors like the following:</li></ul>
 <pre>Could not chdir to home directory /home/username: No such file or directory

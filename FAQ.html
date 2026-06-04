@@ -180,7 +180,7 @@ $ qalter -l test=false,suspendable=false,h_stack=10M,h_vmem=800M,h_rt=12:0:0 109
  #$ -o $JOB_ID.log
 </pre>
 <h3><span id="Warning:_No_xauth_data;_using_fake_authentication_data_for_X11_forwarding"></span><span class="mw-headline" id="Warning:_No_xauth_data.3B_using_fake_authentication_data_for_X11_forwarding">Warning: No xauth data; using fake authentication data for X11 forwarding</span></h3>
-<p>Your <code>~/.Xauthority</code> file got corrupted. Please delete it manually, and next time you login with <a href="https://wiki.ace-net.ca/wiki/X11_forwarding" title="X11 forwarding">X11 forwarding</a> enabled, it will get re-created.
+<p>Your <code>~/.Xauthority</code> file got corrupted. Please delete it manually, and next time you login with <a href="/X11_forwarding" title="X11 forwarding">X11 forwarding</a> enabled, it will get re-created.
 </p>
 <h3><span class="mw-headline" id="I_need_to_extend_the_run-time_limit_for_a_running_job">I need to extend the run-time limit for a running job</span></h3>
 <p>You cannot <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> alter parameters</a> of a running job. If you are sure that your jobs will not be able to finish on time, then it might be better to terminate and then re-submit it again with a different run-time limit.
@@ -192,14 +192,14 @@ $ qalter -l test=false,suspendable=false,h_stack=10M,h_vmem=800M,h_rt=12:0:0 109
 <pre>$ qsub -R y <i>...other parameters...</i>
 </pre>
 <h3><span class="mw-headline" id="I_need_to_run_a_quick_test">I need to run a quick test</span></h3>
-<p>You can run your job in the <a href="https://wiki.ace-net.ca/wiki/Test_Jobs" title="Test Jobs"> test queue</a> only by asking for it explicitly like so:
+<p>You can run your job in the <a href="/Test_Jobs" title="Test Jobs"> test queue</a> only by asking for it explicitly like so:
 </p>
 <pre>$ qsub -l test=true,h_rt=0:0:10 <i>...other parameters...</i>
 </pre>
 <p>Jobs in the test queue must also have run times of less than one hour (<code>h_rt=01:00:00</code>).
 </p>
 <h3><span class="mw-headline" id="I_need_to_run_jobs_longer_than_a_month">I need to run jobs longer than a month</span></h3>
-<p>Check the conditions and caveats associated with <a href="page_not_existing.html" style='color:red' class="new" title="Subordinate Queues (page does not exist)">Subordinate Queues</a> to see if this solution might work for you. Otherwise, this requires special approval of the Resource Allocation Committee (RAC). <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> Contact support</a> first for advice on making an application to the RAC.
+<p>Check the conditions and caveats associated with <a href="page_not_existing.html" style='color:red' class="new" title="Subordinate Queues (page does not exist)">Subordinate Queues</a> to see if this solution might work for you. Otherwise, this requires special approval of the Resource Allocation Committee (RAC). <a href="/Ask_Support" title="Ask Support"> Contact support</a> first for advice on making an application to the RAC.
 </p>
 
 

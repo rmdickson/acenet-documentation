@@ -93,14 +93,14 @@ mpirun mpi_app
 </pre>
 <dl><dd>Please note that at <a href="/Placentia" title="Placentia">Placentia</a>, using <code>ompi*</code> may result in placing your job on the <a href="/Green_ACENET" title="Green ACENET">Green ACENET</a> resources that are not equipped with InfiniBand. In order to avoid this, do not use the trailing wildcard character, e.g. <code>-pe ompi 16</code>.</dd></dl>
 <h3><span class="mw-headline" id="Large_jobs_and_memory_fragmentation">Large jobs and memory fragmentation</span></h3>
-<p>Large MPI jobs, typically those with 64 slots or more, may be prone to apparently random failures due to memory fragmentation.  Read more about it on the <a href="https://wiki.ace-net.ca/wiki/Memory_Management#MPI_job_fragmentation" title="Memory Management">Memory Management</a> page.
+<p>Large MPI jobs, typically those with 64 slots or more, may be prone to apparently random failures due to memory fragmentation.  Read more about it on the <a href="/Memory_Management#MPI_job_fragmentation" title="Memory Management">Memory Management</a> page.
 </p>
 <h3><span id="4per*_and_16per*_parallel_environments"></span><span class="mw-headline" id="4per.2A_and_16per.2A_parallel_environments">4per* and 16per* parallel environments</span></h3>
 <pre>$ qsub -pe 4per\* 32 jobscript
 $ qsub -pe 16per\* 32 jobscript
 </pre>
 <p>These parallel environments will guarantee that your job receives exactly 4 or 16 slots per host, respectively.  You must request an integral multiple of 4 or 16 slots.
-</p><p>Using one of these parallel environments constrains the scheduler more strongly than using <code>ompi*</code> and so will typically result in a longer wait for the job to schedule.  They are therefore recommended only if you have a good reason to use them.  One such reason might be if you are running very large MPI jobs and per-connection <a href="https://wiki.ace-net.ca/wiki/Memory_Management#MPI_job_fragmentation" title="Memory Management"> memory overhead</a> is a problem.
+</p><p>Using one of these parallel environments constrains the scheduler more strongly than using <code>ompi*</code> and so will typically result in a longer wait for the job to schedule.  They are therefore recommended only if you have a good reason to use them.  One such reason might be if you are running very large MPI jobs and per-connection <a href="/Memory_Management#MPI_job_fragmentation" title="Memory Management"> memory overhead</a> is a problem.
 </p><p>There is no general way to request the exclusive use of entire hosts from Grid Engine; <code>-pe 16per*</code> and <code>-pe openmp</code> are the best you can do:
 </p>
 <ul><li>At sites built entirely from 4-core machines (Mahone), <code>4per*</code> will also give you exclusive use of complete hosts.</li>
