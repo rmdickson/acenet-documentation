@@ -10,11 +10,11 @@ layout: default
 </td></tr></tbody></table>
 <p><br />
 </p>
-<dl><dd><i>Main page: <a href="https://wiki.ace-net.ca/wiki/User_Guide" title="User Guide">User Guide</a></i></dd></dl>
+<dl><dd><i>Main page: <a href="/User_Guide" title="User Guide">User Guide</a></i></dd></dl>
 <p>File storage at ACENET is implemented with one of two file system technologies:
 </p>
-<ul><li><a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29">Lustre</a>, a parallel file system widely used in high-performance computing, at <a href="https://wiki.ace-net.ca/wiki/Mahone" title="Mahone">Mahone</a>, <a href="https://wiki.ace-net.ca/wiki/Fundy" title="Fundy">Fundy</a>, and <a href="https://wiki.ace-net.ca/wiki/Placentia" title="Placentia">Placentia</a>.</li>
-<li>Oracle's <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/QFS">SAM-QFS</a> at <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a>.</li></ul>
+<ul><li><a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29">Lustre</a>, a parallel file system widely used in high-performance computing, at <a href="/Mahone" title="Mahone">Mahone</a>, <a href="/Fundy" title="Fundy">Fundy</a>, and <a href="/Placentia" title="Placentia">Placentia</a>.</li>
+<li>Oracle's <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/QFS">SAM-QFS</a> at <a href="/Glooscap" title="Glooscap">Glooscap</a>.</li></ul>
 <div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Changes"><span class="tocnumber">1</span> <span class="toctext">Changes</span></a></li>
@@ -52,14 +52,14 @@ layout: default
 <h2><span class="mw-headline" id="Policies">Policies</span></h2>
 <dl><dd><i>Policy document: <a rel="nofollow" class="external text" href="img/c/c2/ACENET_Data_Policies.pdf">ACENET Data Policies</a></i></dd></dl>
 <h3><span class="mw-headline" id="Backup">Backup</span></h3>
-<p><b>ACENET does not provide backup services.</b>  Our filesystems are built with <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/RAID">RAID</a> redundancy to protect your data from the loss due to hardware failures, but we do not protect you from accidentally deleting or changing your own files.  Users are therefore strongly encouraged to make off-site (or multi-site) copies of their critical data. Source code and other such key files should be managed with a <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Version_control">version control</a> tool such as <a href="https://wiki.ace-net.ca/wiki/Git" title="Git">Git</a>, Subversion, Mercurial, or <a href="https://wiki.ace-net.ca/wiki/CVS" title="CVS">CVS</a>. 
-</p><p>You should also be aware of your home institution's data storage policies and follow them. Some institutions offer network backup facilities which you might be able to take advantage of.  MUN users can take advantage of MUN's <a href="https://wiki.ace-net.ca/wiki/RDB" class="mw-redirect" title="RDB">RDB</a> system for backing up data from <a href="https://wiki.ace-net.ca/wiki/Placentia" title="Placentia">Placentia</a>.
+<p><b>ACENET does not provide backup services.</b>  Our filesystems are built with <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/RAID">RAID</a> redundancy to protect your data from the loss due to hardware failures, but we do not protect you from accidentally deleting or changing your own files.  Users are therefore strongly encouraged to make off-site (or multi-site) copies of their critical data. Source code and other such key files should be managed with a <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Version_control">version control</a> tool such as <a href="/Git" title="Git">Git</a>, Subversion, Mercurial, or <a href="/CVS" title="CVS">CVS</a>.
+</p><p>You should also be aware of your home institution's data storage policies and follow them. Some institutions offer network backup facilities which you might be able to take advantage of.  MUN users can take advantage of MUN's <a href="/RDB" class="mw-redirect" title="RDB">RDB</a> system for backing up data from <a href="/Placentia" title="Placentia">Placentia</a>.
 </p>
 <h3><span class="mw-headline" id="Archiving">Archiving</span></h3>
 <p>ACENET does not provide permanent data archiving.
 </p>
 <h3><span class="mw-headline" id="Data_retention_policy">Data retention policy</span></h3>
-<p>Data stored in <a href="https://wiki.ace-net.ca/wiki/Account_Renewal" title="Account Renewal">expired accounts</a> is subject to deletion after a grace period of 4 months.
+<p>Data stored in <a href="/Account_Renewal" title="Account Renewal">expired accounts</a> is subject to deletion after a grace period of 4 months.
 </p>
 <h2><span class="mw-headline" id="Layout">Layout</span></h2>
 <p>There are three types of disk space available to the user on most ACENET clusters: One is <a href="#Permanent_Storage"> Permanent Storage</a>, and two others are <a href="#Temporary_Storage">Temporary Storage</a>. The general outline of the ACENET storage system is given below.
@@ -76,7 +76,7 @@ layout: default
 <th valign="top" bgcolor="#cee0f2" align="left" width="80px">Resource type
 </th></tr>
 <tr valign="top" bgcolor="#f5faff">
-<td><a href="https://wiki.ace-net.ca/wiki/Storage_System#Permanent_Storage" title="Storage System"> Home Dir</a></td>
+<td><a href="/Storage_System#Permanent_Storage" title="Storage System"> Home Dir</a></td>
 <td><code>/home/&lt;username&gt;</code></td>
 <td>critical data and code</td>
 <td>network
@@ -93,13 +93,13 @@ layout: default
 <th valign="top" bgcolor="#cee0f2" align="left" width="80px">Resource type
 </th></tr>
 <tr valign="top" bgcolor="#f5faff">
-<td><a href="https://wiki.ace-net.ca/wiki/Storage_System#No-quota_Scratch" title="Storage System"> No-quota Scratch</a></td>
+<td><a href="/Storage_System#No-quota_Scratch" title="Storage System"> No-quota Scratch</a></td>
 <td><code>/nqs/&lt;username&gt;</code></td>
 <td>temporary data, large data</td>
 <td>network
 </td></tr>
 <tr valign="top" bgcolor="#f5faff">
-<td><a href="https://wiki.ace-net.ca/wiki/Storage_System#Local_Scratch" title="Storage System"> Local Scratch</a></td>
+<td><a href="/Storage_System#Local_Scratch" title="Storage System"> Local Scratch</a></td>
 <td><code>/scratch/tmp</code></td>
 <td>temporary data, fast read/write access data</td>
 <td>node-local

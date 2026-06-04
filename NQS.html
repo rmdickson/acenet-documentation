@@ -53,13 +53,13 @@ layout: default
 <dl><dd><i>Policy document: <a rel="nofollow" class="external text" href="img/c/c2/ACENET_Data_Policies.pdf">ACENET Data Policies</a></i></dd></dl>
 <h3><span class="mw-headline" id="Backup">Backup</span></h3>
 <p><b>ACENET does not provide backup services.</b>  Our filesystems are built with <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/RAID">RAID</a> redundancy to protect your data from the loss due to hardware failures, but we do not protect you from accidentally deleting or changing your own files.  Users are therefore strongly encouraged to make off-site (or multi-site) copies of their critical data. Source code and other such key files should be managed with a <a rel="nofollow" class="external text" href="https://en.wikipedia.org/wiki/Version_control">version control</a> tool such as <a href="Git.html" title="Git">Git</a>, Subversion, Mercurial, or <a href="CVS.html" title="CVS">CVS</a>.
-</p><p>You should also be aware of your home institution's data storage policies and follow them. Some institutions offer network backup facilities which you might be able to take advantage of.  MUN users can take advantage of MUN's <a href="RDB.html" class="mw-redirect" title="RDB">RDB</a> system for backing up data from <a href="https://wiki.ace-net.ca/wiki/Placentia" title="Placentia">Placentia</a>.
+</p><p>You should also be aware of your home institution's data storage policies and follow them. Some institutions offer network backup facilities which you might be able to take advantage of.  MUN users can take advantage of MUN's <a href="RDB.html" class="mw-redirect" title="RDB">RDB</a> system for backing up data from <a href="/Placentia" title="Placentia">Placentia</a>.
 </p>
 <h3><span class="mw-headline" id="Archiving">Archiving</span></h3>
 <p>ACENET does not provide permanent data archiving.
 </p>
 <h3><span class="mw-headline" id="Data_retention_policy">Data retention policy</span></h3>
-<p>Data stored in <a href="https://wiki.ace-net.ca/wiki/Account_Renewal" title="Account Renewal">expired accounts</a> is subject to deletion after a grace period of 4 months.
+<p>Data stored in <a href="/Account_Renewal" title="Account Renewal">expired accounts</a> is subject to deletion after a grace period of 4 months.
 </p>
 <h2><span class="mw-headline" id="Layout">Layout</span></h2>
 <p>There are three types of disk space available to the user on most ACENET clusters: One is <a href="#Permanent_Storage"> Permanent Storage</a>, and two others are <a href="#Temporary_Storage">Temporary Storage</a>. The general outline of the ACENET storage system is given below.
@@ -76,7 +76,7 @@ layout: default
 <th valign="top" bgcolor="#cee0f2" align="left" width="80px">Resource type
 </th></tr>
 <tr valign="top" bgcolor="#f5faff">
-<td><a href="https://wiki.ace-net.ca/wiki/Storage_System#Permanent_Storage" title="Storage System"> Home Dir</a></td>
+<td><a href="/Storage_System#Permanent_Storage" title="Storage System"> Home Dir</a></td>
 <td><code>/home/&lt;username&gt;</code></td>
 <td>critical data and code</td>
 <td>network
@@ -93,19 +93,19 @@ layout: default
 <th valign="top" bgcolor="#cee0f2" align="left" width="80px">Resource type
 </th></tr>
 <tr valign="top" bgcolor="#f5faff">
-<td><a href="https://wiki.ace-net.ca/wiki/Storage_System#No-quota_Scratch" title="Storage System"> No-quota Scratch</a></td>
+<td><a href="/Storage_System#No-quota_Scratch" title="Storage System"> No-quota Scratch</a></td>
 <td><code>/nqs/&lt;username&gt;</code></td>
 <td>temporary data, large data</td>
 <td>network
 </td></tr>
 <tr valign="top" bgcolor="#f5faff">
-<td><a href="https://wiki.ace-net.ca/wiki/Storage_System#Local_Scratch" title="Storage System"> Local Scratch</a></td>
+<td><a href="/Storage_System#Local_Scratch" title="Storage System"> Local Scratch</a></td>
 <td><code>/scratch/tmp</code></td>
 <td>temporary data, fast read/write access data</td>
 <td>node-local
 </td></tr></tbody></table>
 <h2><span class="mw-headline" id="Permanent_Storage">Permanent Storage</span></h2>
-<p>Main storage (home directory) is your personal and permanent space for research-critical data and code. This is where you should put your data prior to and after computations, and where you should keep source code and executables. It is located in <code>/home/&lt;username&gt;</code>, where your username will replace <code>&lt;username&gt;</code>. When you log in, this is your current working directory. You may create whatever subdirectories you like here. The Main storage is a networked storage shared among all compute nodes via Lustre or <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Network_File_System_%28protocol%29">NFS (Network File System)</a> at <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a>.
+<p>Main storage (home directory) is your personal and permanent space for research-critical data and code. This is where you should put your data prior to and after computations, and where you should keep source code and executables. It is located in <code>/home/&lt;username&gt;</code>, where your username will replace <code>&lt;username&gt;</code>. When you log in, this is your current working directory. You may create whatever subdirectories you like here. The Main storage is a networked storage shared among all compute nodes via Lustre or <a rel="nofollow" class="external text" href="http://en.wikipedia.org/wiki/Network_File_System_%28protocol%29">NFS (Network File System)</a> at <a href="/Glooscap" title="Glooscap">Glooscap</a>.
 </p>
 <h3><span class="mw-headline" id="Quotas">Quotas</span></h3>
 <p>Storage quotas are implemented at all clusters. The default quota values (soft limits) are given in the table below. The hard limit quotas are 5-10% higher (except Glooscap). The grace period of exceeding the soft limit is one week.
@@ -172,7 +172,7 @@ You can also use <code>du</code> to determine how much space your files occupy:
 <p>No-quota Scratch (NQS) is temporary network storage that has no per-user quota limit, but gets cleaned periodically to get rid of old files. It's available at <code>/nqs/&lt;username&gt;/</code> on every cluster to users who have requested access to it.
 </p>
 <dl><dt>Note</dt>
-<dd>If you want to use NQS, you should <a href="https://wiki.ace-net.ca/wiki/Ask_Support" title="Ask Support"> contact support</a> stating that you understand the terms of use and would like NQS turned on. Also, please let us know if you want to be notified when files are scheduled for deletion, and if so where you want those emails to be sent.</dd></dl>
+<dd>If you want to use NQS, you should <a href="/Ask_Support" title="Ask Support"> contact support</a> stating that you understand the terms of use and would like NQS turned on. Also, please let us know if you want to be notified when files are scheduled for deletion, and if so where you want those emails to be sent.</dd></dl>
 <p>NQS is designed to allow you to store large amounts of data on a temporary basis, for example, files generated and consumed during a single job that cannot be stored on Main Storage or Global Scratch due to the per-user quotas.  Because no quotas are enforced on NQS, there is an irreducible risk that the filesystem will fill up.  Should that occur <b>existing data on <code>/nqs</code> may be unrecoverable.</b>  This means it is unsuitable for storage of critical data.  Long-term storage of data --- critical or not --- is also not appropriate since this increases the risk of the filesystem filling up during its intended use.
 </p><p>You are expected to delete your files from <code>/nqs</code> once the associated job or jobs are complete.  Technical staff also reserve the right to delete files manually in the event of a manifest risk of a fill-up emergency.
 </p><p>To ensure that these guidelines are followed and <code>/nqs</code> stays usable for its intended purpose, <b>files which have not been accessed for 31 days are automatically deleted.</b>  The deletion routine will notify you seven days in advance of removing any of your files if you keep a file named <code>/home/username/.nqs</code> in your home directory with these contents:
@@ -222,9 +222,9 @@ $ ls -luR /nqs/$USER    # in subdirectories too, recursively
 <pre>$ find /nqs/$USER -type f -atime +24
 </pre>
 <h3><span class="mw-headline" id="Local_Scratch">Local Scratch</span></h3>
-<dl><dd><i>Main page: <a href="https://wiki.ace-net.ca/wiki/Local_Scratch" title="Local Scratch">Local Scratch</a></i></dd></dl>
+<dl><dd><i>Main page: <a href="/Local_Scratch" title="Local Scratch">Local Scratch</a></i></dd></dl>
 <p>Each compute node has its own disk (or in some cases, solid state memory) which is not shared with other compute nodes.  We refer to this as local disk.  If it is used to store temporary files for an individual job, then we refer to that as "local scratch storage".
-</p><p>Local scratch has the advantage over network storage that local storage is not prone to slow down when cluster load is high.  If your application does a high volume of input/output then using local scratch might result in more predictable run times.  However, local scratch is more complicated to use than network storage.  If you are willing to invest some effort into learning how to use node-local disk in general and the specifics of ACENET's node-local scratch in particular, then please read <a href="https://wiki.ace-net.ca/wiki/Local_Scratch" title="Local Scratch">Local Scratch</a>.
+</p><p>Local scratch has the advantage over network storage that local storage is not prone to slow down when cluster load is high.  If your application does a high volume of input/output then using local scratch might result in more predictable run times.  However, local scratch is more complicated to use than network storage.  If you are willing to invest some effort into learning how to use node-local disk in general and the specifics of ACENET's node-local scratch in particular, then please read <a href="/Local_Scratch" title="Local Scratch">Local Scratch</a>.
 </p>
 
 

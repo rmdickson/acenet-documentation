@@ -27,8 +27,8 @@ layout: default
 <p>The TotalView debugger can be used for debugging both serial and parallel (MPI, OpenMP) applications. However, parallel program users will find TotalView extremely useful due to its focus on multi-processor programs debugging. It contains both a graphical and a command line interface; and it includes several features for MPI and OpenMP debugging.
 </p>
 <dl><dt>Availability</dt>
-<dd><a href="https://wiki.ace-net.ca/wiki/Mahone" title="Mahone">Mahone</a>, <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a>, <a href="https://wiki.ace-net.ca/wiki/Placentia" title="Placentia">Placentia</a>, <a href="https://wiki.ace-net.ca/wiki/Fundy" title="Fundy">Fundy</a>: fully supported (head node and compute nodes)</dd>
-<dd>Replay Engine only available at <a href="https://wiki.ace-net.ca/wiki/Mahone" title="Mahone">Mahone</a>, <a href="https://wiki.ace-net.ca/wiki/Glooscap" title="Glooscap">Glooscap</a></dd></dl>
+<dd><a href="/Mahone" title="Mahone">Mahone</a>, <a href="/Glooscap" title="Glooscap">Glooscap</a>, <a href="/Placentia" title="Placentia">Placentia</a>, <a href="/Fundy" title="Fundy">Fundy</a>: fully supported (head node and compute nodes)</dd>
+<dd>Replay Engine only available at <a href="/Mahone" title="Mahone">Mahone</a>, <a href="/Glooscap" title="Glooscap">Glooscap</a></dd></dl>
 <dl><dt>Modulefile</dt>
 <dd><code>totalview</code></dd></dl>
 <dl><dt>Usage</dt>
@@ -59,7 +59,7 @@ layout: default
 <p>If you want to use the GUI-based TotalView parallel debugger then you need to make sure that you are connecting to the head node of the cluster with the X11 forwarding enabled in your SSH client. That will allow you to get windows of a remotely started application shown on your own desktop. Unix users need to run the X11 server on their desktops (if you are running any window manager then you already have the X11 server installed) and connect to the head node with the <code>-X</code> option for the SSH client (<code>ssh -X servername.ace-net.ca</code>). Those using <a rel="nofollow" class="external text" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY</a> on Windows need to install <a rel="nofollow" class="external text" href="http://sourceforge.net/projects/xming">XMing</a> and enable X11 forwarding in PuTTY.
 </p>
 <h2><span class="mw-headline" id="Debugging_Open_MPI_programs">Debugging Open MPI programs</span></h2>
-<p>You can use the Totalview debugger either on the head node, or through the grid engine queues. To debug a job you just need to include <code>--debug</code> in the command line. Open MPI will automatically invoke TotalView to run your MPI process if you have <code>totalview</code> <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> module</a> loaded in your <a href="https://wiki.ace-net.ca/wiki/User_Guide#Unix_Shell" title="User Guide"> shell profile</a>.
+<p>You can use the Totalview debugger either on the head node, or through the grid engine queues. To debug a job you just need to include <code>--debug</code> in the command line. Open MPI will automatically invoke TotalView to run your MPI process if you have <code>totalview</code> <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)"> module</a> loaded in your <a href="/User_Guide#Unix_Shell" title="User Guide"> shell profile</a>.
 </p>
 <h3><span class="mw-headline" id="On_the_head_node">On the head node</span></h3>
 <p>If your application is not computationally intensive, does not use a lot of memory, and you are running debugging sessions for short periods of time (<b>any process run on the head node should not consume more than 15 minutes of CPU time</b>) with a small number of processes (no more than 2), then you can debug your program on the head node. For example:
@@ -71,7 +71,7 @@ layout: default
 <pre> $ totalview my_program
 </pre>
 <h3><span id="On_the_compute_nodes_(through_the_grid_engine_queues)"></span><span class="mw-headline" id="On_the_compute_nodes_.28through_the_grid_engine_queues.29">On the compute nodes (through the grid engine queues)</span></h3>
-<p>If your debugging sessions do not qualify to run on the head node, then you need to use <a href="https://wiki.ace-net.ca/wiki/Test_Jobs" title="Test Jobs"> dedicated test.q resources</a>, which allow to run a job for less than 1 hour.
+<p>If your debugging sessions do not qualify to run on the head node, then you need to use <a href="/Test_Jobs" title="Test Jobs"> dedicated test.q resources</a>, which allow to run a job for less than 1 hour.
 </p>
 <pre> $ qrsh -cwd -pe "ompi*" 4 -l h_rt=00:30:00,test=true mpirun --debug myapplication
 </pre>
