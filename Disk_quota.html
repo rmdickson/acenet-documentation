@@ -13,8 +13,8 @@ layout: default
 <dl><dd><i>Main page: <a href="User_Guide.html" title="User Guide">User Guide</a></i></dd></dl>
 <p>File storage at ACENET is implemented with one of two file system technologies:
 </p>
-<ul><li><a rel="noopener noreferrer nofollow" class="external text" href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29" target="_blank">Lustre</a>, a parallel file system widely used in high-performance computing, at <a href="Mahone.html" title="Mahone">Mahone</a>, <a href="Fundy.html" title="Fundy">Fundy</a>, and <a href="Placentia.html" title="Placentia">Placentia</a>.</li>
-<li>Oracle's <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/QFS" target="_blank">SAM-QFS</a> at <a href="Glooscap.html" title="Glooscap">Glooscap</a>.</li></ul>
+<ul><li><a rel="noopener noreferrer nofollow" class="external text" href="https://en.wikipedia.org/wiki/Lustre_%28file_system%29" target="_blank">Lustre</a>, a parallel file system widely used in high-performance computing, at Mahone, Fundy, and <a href="Placentia.html" title="Placentia">Placentia</a>.</li>
+<li>Oracle's <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/QFS" target="_blank">SAM-QFS</a> at Glooscap.</li></ul>
 <div id="toc" class="toc"><div class="toctitle" lang="en" dir="ltr"><h2>Contents</h2></div>
 <ul>
 <li class="toclevel-1 tocsection-1"><a href="#Changes"><span class="tocnumber">1</span> <span class="toctext">Changes</span></a></li>
@@ -105,7 +105,7 @@ layout: default
 <td>node-local
 </td></tr></tbody></table>
 <h2><span class="mw-headline" id="Permanent_Storage">Permanent Storage</span></h2>
-<p>Main storage (home directory) is your personal and permanent space for research-critical data and code. This is where you should put your data prior to and after computations, and where you should keep source code and executables. It is located in <code>/home/&lt;username&gt;</code>, where your username will replace <code>&lt;username&gt;</code>. When you log in, this is your current working directory. You may create whatever subdirectories you like here. The Main storage is a networked storage shared among all compute nodes via Lustre or <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/Network_File_System_%28protocol%29" target="_blank">NFS (Network File System)</a> at <a href="Glooscap.html" title="Glooscap">Glooscap</a>.
+<p>Main storage (home directory) is your personal and permanent space for research-critical data and code. This is where you should put your data prior to and after computations, and where you should keep source code and executables. It is located in <code>/home/&lt;username&gt;</code>, where your username will replace <code>&lt;username&gt;</code>. When you log in, this is your current working directory. You may create whatever subdirectories you like here. The Main storage is a networked storage shared among all compute nodes via Lustre or <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/Network_File_System_%28protocol%29" target="_blank">NFS (Network File System)</a> at Glooscap.
 </p>
 <h3><span class="mw-headline" id="Quotas">Quotas</span></h3>
 <p>Storage quotas are implemented at all clusters. The default quota values (soft limits) are given in the table below. The hard limit quotas are 5-10% higher (except Glooscap). The grace period of exceeding the soft limit is one week.
