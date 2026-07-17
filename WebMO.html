@@ -47,7 +47,7 @@ layout: default
 <h3><span class="mw-headline" id="ACENET_Changes_and_Warnings">ACENET Changes and Warnings</span></h3>
 <p>There are a number of changes that had to be made to get WebMO to work with ACENET's systems and to adhere to our policies
 </p>
-<ul><li>There are two new values to the job submission screen: h_rt and h_vmem.  Please refer to ACENET's <a href="{{ 'User_Guide' | relative_url }}" title="User Guide">User Guide</a> to learn why.</li>
+<ul><li>There are two new values to the job submission screen: h_rt and h_vmem.</li>
 <li>The jobs are run and the input and output stored in <b>your</b> scratch space <code>/home/<i>${USER}</i>/scratch/webmo</code>.</li>
 <li>Some intermediate files associated with each job are stored in the <b>webmo</b> scratch space, <code>/home/webmo/scratch/<i>UserName</i></code>.</li>
 <li>The files in <code>/home/webmo/scratch/<i>UserName</i></code> will have to be cleaned occasionally.
@@ -60,8 +60,8 @@ layout: default
 <p><b>Jobs are "failing" immediately</b>
 </p><p>Jobs within WebMO are being erroneously marked as <span style="color: red"><i>Failed</i></span> although they are actually running. 
 Once a job finishes, it's status will change from <span style="color: red"><i>Failed</i></span> to <span style="color: green"><i>Complete</i></span>.<br />  
-Please check your job status with the <code>qstat</code> command after logging on to <code>placentia.ace-net.ca</code> via SSH
-(see the <a href="{{ 'User_Guide' | relative_url }}" title="User Guide">User Guide</a>). Once the WebMO job no longer shows up in the output of qstat, it can be actually considered as failed.<br />
+Please check your job status with the <code>qstat</code> command after logging on to <code>placentia.ace-net.ca</code> via SSH.
+Once the WebMO job no longer shows up in the output of qstat, it can be actually considered as failed.<br />
 Looking at the "Raw Output" file from the allegedly <span style="color: red"><i>Failed</i></span> job (in the Actions column of the Job Manager table)
 can also reveal either reveal an error message - in which case the job would be actually failed - or if the output looks normal and
 after reloading more output is being appended, the job is still running.

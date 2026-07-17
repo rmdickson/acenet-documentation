@@ -75,7 +75,7 @@ to request permission to access Gaussian on Compute Canada clusters.
 </p><p>A <code>module load</code> command can also be added to a job script, or to your <code>~/.bashrc</code> or <code>~/.cshrc</code> file.  In the same place you may also wish to set the environment variable <code>GAUSS_SCRDIR</code> to tell Gaussian where to write intermediate files.  See "Scratch directory" below for more on this.
 </p>
 <h2><span class="mw-headline" id="Running_Gaussian">Running Gaussian</span></h2>
-<p>Gaussian can be run both interactively on placentia.ace-net.ca and through the <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> Sun Grid Engine</a> (SGE).  Users are asked to run all jobs through SGE unless they are testing a configuration and wanting to make sure there are no errors prior to submitting a job to the scheduler. 
+<p>Gaussian can be run both interactively on placentia.ace-net.ca and through the Sun Grid Engine (SGE).  Users are asked to run all jobs through SGE unless they are testing a configuration and wanting to make sure there are no errors prior to submitting a job to the scheduler.
 </p>
 <h3><span class="mw-headline" id="Interactive_Use">Interactive Use</span></h3>
 <p>You can run small, short Gaussian calculations at the terminal prompt.  Remember to load a Gaussian module first.  Gaussian can be executed by typing
@@ -85,7 +85,7 @@ to request permission to access Gaussian on Compute Canada clusters.
 <p>Keep an eye on any interactive job.  No interactive job should be left to run more than 15 minutes.  Jobs longer than this are considered Production Jobs and must be submitted via SGE.
 </p>
 <h3><span class="mw-headline" id="Production_Jobs">Production Jobs</span></h3>
-<p>Normally jobs should be submitted via the <a href="page_not_existing.html" style='color:red' class="new" title="Sun Grid Engine (page does not exist)">Sun Grid Engine</a> (SGE).  For a description of the SGE commands qsub, qstat and qdel, see <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a>.
+<p>Normally jobs should be submitted via the Sun Grid Engine (SGE).  For a description of the SGE commands qsub, qstat and qdel.
 </p>
 <h4><span class="mw-headline" id="Serial_Jobs">Serial Jobs</span></h4>
 <p>The following minimal script could be used to run a serial (single-CPU) Gaussian job.
@@ -110,14 +110,14 @@ to request permission to access Gaussian on Compute Canada clusters.
 <pre>$ ls Gau*
 Gau-24596.inp  Gau-24598.chk  Gau-24598.d2e  Gau-24598.int  Gau-24598.rwf  Gau-24598.scr
 </pre>
-<p>If a Gaussian job finishes normally these files are automatically deleted at the end of the run.  However, if Gaussian doesn't have enough <a href="{{ 'Disk_quota' | relative_url }}" class="mw-redirect" title="Disk quota">disk quota</a> for these files the job will crash, probably (but not always) near the beginning. Furthermore, a typical Gaussian job does an enormous number of small input/output transactions to those files, which can have a negative effect on filesystem performance. Therefore the location of these intermediate files is very important.
+<p>If a Gaussian job finishes normally these files are automatically deleted at the end of the run.  However, if Gaussian doesn't have enough disk quota for these files the job will crash, probably (but not always) near the beginning. Furthermore, a typical Gaussian job does an enormous number of small input/output transactions to those files, which can have a negative effect on filesystem performance. Therefore the location of these intermediate files is very important.
 </p><p>In the interactive and script examples shown above, intermediate files are written to the current working directory, i.e. the directory where the job was submitted. By setting an environment variable <code>GAUSS_SCRDIR</code>, you can direct Gaussian to put these intermediate files in other places.  There are effectively three options at ACENET:
 </p>
 <ul><li>/home filesystem</li>
 <li>Local scratch</li>
 <li>NQS</li></ul>
 <dl><dt>/home filesystem</dt>
-<dd>This default location has a small <a href="{{ 'Disk_quota' | relative_url }}" class="mw-redirect" title="Disk quota">quota</a>.  This limits the size of jobs you can run, but also limits the amount of disk Gaussian can consume by accident.  It is the default for the beginning user, and requires no knowledge of environment variables or changes to the example job script shown above. This is suitable <b>if you only expect to run one or two Gaussian jobs at a time,</b> and if the size of their intermediate files does not exceed your quota.</dd></dl>
+<dd>This default location has a small quota.  This limits the size of jobs you can run, but also limits the amount of disk Gaussian can consume by accident.  It is the default for the beginning user, and requires no knowledge of environment variables or changes to the example job script shown above. This is suitable <b>if you only expect to run one or two Gaussian jobs at a time,</b> and if the size of their intermediate files does not exceed your quota.</dd></dl>
 <dl><dt>Local scratch</dt>
 <dd>Using node-local disk for scratch files reduces load on the network filesystem and relieves space pressure on <code>/home</code>.  For these reasons it <b>is the recommended best practice.</b> Request the <code>localscratch</code> resource from Grid Engine and set <code>GAUSS_SCRDIR</code> to <code>$TMPDIR</code>.  Here is a fragment of a job script as an example (<code>bash</code> syntax shown):</dd></dl>
 <pre> #$ -pe gaussian 4
@@ -126,9 +126,9 @@ Gau-24596.inp  Gau-24598.chk  Gau-24598.d2e  Gau-24598.int  Gau-24598.rwf  Gau-2
  export GAUSS_SCRDIR=$TMPDIR
 </pre>
 <dl><dd>231 GB is the largest volume of scratch disk you can access with this method at Placentia. Other nodes are available with 122G and 94G of local scratch. The machines with 231G also have a second local disk, but this cannot be accessed through $TMPDIR. Write to support@ace-net.ca for help if you want to try using this second local disk.</dd>
-<dd>See the next section for more about MAXDISK, and the page on <a href="{{ 'Local_Scratch' | relative_url }}" title="Local Scratch">Local Scratch</a>.</dd></dl>
+<dd>See the next section for more about MAXDISK, and the page on Local Scratch.</dd></dl>
 <dl><dt>NQS</dt>
-<dd>If your jobs generate intermediate files that may <a href="{{ 'Storage_System' | relative_url }}" title="Storage System">exceed your quota</a> in <code>/home</code> or the capacity of local scratch, you can use "no-quota scratch", <code>/nqs/$USER</code>.  It is simpler to manage than local scratch, but you <b>must</b> read about it and accept its terms of usage on the <a href="{{ 'Storage_System#No-quota_Scratch' | relative_url }}" title="Storage System">Storage System</a> page before using it.  Once you have done that and followed the instructions there, you set <code>GAUSS_SCRDIR</code> in your script:</dd></dl>
+<dd>If your jobs generate intermediate files that may exceed your quota in <code>/home</code> or the capacity of local scratch, you can use "no-quota scratch", <code>/nqs/$USER</code>.  It is simpler to manage than local scratch, but you <b>must</b> read about it and accept its terms of usage on the <a href="{{ 'Storage_System#No-quota_Scratch' | relative_url }}" title="Storage System">Storage System</a> page before using it.  Once you have done that and followed the instructions there, you set <code>GAUSS_SCRDIR</code> in your script:</dd></dl>
 <pre>export GAUSS_SCRDIR=/nqs/$USER     # bash syntax
 setenv GAUSS_SCRDIR /nqs/$USER     # tcsh syntax
 </pre>

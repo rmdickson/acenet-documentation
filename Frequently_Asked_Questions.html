@@ -60,7 +60,7 @@ layout: default
 </p>
 <pre> $ ssh username@placentia.ace-net.ca
 </pre>
-<p>If you are running an X11 server on your machine and want to run interactive graphical X11 applications through <a href="{{ 'Grid_Engine' | relative_url }}" class="mw-redirect" title="Grid Engine"> the scheduler</a>, then you need to enable <a href="{{ 'X11_forwarding' | relative_url }}" title="X11 forwarding">X11 forwarding</a>.
+<p>If you are running an X11 server on your machine and want to run interactive graphical X11 applications through the scheduler, then you need to enable <a href="{{ 'X11_forwarding' | relative_url }}" title="X11 forwarding">X11 forwarding</a>.
 </p><p>After logging in, you will get a command line prompt with the name of the cluster:
 </p>
 <pre> you@yourhost: ~ $ ssh user@placentia.ace-net.ca
@@ -107,15 +107,15 @@ layout: default
 <p>Before transfering or creating data on ACENET systems, users are encouraged to familiarize themselves with our <a rel="noopener noreferrer nofollow" class="external text" href="img/c/c2/ACENET_Data_Policies.pdf">Data Policies</a>.
 </p>
 <h2><span class="mw-headline" id="Storage_System">Storage System</span></h2>
-<dl><dd><i>Main page: <a href="{{ 'Storage_System' | relative_url }}" title="Storage System">Storage System</a></i></dd>
+<dl>
 <dd><i>Policy document: <a rel="noopener noreferrer nofollow" class="external text" href="img/c/c2/ACENET_Data_Policies.pdf">ACENET Data Policies</a></i></dd></dl>
 <p>Each ACENET cluster has its own data storage facility or "disk array".  This disk array contains
 </p>
 <ul><li>your <i>home directory</i> for that cluster, and</li>
 <li>a large temporary workspace known as <code>/nqs/<i>username</i></code>.</li></ul>
-<p>Files in <code>/nqs</code> are subject to automatic removal at periodic intervals.  In order to place files in <code>/nqs</code> you must first read and understand the policies described under <a href="{{ 'Storage_System#No-quota_Scratch' | relative_url }}" title="Storage System">No-quota Scratch</a>.
+<p>Files in <code>/nqs</code> are subject to automatic removal at periodic intervals.  In order to place files in <code>/nqs</code> you must first read and understand the policies described under No-quota Scratch.
 </p><p>Files in these areas are visible from any node in that cluster. Files on one ACENET cluster are not visible on a different ACENET cluster.  In order to get data from one cluster to another you must use one of the file transfer tools described above, or <a href="page_not_existing.html" style='color:red' class="new" title="GridFTP (page does not exist)">GridFTP</a>.
-</p><p>For more details on disk and storage matters, including quotas and cleanup policies, please see <a href="{{ 'Storage_System' | relative_url }}" title="Storage System">Storage System</a>.
+</p><p>For more details on disk and storage matters, including quotas and cleanup policies.
 </p>
 <dl><dt>Backup</dt>
 <dd>ACENET does not provide backup services, but MUN users can take advantage of MUN's <a href="{{ 'RDB' | relative_url }}" class="mw-redirect" title="RDB">RDB</a> system for data on Placentia. Our clusters provide reasonable (though not iron-clad) assurances against data loss from system failures, but <b>not</b> against accidental deletion. You are responsible for your own backup plan. We strongly encourage you to make off-site (or multi-site) copies of your critical data.</dd></dl>
@@ -128,7 +128,7 @@ number of tutorials available on the Internet, such as
 <a rel="noopener noreferrer nofollow" class="external text" href="http://freeengineer.org/learnUNIXin10minutes.html" target="_blank">Learn UNIX in 10 minutes</a>,
 <a rel="noopener noreferrer nofollow" class="external text" href="http://www.ee.surrey.ac.uk/Teaching/Unix/" target="_blank">UNIX Tutorial for Beginners</a>, or
 <a rel="noopener noreferrer nofollow" class="external text" href="http://linuxcommand.org/learning_the_shell.php" target="_blank">Learning the shell</a>.
-</p><p>In order to modify a file you <i>can</i> transfer it from the cluster to your local machine, edit it there, and then transfer it back with the tools mentioned in <a href="{{ 'User_Guide#File_Transfer' | relative_url }}" title="User Guide">File Transfer</a> above, but most users quickly tire of this practice and learn to use an <b>editor</b>. A good choice for a beginner is
+</p><p>In order to modify a file you <i>can</i> transfer it from the cluster to your local machine, edit it there, and then transfer it back with the tools mentioned in File Transfer above, but most users quickly tire of this practice and learn to use an <b>editor</b>. A good choice for a beginner is
 </p>
 <ul><li><a rel="noopener noreferrer nofollow" class="external text" href="https://en.wikipedia.org/wiki/GNU_nano" target="_blank">nano</a>, a simple and nearly self-explanatory text editor.</li></ul>
 <p>Most veteran computational scientists use one or the other of
@@ -190,7 +190,7 @@ number of tutorials available on the Internet, such as
 <p>Please refer to the <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a> page for detailed information on how to manage jobs, including example job scripts. The key commands discussed there are <code>qsub, qstat, qdel, qsum</code> and <code>showq</code>.
 </p>
 <h3><span class="mw-headline" id="Test_jobs">Test jobs</span></h3>
-<p>A small fraction of our resources is reserved as <a href="{{ 'Test_Jobs' | relative_url }}" title="Test Jobs"> highly available test resources</a>. These test nodes must be requested through Grid Engine, and can be used for either regular job submission or for <a href="page_not_existing.html" style='color:red' class="new" title="Interactive Jobs (page does not exist)"> interactive sessions</a>.
+<p>A small fraction of our resources is reserved as highly available test resources. These test nodes must be requested through Grid Engine, and can be used for either regular job submission or for <a href="page_not_existing.html" style='color:red' class="new" title="Interactive Jobs (page does not exist)"> interactive sessions</a>.
 </p>
 <h3><span class="mw-headline" id="Available_software">Available software</span></h3>
 <dl><dd><i>Main pages: <a href="{{ 'Software' | relative_url }}" title="Software">Software</a>, <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)">Modules</a></i></dd></dl>
@@ -198,34 +198,23 @@ number of tutorials available on the Internet, such as
 </p><p>You should determine whether the application you intend to use can be run in <b>parallel</b>.  If so, then you must become familiar with the appropriate material on scheduling and execution of parallel programs under <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a>.
 </p>
 <h3><span class="mw-headline" id="Code_development">Code development</span></h3>
-<p>Programming in Fortran, C and C++ is supported with <a href="{{ 'Development_Tools' | relative_url }}" title="Development Tools"> compilers and libraries</a> that provide shared memory (<a href="{{ 'OpenMP' | relative_url }}" title="OpenMP">OpenMP</a>) and message-passing (<a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a>) parallel programming. If you plan on compiling code for use on ACENET please consult the appropriate web-pages first.
+<p>Programming in Fortran, C and C++ is supported with <a href="{{ 'Development_Tools' | relative_url }}" title="Development Tools"> compilers and libraries</a> that provide shared memory (OpenMP) and message-passing (<a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a>) parallel programming. If you plan on compiling code for use on ACENET please consult the appropriate web-pages first.
 </p><p>Other languages such as Java, Python, Perl, <i>etc.</i> are available as described on the <a href="{{ 'Compilers' | relative_url }}" class="mw-redirect" title="Compilers">Compilers</a> page, but may not be supported as intensively as Fortran and C.
 </p><p>Utilities are also available for <a href="{{ 'Compilers' | relative_url }}" class="mw-redirect" title="Compilers"> debugging and performance profiling</a> of user-compiled code, including the <a href="{{ 'TotalView' | relative_url }}" title="TotalView">TotalView</a> parallel debugger.
 </p>
 <h3><span class="mw-headline" id="Parallel_programming">Parallel programming</span></h3>
 <p>The principal benefit of high-performance computing arises from the ability to apply many CPUs to a single problem --- parallel computing.  Three models of parallel computing are supported at ACENET:
 </p>
-<ul><li>"Embarassingly" or "perfectly" parallel problems can be treated with a collection of independent serial jobs.  Such usage is supported via the <a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)"> job scheduler</a>, particularly <a href="{{ 'Managing_Many_Tasks#Array_jobs' | relative_url }}" title="Managing Many Tasks"> task arrays</a>. <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/High-throughput_computing" target="_blank">Some sources</a> refer to this as High-Throughput Computing as distinct from High-Performance Computing, but regardless of what it is called, it is supported at ACENET.</li>
+<ul><li>"Embarassingly" or "perfectly" parallel problems can be treated with a collection of independent serial jobs.  Such usage is supported via the job scheduler, particularly task arrays. <a rel="noopener noreferrer nofollow" class="external text" href="http://en.wikipedia.org/wiki/High-throughput_computing" target="_blank">Some sources</a> refer to this as High-Throughput Computing as distinct from High-Performance Computing, but regardless of what it is called, it is supported at ACENET.</li>
 <li>Message-passing parallel computing is supported with the <a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a> application programming interface (API). If you intend to either develop or run code which uses MPI, please read <a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI"> the MPI page</a>.</li>
-<li>Shared-memory parallel computing is supported with the <a href="{{ 'OpenMP' | relative_url }}" title="OpenMP">OpenMP</a> API.  If you intend to either develop or run code built with it, please read <a href="{{ 'OpenMP' | relative_url }}" title="OpenMP"> the OpenMP page</a>.</li></ul>
+<li>Shared-memory parallel computing is supported with the OpenMP API.</li></ul>
 <p>Other APIs for parallel computing (e.g. pthreads, PVM) may be available but are not supported.
 </p>
 <h2><span class="mw-headline" id="Further_reading">Further reading</span></h2>
-<ul><li><a href="page_not_existing.html" style='color:red' class="new" title="Job Control (page does not exist)">Job Control</a></li>
-<li><a href="{{ 'Parallel_Jobs' | relative_url }}" title="Parallel Jobs">Parallel Jobs</a></li>
-<li><a href="page_not_existing.html" style='color:red' class="new" title="Interactive Jobs (page does not exist)">Interactive Jobs</a> and <a href="{{ 'Test_Jobs' | relative_url }}" title="Test Jobs">Test Jobs</a></li>
-<li><a href="{{ 'Software' | relative_url }}" title="Software">Software</a> and <a href="page_not_existing.html" style='color:red' class="new" title="Modules (page does not exist)">Modules</a></li>
-<li><a href="{{ 'Memory_Management' | relative_url }}" title="Memory Management">Memory Management</a></li>
-<li><a href="{{ 'Managing_Many_Tasks' | relative_url }}" title="Managing Many Tasks">Managing Many Tasks</a></li>
-<li>Tips on writing <a href="page_not_existing.html" style='color:red' class="new" title="Job Scripts (page does not exist)">Job Scripts</a></li>
-<li><a href="{{ 'Storage_System' | relative_url }}" title="Storage System">Storage System</a></li>
-<li><a href="{{ 'OpenMP' | relative_url }}" title="OpenMP">OpenMP</a></li>
+<ul><li><a href="{{ 'Software' | relative_url }}" title="Software">Software</a></li>
 <li><a href="{{ 'MPI' | relative_url }}" class="mw-redirect" title="MPI">MPI</a></li>
-<li><a href="page_not_existing.html" style='color:red' class="new" title="Scheduling Policies and Mechanics (page does not exist)">Scheduling Policies and Mechanics</a></li>
 <li><a href="{{ 'Measuring_Code_Performance' | relative_url }}" title="Measuring Code Performance">Measuring Code Performance</a></li>
 <li><a href="{{ 'FAQ' | relative_url }}" title="FAQ">FAQ</a></li></ul>
-
-
 
 </div>
 
