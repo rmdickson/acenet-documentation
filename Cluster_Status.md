@@ -1,0 +1,99 @@
+---
+title: Cluster Status
+layout: home
+nav_order: 2
+---
+
+<style>th{background-color:#cee0f2;}</style>
+
+Cluster Status
+==============
+
+|![Ambox notice.png](img/Ambox_notice.png) This page is maintained manually. It gets updated as soon as we learn new information.|
+
+Clusters
+--------
+
+| Cluster | Status | Planned Outage | Notes |
+| -------- | -------- | -------- | -------- |
+| [Argo](Argo.html "Argo") | <span style="color:green">**Online**</span> | [No outages](Cluster_Status.html#Outage_schedule "Cluster Status") | \- |
+| [Siku](Siku.html "Siku") | <span style="color:green">**Online**</span> | [No outages](Cluster_Status.html#Outage_schedule "Cluster Status") | \- |
+
+For national clusters (Arbutus, Fir, Narval, Nibi, Rorqual, Trillium) see [status.alliancecan.ca](https://status.alliancecan.ca/)
+
+Services
+--------
+
+| Service | Status | Planned Outage | Notes |
+| -------- | -------- | -------- | -------- |
+| Globus at Argo | <span style="color:green">**Online**</span> | [\-](Cluster_Status.html#Outage_schedule "Cluster Status") | \- |
+| Globus at Siku | <span style="color:green">**Online**</span> | [\-](Cluster_Status.html#Outage_schedule "Cluster Status") | Academic users only |
+| [Account creation](Get_an_Account.html "Get an Account") | <span style="color:orange">**Manual**</span> | [No outages](Cluster_Status.html#Outage_schedule "Cluster Status") | [Write support](Ask_Support.html "Ask Support") |
+| PGI and Intel licenses | <span style="color:green">**Online**</span> | [No outages](Cluster_Status.html#Outage_schedule "Cluster Status") | \- |
+
+**Legend:**
+
+| <span style="color:green">**Online**</span> | cluster is up and running |
+| <span style="color:red">**Offline**</span> | all users cannot login or submit jobs, or service is not working |
+| <span style="color:orange">**Online**</span> | some users can login and/or there are problems affecting your work |
+
+Outage schedule {#Outage_schedule}
+---------------
+
+Jobs will not be scheduled with a run time (`--time=`) that extends into the beginning of a planned outage period. This is so the job will not be terminated prematurely when the system goes down.
+
+*   There are currently no planned outages.
+
+Siku
+----
+
+#### 2026
+
+*   **Siku** and **Argo** were experiencing issues with the external network connection on June 3rd and 4th, 2026. This caused degraded performance as well as several dropped connections on Wedensday June 3rd. We believe these issues have now been fully resolved.
+    
+    _Thursday, June 5, 2026, 16:00 NDT_
+    
+*   **Siku**, was offline May 29-June 1 2026 to facilitate electrical work in the Henrietta Harvey building of Memorial University will required that Siku be shut down on the afternoon of Friday, May 29. This outage has now ended.
+    
+    _Monday, June 1, 2026, 16:00 NDT_
+    
+*   **Siku** and **Argo**, 2026 May 20-21: GPU nodes were offline while we applied critical security updates to NVidia driver software.
+*   Earlier today (Friday, March 27) between 1:30 pm and 3:30 pm NDT (16h00 and 18h00 UTC), we experienced issues with our **/project** filesystem on Siku, that prevented new files from being created.  
+    The issues has been resolved and we don't see any jobs that unexpectedly failed due to this. Therefore we assume that no jobs were impacted.
+    
+    _Friday, Mar 27, 2026, 17:00 NDT_
+    
+*   Due to power fluctuations caused by a winter-storm, several compute nodes have been rebooted Tuesday night at about 10pm NST (01h30 UTC). Some jobs may have failed with status NODE\_FAIL.
+    
+    _Tuesday, Feb 3, 2026, 10:00 NST_
+    
+
+Argo
+----
+
+#### 2026
+
+*   **Siku** and **Argo** were experiencing issues with the external network connection on June 3rd and 4th, 2026. This caused degraded performance as well as several dropped connections on Wedensday June 3rd. We believe these issues have now been fully resolved.
+    
+    _Thursday, June 5, 2026, 16:00 NDT_
+    
+*   **Argo's** internet connection was unavailable on Saturday, May 30th, 2026 while electrical work was being carried out in the Henrietta Harvey building of Memorial University. Running jobs were not affected but the submission of new jobs as well as data-transfer was not possible during that time.
+*   _Thursday, January 29th, 2026_ starting at 12h00 NST (15h30UTC) **Argo** will undergo some maintenance, which requires shutting down compute nodes and storage.  
+    We expect this outage to be completed by mid-day on Friday, Jan 30.
+    
+    **NOTE:** This outage has been postponed from Mon, Jan 26 to Thu, Jan 29 at noon.
+    
+    _**UPDATE** Thu Jan 29, 17h45 NST_: The maintenance was completed successfully and most nodes are back in service. We will bring the remaining nodes online over the next few days.
+    
+
+Placentia
+---------
+
+*   Placentia was retired from general service as of 2019 Mar 31. A reduced number of compute nodes remain in service, with access restricted to MUN users who have made suitable arrangements. Contact [support@ace-net.ca](mailto:support@ace-net.ca) if you believe you should have access.
+
+Nefelibata
+----------
+
+*   Nefelibata has been retired from service
+
+2025-10-01
